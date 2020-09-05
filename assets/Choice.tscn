@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Choice.gd" type="Script" id=2]
+
+[node name="Choice" type="RichTextLabel"]
+margin_right = 70.0
+margin_bottom = 15.0
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 1, 0.854902, 0.682353, 1 )
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="meta_clicked" from="." to="." method="_on_Choice_meta_clicked"]

@@ -1,0 +1,16 @@
+{
+	"first": {
+	  	"avatar": "Mialeah/mialeah_default.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Hey.| Are you new here?| Welcome. I've been coming to this cafe for as long as I can remember. My name's Mialeah.",
+		"next": "intro2"
+	},
+	"intro2": {
+	  	"avatar": "Mialeah/mialeah_default.png",
+		"position": "left",
+		"type": "text",
+		"content": "Could I just get a black coffee, please?",
+	}
+}

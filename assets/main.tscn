@@ -1,0 +1,526 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://images/table.png" type="Texture" id=1]
+[ext_resource path="res://counter_mockup.png" type="Texture" id=2]
+[ext_resource path="res://images/front_counter.png" type="Texture" id=3]
+[ext_resource path="res://images/stovetop.png" type="Texture" id=4]
+[ext_resource path="res://images/counter_small.png" type="Texture" id=5]
+[ext_resource path="res://images/portrait_bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/Dialog_System.tscn" type="PackedScene" id=7]
+[ext_resource path="res://images/back_counter.png" type="Texture" id=8]
+[ext_resource path="res://images/cupcake_display.png" type="Texture" id=9]
+[ext_resource path="res://images/coffee_display.png" type="Texture" id=10]
+[ext_resource path="res://images/register.png" type="Texture" id=11]
+[ext_resource path="res://assets/clickable_item.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/chair.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/food.tscn" type="PackedScene" id=14]
+[ext_resource path="res://images/cafe_lamps.png" type="Texture" id=15]
+[ext_resource path="res://images/cafe_wall.png" type="Texture" id=16]
+[ext_resource path="res://assets/customer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/Control.gd" type="Script" id=18]
+[ext_resource path="res://images/cafe_BG.png" type="Texture" id=19]
+[ext_resource path="res://images/cup.png" type="Texture" id=20]
+[ext_resource path="res://assets/cup.gd" type="Script" id=21]
+[ext_resource path="res://images/blackboard_small.png" type="Texture" id=23]
+[ext_resource path="res://assets/blackboard.tscn" type="PackedScene" id=24]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Clickable = ExtResource( 12 )
+Foodstuff = ExtResource( 14 )
+Customer = ExtResource( 17 )
+
+[node name="bg" type="ColorRect" parent="."]
+margin_right = 208.0
+margin_bottom = 117.0
+color = Color( 0.396078, 0.396078, 0.396078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backwall" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 207.0
+margin_bottom = 41.0
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wallitems" type="TextureRect" parent="backwall"]
+margin_left = -39.0
+margin_top = -3.0
+margin_right = 161.0
+margin_bottom = 37.0
+texture = ExtResource( 16 )
+flip_h = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="lamps" type="TextureRect" parent="backwall"]
+margin_left = 2.23517e-08
+margin_top = -1.0
+margin_right = 200.0
+margin_bottom = 39.0
+texture = ExtResource( 15 )
+flip_h = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="backcounter" type="TextureRect" parent="backwall"]
+margin_top = 27.0
+margin_right = 89.0
+margin_bottom = 37.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="blackboard" type="TextureButton" parent="backwall"]
+margin_left = 58.0
+margin_top = 3.0
+margin_right = 94.0
+margin_bottom = 25.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 23 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="cupcakeholder" type="TextureRect" parent="backwall"]
+visible = false
+margin_left = 97.037
+margin_top = 21.7797
+margin_right = 115.037
+margin_bottom = 42.7797
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="coffeeholder" type="TextureRect" parent="backwall"]
+visible = false
+margin_left = 48.0
+margin_top = 13.9103
+margin_right = 63.0
+margin_bottom = 28.9103
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="coffee_grinder" parent="backwall" instance=ExtResource( 12 )]
+margin_left = 25.0
+margin_top = 20.0
+margin_right = 32.0
+margin_bottom = 29.0
+cook_time = 5
+sprite = "coffee grinder"
+
+[node name="object_sprite" parent="backwall/coffee_grinder" index="1"]
+animation = "coffee grinder"
+
+[node name="oven" parent="backwall" instance=ExtResource( 12 )]
+margin_left = 3.0
+margin_top = 26.0
+margin_right = 22.0
+margin_bottom = 38.0
+cook_time = 10
+sprite = "oven"
+creates_food = true
+
+[node name="object_sprite" parent="backwall/oven" index="1"]
+position = Vector2( 0, -1 )
+animation = "oven"
+flip_h = true
+
+[node name="kettle" parent="backwall" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_top = 15.0
+margin_right = 10.0
+margin_bottom = 24.0
+cook_time = 1
+sprite = "water"
+creates_drink = true
+
+[node name="object_sprite" parent="backwall/kettle" index="1"]
+position = Vector2( 0, -1 )
+animation = "water"
+flip_h = true
+
+[node name="coffee_machine" parent="backwall" instance=ExtResource( 12 )]
+margin_left = 16.0
+margin_top = 14.0
+margin_right = 24.0
+margin_bottom = 23.0
+cook_time = 3
+sprite = "coffee"
+creates_food = true
+creates_drink = true
+
+[node name="object_sprite" parent="backwall/coffee_machine" index="1"]
+animation = "coffee"
+
+[node name="stovetop" type="TextureRect" parent="backwall"]
+margin_left = 2.0
+margin_top = 23.0
+margin_right = 23.0
+margin_bottom = 25.0
+texture = ExtResource( 4 )
+flip_h = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="frontcounter" type="TextureRect" parent="backwall"]
+margin_left = 17.0
+margin_top = 29.0
+margin_right = 93.0
+margin_bottom = 38.0
+texture = ExtResource( 3 )
+flip_h = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="register" type="TextureRect" parent="backwall"]
+margin_left = 85.0
+margin_top = 23.0
+margin_right = 90.0
+margin_bottom = 29.0
+texture = ExtResource( 11 )
+flip_h = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="chair" parent="backwall" groups=[
+"seats",
+] instance=ExtResource( 13 )]
+margin_left = 124.0
+margin_top = 25.0
+margin_right = 139.0
+margin_bottom = 38.0
+stretch_mode = 4
+flip_h = false
+
+[node name="chair2" parent="backwall" groups=[
+"seats",
+] instance=ExtResource( 13 )]
+margin_left = 159.0
+margin_top = 25.0
+margin_right = 174.0
+margin_bottom = 38.0
+stretch_mode = 4
+flip_h = false
+
+[node name="chair4" parent="backwall" groups=[
+"seats",
+] instance=ExtResource( 13 )]
+margin_left = 176.0
+margin_top = 25.0
+margin_right = 191.0
+margin_bottom = 38.0
+stretch_mode = 4
+
+[node name="chair3" parent="backwall" groups=[
+"seats",
+] instance=ExtResource( 13 )]
+margin_left = 142.0
+margin_top = 25.0
+margin_right = 158.0
+margin_bottom = 38.0
+stretch_mode = 4
+
+[node name="table" type="TextureRect" parent="backwall"]
+margin_left = 135.0
+margin_top = 29.0
+margin_right = 145.0
+margin_bottom = 39.0
+rect_pivot_offset = Vector2( 6.53697, 4.76035 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="table2" type="TextureRect" parent="backwall"]
+margin_left = 170.003
+margin_top = 28.5593
+margin_right = 180.003
+margin_bottom = 38.5593
+rect_pivot_offset = Vector2( 6.53697, 4.76035 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="TextureRect" parent="backwall" groups=[
+"exit",
+]]
+margin_left = 238.0
+margin_top = 5.0
+margin_right = 238.0
+margin_bottom = 5.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="backwall"]
+margin_left = 35.0
+margin_top = 17.0
+margin_right = 88.0
+margin_bottom = 28.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="character bg" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_top = 41.0
+margin_right = 53.0
+margin_bottom = 75.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="counter" type="TextureRect" parent="."]
+margin_left = 54.0
+margin_top = 41.0
+margin_right = 207.0
+margin_bottom = 75.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="caramel" parent="counter" instance=ExtResource( 12 )]
+margin_left = 112.0
+margin_top = 6.0
+margin_right = 128.0
+margin_bottom = 13.0
+cook_time = 1
+sprite = "caramel"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/caramel" index="1"]
+animation = "caramel"
+
+[node name="chocolate" parent="counter" instance=ExtResource( 12 )]
+margin_left = 86.184
+margin_top = 5.0
+margin_right = 102.184
+margin_bottom = 12.0
+cook_time = 1
+sprite = "chocolate"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/chocolate" index="1"]
+animation = "chocolate"
+
+[node name="vanilla" parent="counter" instance=ExtResource( 12 )]
+margin_left = 100.0
+margin_top = 6.0
+margin_right = 116.0
+margin_bottom = 13.0
+cook_time = 1
+sprite = "vanilla"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/vanilla" index="1"]
+animation = "vanilla"
+
+[node name="strawberry" parent="counter" instance=ExtResource( 12 )]
+visible = false
+margin_left = 87.0
+margin_top = 6.0
+margin_right = 103.0
+margin_bottom = 13.0
+cook_time = 1
+sprite = "strawberry"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/strawberry" index="1"]
+animation = "strawberry"
+
+[node name="cinnamon" parent="counter" instance=ExtResource( 12 )]
+margin_left = 79.0
+margin_top = 20.0
+margin_right = 95.0
+margin_bottom = 27.0
+cook_time = 1
+sprite = "cinnamon"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/cinnamon" index="1"]
+animation = "cinnamon"
+
+[node name="honey" parent="counter" instance=ExtResource( 12 )]
+margin_left = 68.0
+margin_top = 12.0
+margin_right = 84.0
+margin_bottom = 19.0
+cook_time = 1
+sprite = "honey"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/honey" index="1"]
+animation = "honey"
+
+[node name="sugar" parent="counter" instance=ExtResource( 12 )]
+visible = false
+margin_left = 50.0
+margin_top = 9.0
+margin_right = 66.0
+margin_bottom = 16.0
+cook_time = 1
+sprite = "sugar"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/sugar" index="1"]
+animation = "sugar"
+
+[node name="black_tea" parent="counter" instance=ExtResource( 12 )]
+margin_left = 126.0
+margin_top = 17.0
+margin_right = 142.0
+margin_bottom = 24.0
+cook_time = 1
+sprite = "black tea"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/black_tea" index="1"]
+animation = "black tea"
+
+[node name="green_tea" parent="counter" instance=ExtResource( 12 )]
+margin_left = 129.0
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 12.0
+cook_time = 1
+sprite = "green tea"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/green_tea" index="1"]
+position = Vector2( -2, -2 )
+animation = "green tea"
+
+[node name="cup" type="TextureButton" parent="counter"]
+margin_left = 51.0
+margin_top = 13.0
+margin_right = 65.0
+margin_bottom = 31.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 20 )
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="espresso_machine" parent="counter" instance=ExtResource( 12 )]
+cook_time = 1
+sprite = "shot"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/espresso_machine" index="1"]
+animation = "shot"
+
+[node name="pchoo" parent="counter/espresso_machine" index="2"]
+position = Vector2( 0.198425, -0.396851 )
+
+[node name="pitcher" parent="counter" instance=ExtResource( 12 )]
+margin_left = 29.0
+margin_top = 18.0
+margin_right = 45.0
+margin_bottom = 25.0
+cook_time = 1
+sprite = "milk"
+creates_drink = true
+
+[node name="object_sprite" parent="counter/pitcher" index="1"]
+position = Vector2( 0, -1 )
+
+[node name="Dialog" parent="." instance=ExtResource( 7 )]
+margin_left = 105.0
+margin_top = 97.0
+margin_right = 105.0
+margin_bottom = 97.0
+
+[node name="advance_dialog" type="TextureButton" parent="Dialog"]
+margin_left = -104.0
+margin_right = 102.0
+margin_bottom = 43.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blackboard" parent="." instance=ExtResource( 24 )]
+visible = false
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+[connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
+[connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
+[connection signal="animation_finished" from="backwall/oven/object_sprite" to="." method="_on_oven_animation_finished"]
+[connection signal="gui_input" from="counter/cup" to="counter/cup" method="_on_cup_gui_input"]
+[connection signal="pressed" from="counter/cup" to="." method="_on_cup_pressed"]
+[connection signal="block_ended" from="Dialog" to="." method="_on_Dialog_block_ended"]
+[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
+[connection signal="pressed" from="blackboard/x_button" to="." method="_on_x_button_pressed"]
+
+[editable path="backwall/coffee_grinder"]
+
+[editable path="backwall/oven"]
+
+[editable path="backwall/kettle"]
+
+[editable path="backwall/coffee_machine"]
+
+[editable path="counter/caramel"]
+
+[editable path="counter/chocolate"]
+
+[editable path="counter/vanilla"]
+
+[editable path="counter/strawberry"]
+
+[editable path="counter/cinnamon"]
+
+[editable path="counter/honey"]
+
+[editable path="counter/sugar"]
+
+[editable path="counter/black_tea"]
+
+[editable path="counter/green_tea"]
+
+[editable path="counter/espresso_machine"]
+
+[editable path="counter/pitcher"]
+
+[editable path="blackboard"]

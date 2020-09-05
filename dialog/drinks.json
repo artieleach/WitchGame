@@ -1,0 +1,26 @@
+{
+	"snowy_owl": {
+		"drink_name": "Snowy Owl",
+		"recipe": "ORXXXXXXXXXXXXXX",
+		"description": "\nFor long days and slow evenings, calming, soothing, always a treat.",
+		"ingredients": ["1 pump chocolate", "1 pump caramel", "2 shots espresso"]
+	},
+	"blue_moon": {
+		"drink_name": "Blue Moon",
+		"recipe": "ORXXXXXXXXXXXXXX",
+		"description": "\n3.14159265358979323846264338327950288419716939937510",
+		"ingredients": ["1 pump vanilla", "sprinkle cinnamon", "2 shots espresso"]
+	},
+	"rusty_venture": {
+		"drink_name": "Rusty Venture",
+		"recipe": "ORXXXXXXXXXXXXXX",
+		"description": "\n I dont think any of us are hello escape hello escape",
+		"ingredients": ["1 pump vanilla", "1 pump caramel", "1 pump chocolate", "sprinkle cinnamon", "2 shots espresso"]
+	},
+	"Chocolieb": {
+		"drink_name": "Blue Moon",
+		"recipe": "ORXXXXXXXXXXXXXX",
+		"description": "\nI'm a weeb",
+		"ingredients": ["3 pump chocolate", "2 shots espresso"]
+	},
+}
