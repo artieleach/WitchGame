@@ -20,7 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="VA11HallB"
+config/name="LABoulangerie"
+config/description="a little cafe game"
 run/main_scene="res://assets/main.tscn"
 config/icon="res://icon.png"
 
