@@ -1,9 +1,6 @@
 extends TextureButton
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var ingredients = []
 var sprite_contents = []
 var contents = PoolVector2Array()
@@ -23,7 +20,7 @@ func serve():
 	print(output)
 	return output
 
-# Called when the node enters the scene tree for the first time.
+
 func add_to_drink():
 	contents = PoolVector2Array()
 	content_colors = PoolColorArray()
@@ -71,14 +68,17 @@ func add_to_drink():
 			"milk":
 				cup_code += ['M']
 				cur_color = "#ffd0d0d0"
+		content_colors.append(cur_color)
+		content_colors.append(cur_color)
+		cur_height -= 1
+	for item in sprite_contents:
+		match item:
 			"black tea":
 				cup_code += ['L']
 			"green tea":
 				cup_code += ['G']
-		content_colors.append(cur_color)
-		content_colors.append(cur_color)
-		cur_height -= 1
 	update()
+
 
 func _draw():
 	for item in sprite_contents:
@@ -96,5 +96,4 @@ func _on_cup_gui_input(event):
 		if event.button_index == BUTTON_RIGHT and event.pressed:
 			serve()
 			add_to_drink()
-
 

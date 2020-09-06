@@ -25,23 +25,26 @@ func generate_item(menu_item):
 	var menu_item_label = Label.instance()
 	add_child(menu_item_label)
 	menu_item_label.rect_position = Vector2(4, num_of_items * 12 + 3)
-	menu_item_label.bbcode_text = '[url=%s]%s[/url]' % [menu_item, drinks[menu_item]["drink_name"]]
+	if "color" in drinks[menu_item]:
+		menu_item_label.bbcode_text = '[color=%s][url=%s]%s[/url][/color]' % [drinks[menu_item]["color"], menu_item, menu_item]
+	else:
+		menu_item_label.bbcode_text = '[url=%s]%s[/url]' % [menu_item, menu_item]
 	menu_item_label.rect_size = Vector2(100, 20)
 	menu_item_label.name = menu_item
 	menu_item_label.add_to_group("donothide")
 	menu_item_label.connect("clicked_innit", self, "_on_button_pressed")
 	num_of_items += 1
 	num_of_children = 0
-	generate_child(menu_item_label, drinks[menu_item]["description"], "e8cc7c")
 
 
 func generate_child(parent, child_text, colour="fce08c"):
-	var menu_item_label = Label.instance()
-	add_child(menu_item_label)
-	menu_item_label.rect_position = Vector2(80, num_of_children * 12 + 3)
-	menu_item_label.rect_size = Vector2(120, 100)
-	menu_item_label.bbcode_text = "[color=#%s]%s[/color]" % [colour, child_text]
-	menu_item_label.add_to_group(parent.name)
+	var menu_item_entry = Label.instance()
+	add_child(menu_item_entry)
+	menu_item_entry.rect_position = Vector2(80, num_of_children * 12 + 3)
+	menu_item_entry.rect_size = Vector2(120, 100)
+	menu_item_entry.bbcode_text = "[color=#%s]%s[/color]" % [colour, child_text]
+	menu_item_entry.add_to_group(parent.name)
+	menu_item_entry.mouse_filter = 2  #ignore mouse input
 	num_of_children += 1
 
 
@@ -53,11 +56,9 @@ func _on_button_pressed(meta):
 	for node in get_children():
 		if node.name == meta:
 			recipe = node
-			print('here')
 	for ingredient in drinks[meta]["ingredients"]:
-		printt('here', meta, recipe)
 		generate_child(recipe, ingredient)
-
+	generate_child(recipe, drinks[meta]["description"], "e8cc7c")
 	num_of_children = 0
 
 

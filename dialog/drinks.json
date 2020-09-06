@@ -1,32 +1,48 @@
 {
-	"snowy_owl": {
-		"drink_name": "Snowy Owl",
+	"Snowy Owl": {
 		"recipe": "ORXXXXXXXXXXXXXX",
 		"description": "\nFor long days and slow evenings, calming, soothing, always a treat.",
 		"ingredients": ["1 pump chocolate", "1 pump caramel", "2 shots espresso"]
 	},
-	"blue_moon": {
-		"drink_name": "Blue Moon",
+	"Blue Moon": {
 		"recipe": "ORXXXXXXXXXXXXXX",
 		"description": "\n3.14159265358979323846264338327950288419716939937510",
 		"ingredients": ["1 pump vanilla", "sprinkle cinnamon", "2 shots espresso"]
 	},
-	"rusty_venture": {
-		"drink_name": "Rusty Venture",
+	"Rusty Venture": {
 		"recipe": "ORXXXXXXXXXXXXXX",
 		"description": "\n I dont think any of us are hello escape hello escape",
 		"ingredients": ["1 pump vanilla", "1 pump caramel", "1 pump chocolate", "sprinkle cinnamon", "2 shots espresso"]
 	},
 	"Chocolieb": {
-		"drink_name": "Blue Moon",
+		"color": "#442800",
 		"recipe": "ORXXXXXXXXXXXXXX",
 		"description": "\nI'm a weeb",
 		"ingredients": ["3 pump chocolate", "2 shots espresso"]
 	},
 	"Chachalaca": {
-		"drink_name": "Chachalaca",
+		"color":"#C19F8A",
 		"recipe": "MMMMMMNORVXXXXXX",
 		"description": "\nA sweet treat, lots of sugar. Named for a bird native to Brazil",
 		"ingredients": ["1 pump chocolate", "1 pump caramel", "1 pump vanilla", "dash of cinnamon", "equal parts steamed milk and espresso"]
+	},
+	"Pure Focus": {
+		"color": "#0100A1",
+		"recipe": "HXXXXXXXXXXXXXXX",
+		"description": "\nThe sort of drink where one must decide between dead and deadline.",
+		"ingredients": ["1 swirl honey", "As much espresso as you can handle"],
+	
+	},
+	"": {
+		"color": "",
+		"recipe": "",
+		"description": "",
+		"ingredients": [""]
+	},
+	"Spelunker": {
+		"color": "#BC595A",
+		"recipe": "",
+		"description": "\nTake a trip on the wild side, goin",
+		"ingredients": [""]
 	},
 }
