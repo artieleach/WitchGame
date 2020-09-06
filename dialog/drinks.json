@@ -41,8 +41,8 @@
 	},
 	"Spelunker": {
 		"color": "#BC595A",
-		"recipe": "",
+		"recipe": "CCCCCCCCOOXXXXXX",
 		"description": "\nTake a trip on the wild side, goin",
-		"ingredients": [""]
+		"ingredients": ["Fill the cup halfway with coffee", "1 pump chocolate", "As much espresso as possible"]
 	},
 }
