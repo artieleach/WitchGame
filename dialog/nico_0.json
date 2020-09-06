@@ -1,0 +1,30 @@
+{
+	"first": {
+	  	"avatar": "Nico/Nico.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Are you new in town? |It's a great place.",
+		"next": "intro2"
+	},
+	"intro2": {
+	  	"avatar": "Nico/Nico.png",
+		"position": "left",
+		"type": "text",
+		"content": "Did you know there are some birds here that don't appear anywhere else in the world?",
+		"next": "intro3"
+	},
+	"intro3": {
+	  	"avatar": "Nico/Nico.png",
+		"position": "left",
+		"type": "text",
+		"content": "I guess that's true for any part of the world, but this place especially. ",
+		"next": "intro4"
+	},
+	"intro4": {
+	  	"avatar": "Nico/Nico.png",
+		"position": "left",
+		"type": "text",
+		"content": "I'm feeling sweet today, could I get something that tastes as good as it is bad?",
+	}
+}

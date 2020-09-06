@@ -9,6 +9,11 @@ export (bool) var creates_drink
 
 signal add_to_cup
 signal add_sprite_to_cup
+signal counter_item_clicked
+
+var held = 0
+var times_held = 0
+var targeted = false
 
 func _ready():
 	if creates_drink:
@@ -21,6 +26,16 @@ func _ready():
 	rect_size.y = $object_sprite.frames.get_frame(sprite, $object_sprite.frame).get_height()
 	$pchoo.position.x = int(rect_size.x / 2)
 
+
+func _process(delta):
+	if targeted and Input.is_mouse_button_pressed(1):
+		held += 1
+		if held == 15 - times_held:
+			_on_clickable_item_pressed()
+			held = 0
+			if times_held < 12:
+				times_held += 1
+
 func _on_clickable_item_pressed():
 	disabled = true
 	match sprite:
@@ -32,9 +47,6 @@ func _on_clickable_item_pressed():
 			ding()
 	if creates_drink:
 		match sprite:
-			"shot", "water", "coffee", "milk":
-				for _i in range(8):
-					emit_signal("add_to_cup", sprite)
 			"green tea", "black tea":
 				emit_signal("add_sprite_to_cup", sprite)
 			_:
@@ -42,7 +54,7 @@ func _on_clickable_item_pressed():
 		disabled = false
 
 func ding():
-	$pchoo.visible = true
+	$pchoo.show()
 	$pchoo.frame = 0
 	$pchoo.playing = true
 
@@ -50,13 +62,19 @@ func _on_cook_timer_timeout():
 	disabled = false
 
 func _on_pchoo_animation_finished():
-	$pchoo.visible = false
+	$pchoo.hide()
 
 func _on_clickable_item_mouse_entered():
+	held = 0
+	times_held = 0
+	targeted = true
 	$AnimationPlayer.play("hover")
 
 
 func _on_clickable_item_mouse_exited():
+	held = 0
+	times_held = 0
+	targeted = false
 	$AnimationPlayer.stop()
 	$object_sprite.self_modulate = "#ffffff"
 

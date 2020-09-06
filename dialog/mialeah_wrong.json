@@ -2,6 +2,7 @@
 	"first": {
 	  	"avatar": "Mialeah/mialeah_default.png",
 		"position": "left",
+		"animation_in": "move_in",
 		"type": "text",
 		"content": "This...| Isn't exactly what I asked for. Thanks anyway.",
 	}

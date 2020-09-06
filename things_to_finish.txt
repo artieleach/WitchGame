@@ -1,0 +1,6 @@
+add more animations for customers and finish their AI
+- add idle animations while sitting down (checking phone, looking at a book, all that good stuff)
+
+day night cycle [x]
+
+add more items/clean up back wall

@@ -23,4 +23,10 @@
 		"description": "\nI'm a weeb",
 		"ingredients": ["3 pump chocolate", "2 shots espresso"]
 	},
+	"Chachalaca": {
+		"drink_name": "Chachalaca",
+		"recipe": "MMMMMMNORVXXXXXX",
+		"description": "\nA sweet treat, lots of sugar. Named for a bird native to Brazil",
+		"ingredients": ["1 pump chocolate", "1 pump caramel", "1 pump vanilla", "dash of cinnamon", "equal parts steamed milk and espresso"]
+	},
 }

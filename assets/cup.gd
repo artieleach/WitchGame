@@ -19,7 +19,7 @@ func serve():
 	ingredients = []
 	sprite_contents = []
 	cup_code.sort()
-	var output = str(cup_code).replace(", ", "").substr(1, 16)
+	var output = str(cup_code).replace(", ", "")
 	print(output)
 	return output
 
@@ -69,6 +69,7 @@ func add_to_drink():
 				cur_color = "#ee280900"
 				cup_code += ['C']
 			"milk":
+				cup_code += ['M']
 				cur_color = "#ffd0d0d0"
 			"black tea":
 				cup_code += ['L']

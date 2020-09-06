@@ -14,19 +14,19 @@ var cup_contents = []
 var seats = []
 var customer_line = []
 var speaker
-const characters = ["Jerry", "Kitch", "Nick", "Nico", "Neith", "Kat*a", "Oskar", "Milza", "Jello", "Quote", "Fina", "Ranes", "Ivo", "Gator", "Hermione", "Rena", "Globin", "Kezz", "Wenk", "Spot"]
 var drink = []
 var current_cup_contents
+var time_elapsed = 0
 var someone_bought_something
 
 
 func _ready():
 	$blackboard.hide()
 	randomize()
-	$Dialog.visible = true
+	dialog.show()
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
 	seats = get_tree().get_nodes_in_group("seats")
-	create_customer("mialeah", "CCCCCCCCCCCCCCCC")
+	create_customer("nico", "[MMMMMMNORVXXXXXX]")
 
 
 func make_food(foodtype):
@@ -74,12 +74,6 @@ func _on_food_expired(food):
 	food.queue_free()
 
 
-func _on_espresso_machine_pressed():
-	if coffee_grounds > 0:
-		coffee_grounds -= 1
-		$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
-
-
 func _on_coffee_grinder_pressed():
 	coffee_grounds = 5
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
@@ -114,7 +108,7 @@ func create_customer(customer_name, customer_want):
 		possible_seats[0].being_sat_in = true
 	else:
 		new_customer.where_to_sit = null
-	add_child(new_customer)
+	$backwall.add_child(new_customer)
 
 
 func _on_dialog(speaker, spesific_response=null):
@@ -168,3 +162,38 @@ func _on_x_button_pressed():
 	for node in get_children():
 		if node.is_in_group("customers"):
 			node.show()
+
+
+func _on_coffee_machine_pressed():
+	if $backwall/coffee_machine/object_sprite.frame < 9:
+		$backwall/coffee_machine/object_sprite.frame += 1
+		$backwall/coffee_machine._on_clickable_item_pressed()
+	elif coffee_grounds > 0:
+		coffee_grounds -= 1
+		$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
+		$backwall/coffee_machine/object_sprite.frame = 0
+
+
+func _process(delta):
+	time_elapsed += 1 # def: 1
+	$"character bg/sky".rect_position = Vector2(15, -766 + int(time_elapsed / 60))
+	if int(time_elapsed / 60) > 766:
+		end_day()
+		time_elapsed = 0 # def 0
+
+func end_day():
+	for customer in get_tree().get_nodes_in_group("customers"):
+		customer.queue_free()
+	$end_of_day.show()
+	$Tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
+	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
+	$Tween.start()
+	
+
+
+func _on_end_of_day_gui_input(event):
+	print(event)
+	if event is InputEventMouseButton:
+		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
+		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
+		$Tween.start()

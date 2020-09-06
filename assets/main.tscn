@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://images/table.png" type="Texture" id=1]
 [ext_resource path="res://counter_mockup.png" type="Texture" id=2]
@@ -21,8 +21,13 @@
 [ext_resource path="res://images/cafe_BG.png" type="Texture" id=19]
 [ext_resource path="res://images/cup.png" type="Texture" id=20]
 [ext_resource path="res://assets/cup.gd" type="Script" id=21]
+[ext_resource path="res://images/daynight.png" type="Texture" id=22]
 [ext_resource path="res://images/blackboard_small.png" type="Texture" id=23]
 [ext_resource path="res://assets/blackboard.tscn" type="PackedScene" id=24]
+[ext_resource path="res://images/border_cheater.png" type="Texture" id=25]
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=26]
+
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -35,10 +40,24 @@ Clickable = ExtResource( 12 )
 Foodstuff = ExtResource( 14 )
 Customer = ExtResource( 17 )
 
-[node name="bg" type="ColorRect" parent="."]
-margin_right = 208.0
-margin_bottom = 117.0
-color = Color( 0.396078, 0.396078, 0.396078, 1 )
+[node name="character bg" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_top = 41.0
+margin_right = 53.0
+margin_bottom = 75.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sky" type="TextureRect" parent="character bg"]
+show_behind_parent = true
+material = SubResource( 1 )
+margin_left = 15.0
+margin_top = -766.0
+margin_right = 38.0
+margin_bottom = 13.9999
+texture = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -295,16 +314,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="character bg" type="TextureRect" parent="."]
-margin_left = 1.0
-margin_top = 41.0
-margin_right = 53.0
-margin_bottom = 75.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="counter" type="TextureRect" parent="."]
 margin_left = 54.0
 margin_top = 41.0
@@ -318,9 +327,9 @@ __meta__ = {
 
 [node name="caramel" parent="counter" instance=ExtResource( 12 )]
 margin_left = 112.0
-margin_top = 6.0
+margin_top = 7.0
 margin_right = 128.0
-margin_bottom = 13.0
+margin_bottom = 14.0
 cook_time = 1
 sprite = "caramel"
 creates_drink = true
@@ -330,9 +339,9 @@ animation = "caramel"
 
 [node name="chocolate" parent="counter" instance=ExtResource( 12 )]
 margin_left = 86.184
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 102.184
-margin_bottom = 12.0
+margin_bottom = 13.0
 cook_time = 1
 sprite = "chocolate"
 creates_drink = true
@@ -342,9 +351,9 @@ animation = "chocolate"
 
 [node name="vanilla" parent="counter" instance=ExtResource( 12 )]
 margin_left = 100.0
-margin_top = 6.0
+margin_top = 7.0
 margin_right = 116.0
-margin_bottom = 13.0
+margin_bottom = 14.0
 cook_time = 1
 sprite = "vanilla"
 creates_drink = true
@@ -367,9 +376,9 @@ animation = "strawberry"
 
 [node name="cinnamon" parent="counter" instance=ExtResource( 12 )]
 margin_left = 79.0
-margin_top = 20.0
+margin_top = 21.0
 margin_right = 95.0
-margin_bottom = 27.0
+margin_bottom = 28.0
 cook_time = 1
 sprite = "cinnamon"
 creates_drink = true
@@ -379,9 +388,9 @@ animation = "cinnamon"
 
 [node name="honey" parent="counter" instance=ExtResource( 12 )]
 margin_left = 68.0
-margin_top = 12.0
+margin_top = 13.0
 margin_right = 84.0
-margin_bottom = 19.0
+margin_bottom = 20.0
 cook_time = 1
 sprite = "honey"
 creates_drink = true
@@ -404,9 +413,9 @@ animation = "sugar"
 
 [node name="black_tea" parent="counter" instance=ExtResource( 12 )]
 margin_left = 126.0
-margin_top = 17.0
+margin_top = 18.0
 margin_right = 142.0
-margin_bottom = 24.0
+margin_bottom = 25.0
 cook_time = 1
 sprite = "black tea"
 creates_drink = true
@@ -416,9 +425,9 @@ animation = "black tea"
 
 [node name="green_tea" parent="counter" instance=ExtResource( 12 )]
 margin_left = 129.0
-margin_top = 5.0
+margin_top = 6.0
 margin_right = 145.0
-margin_bottom = 12.0
+margin_bottom = 13.0
 cook_time = 1
 sprite = "green tea"
 creates_drink = true
@@ -429,9 +438,9 @@ animation = "green tea"
 
 [node name="cup" type="TextureButton" parent="counter"]
 margin_left = 51.0
-margin_top = 13.0
+margin_top = 14.0
 margin_right = 65.0
-margin_bottom = 31.0
+margin_bottom = 32.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 20 )
 script = ExtResource( 21 )
@@ -441,6 +450,10 @@ __meta__ = {
 }
 
 [node name="espresso_machine" parent="counter" instance=ExtResource( 12 )]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 17.0
+margin_bottom = 8.0
 cook_time = 1
 sprite = "shot"
 creates_drink = true
@@ -452,16 +465,25 @@ animation = "shot"
 position = Vector2( 0.198425, -0.396851 )
 
 [node name="pitcher" parent="counter" instance=ExtResource( 12 )]
-margin_left = 29.0
-margin_top = 18.0
-margin_right = 45.0
-margin_bottom = 25.0
+margin_left = 30.0
+margin_top = 19.0
+margin_right = 46.0
+margin_bottom = 26.0
 cook_time = 1
 sprite = "milk"
 creates_drink = true
 
 [node name="object_sprite" parent="counter/pitcher" index="1"]
 position = Vector2( 0, -1 )
+
+[node name="Kitch" type="TextureRect" parent="."]
+margin_right = 208.0
+margin_bottom = 117.0
+mouse_filter = 2
+texture = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Dialog" parent="." instance=ExtResource( 7 )]
 margin_left = 105.0
@@ -484,14 +506,37 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 1.0
 margin_bottom = 1.0
+
+[node name="end_of_day" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="end_day_summary" type="RichTextLabel" parent="end_of_day"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 26 )
+text = "another day, another dollar"
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
 [connection signal="animation_finished" from="backwall/oven/object_sprite" to="." method="_on_oven_animation_finished"]
+[connection signal="pressed" from="backwall/coffee_machine" to="." method="_on_coffee_machine_pressed"]
 [connection signal="gui_input" from="counter/cup" to="counter/cup" method="_on_cup_gui_input"]
 [connection signal="pressed" from="counter/cup" to="." method="_on_cup_pressed"]
 [connection signal="block_ended" from="Dialog" to="." method="_on_Dialog_block_ended"]
 [connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 [connection signal="pressed" from="blackboard/x_button" to="." method="_on_x_button_pressed"]
+[connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 
 [editable path="backwall/coffee_grinder"]
 
