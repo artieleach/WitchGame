@@ -33,12 +33,6 @@
 		"ingredients": ["1 swirl honey", "As much espresso as you can handle"],
 	
 	},
-	"": {
-		"color": "",
-		"recipe": "",
-		"description": "",
-		"ingredients": [""]
-	},
 	"Spelunker": {
 		"color": "#BC595A",
 		"recipe": "CCCCCCCCOOXXXXXX",

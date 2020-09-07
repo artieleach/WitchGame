@@ -1,6 +1,6 @@
 
 Nico: Are you new in town? It's a great place. Did you know there are some birds here that don't appear anywhere else in the world? I guess that's true for any part of the world, but this place especially. 
-I'm feeling sweet today, could I get something that tastes as good as it is bad?
+I'm feeling sweet today, could I get something that tastes as good as it is bad? [x]
 
 BNM: Hey, what should I take before my driving lessons? I want to be totally focused.
 
@@ -10,9 +10,16 @@ Kezz: Hm? My birthday is coming up, and I can finally get some tattoos, I'm real
 She's been working overnight a lot, and I think it's stressing her out... Come to think of it, could I get a second tea, please? No milk.
 
 Kitch: Do you have something to help calm me down? I've been stressed as of late. Do you ever meet someone who seems to have never had a stressful day in their life? One of my professors is like that. 
-He treats every call as though it were both an important appointment, and also a meeting with dear old friends- regardless of how many people are actually involved and how well he knows any of them. Almost always setting up in his garden, under the cover of a gazebo- that he made with his own hands if it's raining, he's quite prone to holding forth on unrelated topics yet could never once annoy anyone with his diversions. Recently convinced me to email the local council and request an allotment; not because he went on about 'the virtue of working with one's hands' a lot (though he did) but because I saw it was something that genuinely brought him a sense of joy and fulfillment.
+He treats every call as though it were both an important appointment, and also a meeting with dear old friends- regardless of how many people are actually involved and how well he knows any of them. 
+Almost always setting up in his garden, under the cover of a gazebo- that he made with his own hands. 
+He's quite prone to holding forth on unrelated topics yet could never once annoy anyone with his diversions. 
+Recently convinced me to email the local council and request an allotment...
+Not because he went on about 'the virtue of working with one's hands' a lot (though he did) 
+but because I saw it was something that genuinely brought him a sense of joy and fulfillment. [x]
 
-Pariza: What sort of drink would spider-man get? I'll have one of those. I locked myself out of my room and had to climb up the vent and jump to the ground to get in!
+Pariza: 
+What sort of drink would spider-man get? I'll have one of those. 
+I locked myself out of my room and had to climb up the vent and jump to the ground to get in!
 
 Jerry: Just a cuppa joe, please. I know this stuff makes some folks anxious, but it's never bothered me like that. I know anxiety, I feel anxious about any and everything. I'm seeing a therapist now, it'll all work out.
 

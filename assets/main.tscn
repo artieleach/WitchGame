@@ -477,6 +477,7 @@ creates_drink = true
 position = Vector2( 0, -1 )
 
 [node name="Kitch" type="TextureRect" parent="."]
+visible = false
 margin_right = 208.0
 margin_bottom = 117.0
 mouse_filter = 2

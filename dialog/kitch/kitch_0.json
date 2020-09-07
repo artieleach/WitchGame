@@ -1,0 +1,66 @@
+{
+	"first": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Do you have something to help calm me down? I've been stressed as of late.",
+		"next": "intro2"
+	},
+		"intro2": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Do you ever meet someone who seems to have never had a stressful day in their life? One of my professors is like that. ",
+		"next": "intro3"
+	},
+		"intro3": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "He treats every call as though it were both an important appointment, and also a meeting with dear old friends",
+		"next": "intro4"
+	},
+		"intro4": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Almost always setting up in his garden, under the cover of a gazebo, that he made with his own hands.",
+		"next": "intro5"
+	},
+		"intro5": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "He's quite prone to holding forth on unrelated topics yet could never once annoy anyone with his diversions. ",
+		"next": "intro6"
+	},
+		"intro6": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Recently convinced me to email the local council and request an allotment...",
+		"next": "intro7"
+	},
+		"intro7": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Not because he went on about 'the virtue of working with one's hands' a lot, though he did.",
+		"next": "intro8"
+	},
+		"intro8": {
+	  	"avatar": "Kitch/Kitch.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "but because I saw it was something that genuinely brought him a sense of joy and fulfillment.",
+	},
+
+}

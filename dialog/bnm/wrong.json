@@ -1,0 +1,9 @@
+{
+	"first": {
+	  	"avatar": "BNM/BNM.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "This.. isn't exactly what I ordered.",
+	}
+}

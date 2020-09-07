@@ -1,0 +1,16 @@
+{
+	"first": {
+	  	"avatar": "Jerry/Jerry.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "Just a cuppa joe, please. I know this stuff makes some folks anxious, but it's never bothered me like that.",
+		"next": "intro2"
+	},
+		"intro2": {
+	  	"avatar": "Jerry/Jerry.png",
+		"position": "left",
+		"type": "text",
+		"content": "I know anxiety, I feel anxious about any and everything. I'm seeing a therapist now, it'll all work out.",
+	},
+}

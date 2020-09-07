@@ -21,12 +21,15 @@ var someone_bought_something
 
 
 func _ready():
-	$blackboard.hide()
 	randomize()
+	$blackboard.hide()
+	$Kitch.show()
 	dialog.show()
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
 	seats = get_tree().get_nodes_in_group("seats")
-	create_customer("nico", "[MMMMMMNORVXXXXXX]")
+	for i in ["bnm", 'jello', 'jerry', 'kezz', 'kitch', 'mialeah', 'nick', 'nico', 'pariza', 'quote', 'sara']:
+		create_customer(i, "[MMMMMMNORVXXXXXX]")
+		yield(get_tree().create_timer(2), "timeout")
 
 
 func make_food(foodtype):
@@ -113,11 +116,10 @@ func create_customer(customer_name, customer_want):
 
 func _on_dialog(speaker, spesific_response=null):
 	if spesific_response:
-		dialog.initiate('%s_%s' % [speaker.name, spesific_response])
-		someone_bought_something = speaker.has_item
+		dialog.initiate('%s/%s' % [speaker.name, spesific_response])
 	else:
-		dialog.initiate('%s_%s' % [speaker.name, speaker.progress])
-		someone_bought_something = speaker.has_item
+		dialog.initiate('%s/%s_%s' % [speaker.name, speaker.name, speaker.progress])
+	someone_bought_something = speaker.has_item
 	speaker.progress += 1
 
 
