@@ -18,18 +18,25 @@ var drink = []
 var current_cup_contents
 var time_elapsed = 0
 var someone_bought_something
-
+var customers
 
 func _ready():
 	randomize()
+	var file = File.new()
+	file.open('res://dialog/Characters.json', file.READ)
+	var json = file.get_as_text()
+	customers = JSON.parse(json).result
+	file.close()
 	$blackboard.hide()
 	$Kitch.show()
 	dialog.show()
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
+	
 	seats = get_tree().get_nodes_in_group("seats")
-	for i in ["bnm", 'jello', 'jerry', 'kezz', 'kitch', 'mialeah', 'nick', 'nico', 'pariza', 'quote', 'sara']:
-		create_customer(i, "[MMMMMMNORVXXXXXX]")
-		yield(get_tree().create_timer(2), "timeout")
+	
+	for i in customers.keys():
+		create_customer(i)
+		yield(get_tree().create_timer(20), "timeout")
 
 
 func make_food(foodtype):
@@ -51,7 +58,7 @@ func _on_add_sprite_to_cup(item):
 	if not item in $counter/cup.sprite_contents:
 		$counter/cup.sprite_contents += [item]
 		$counter/cup.add_to_drink()
-	
+
 
 func organize_food(food_type):
 	var num_cakes = 0
@@ -90,12 +97,12 @@ func _on_oven_animation_finished():
 		$backwall/oven/object_sprite.frame = 0
 
 
-func create_customer(customer_name, customer_want):
+func create_customer(customer):
 	var new_customer = Customer.instance()
 	customer_line += [new_customer]
-	new_customer.name = customer_name
+	new_customer.name = customer
 	new_customer.add_to_group("customers")
-	new_customer.want = customer_want
+	new_customer.want = customers[customer]["drink"]
 	new_customer.spot_in_line = customer_line.find(new_customer)
 	new_customer.target = $backwall/register
 	new_customer.get_node("sprite").position = Vector2(212, 26)
@@ -177,11 +184,11 @@ func _on_coffee_machine_pressed():
 
 
 func _process(delta):
-	time_elapsed += 1 # def: 1
+	time_elapsed += 1
 	$"character bg/sky".rect_position = Vector2(15, -766 + int(time_elapsed / 60))
 	if int(time_elapsed / 60) > 766:
 		end_day()
-		time_elapsed = 0 # def 0
+		time_elapsed = 0
 
 func end_day():
 	for customer in get_tree().get_nodes_in_group("customers"):
@@ -194,8 +201,14 @@ func end_day():
 
 
 func _on_end_of_day_gui_input(event):
-	print(event)
 	if event is InputEventMouseButton:
 		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
 		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
 		$Tween.start()
+
+
+func _on_Control_tree_exiting():
+	var file = File.new()
+	file.open('res://dialog/Characters.json', file.WRITE)
+	var out = to_json(customers)
+	file.store_line(out)

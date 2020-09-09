@@ -1,9 +1,9 @@
 {
 	"first": {
-	  	"avatar": "Jerry/Jerry.png",
+	  	"avatar": "Kitch/Kitch.png",
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
-		"content": "This.. isn't exactly what I ordered.",
+		"content": "You should be bloody ashamed, quite honestly.",
 	}
 }

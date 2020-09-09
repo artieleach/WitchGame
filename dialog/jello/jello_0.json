@@ -10,7 +10,6 @@
 		"intro2": {
 	  	"avatar": "Jello/Jello.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "One of my days is absolutely packed with classes, how am I supposed to know what to do, what to bring?",
 		"next": "intro3"
@@ -18,7 +17,6 @@
 		"intro3": {
 	  	"avatar": "Jello/Jello.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "Oh and could I get an extra shot? My sleep schedule is all out of whack.",
 	}

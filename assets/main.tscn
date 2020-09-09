@@ -478,6 +478,7 @@ position = Vector2( 0, -1 )
 
 [node name="Kitch" type="TextureRect" parent="."]
 visible = false
+self_modulate = Color( 0.494118, 0.494118, 0.494118, 1 )
 margin_right = 208.0
 margin_bottom = 117.0
 mouse_filter = 2
@@ -528,6 +529,7 @@ custom_fonts/normal_font = ExtResource( 26 )
 text = "another day, another dollar"
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
 [connection signal="animation_finished" from="backwall/oven/object_sprite" to="." method="_on_oven_animation_finished"]

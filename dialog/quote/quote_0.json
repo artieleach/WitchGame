@@ -10,7 +10,6 @@
 		"intro2": {
 	  	"avatar": "Quote/Quote.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "I have friends, people, groups, but I don't feel connected.",
 		"next": "intro3"
@@ -18,9 +17,7 @@
 		"intro3": {
 	  	"avatar": "Quote/Quote.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "I miss the mountains, I miss hiking.",
-		"next": "intro4"
 	}
 }

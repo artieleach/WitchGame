@@ -33,8 +33,8 @@ PROGRESS="*res://progress.gd"
 
 window/size/width=208
 window/size/height=117
-window/size/test_width=1248
-window/size/test_height=702
+window/size/test_width=1600
+window/size/test_height=900
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

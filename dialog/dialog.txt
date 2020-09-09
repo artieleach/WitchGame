@@ -2,12 +2,16 @@
 Nico: Are you new in town? It's a great place. Did you know there are some birds here that don't appear anywhere else in the world? I guess that's true for any part of the world, but this place especially. 
 I'm feeling sweet today, could I get something that tastes as good as it is bad? [x]
 
-BNM: Hey, what should I take before my driving lessons? I want to be totally focused.
+BNM: Hey, what should I take before my driving lessons? I want to be totally focused. [x]
 
-Nick: Is this your first cafe job? You meet a lot of interesting folks working in cafes. Some guy reached over the counter and grabbed something, right in front of me. Some people, I swear.
+Nick: 
+Is this your first cafe job? You meet a lot of interesting folks working in cafes. 
+Some guy reached over the counter and grabbed something, right in front of me. Some people, I swear. 
+Anyway, could I get the house special? [x]
 
-Kezz: Hm? My birthday is coming up, and I can finally get some tattoos, I'm really looking forward to it. I hope my mum doesn't mind, she's a good lady.
-She's been working overnight a lot, and I think it's stressing her out... Come to think of it, could I get a second tea, please? No milk.
+Kezz: 
+Hm? My birthday is coming up, and I can finally get some tattoos, I'm really looking forward to it. I hope my mum doesn't mind, she's a good lady.
+She's been working overnight a lot, and I think it's stressing her out... Come to think of it, could I get a second tea, please? No milk. [x]
 
 Kitch: Do you have something to help calm me down? I've been stressed as of late. Do you ever meet someone who seems to have never had a stressful day in their life? One of my professors is like that. 
 He treats every call as though it were both an important appointment, and also a meeting with dear old friends- regardless of how many people are actually involved and how well he knows any of them. 
@@ -19,13 +23,23 @@ but because I saw it was something that genuinely brought him a sense of joy and
 
 Pariza: 
 What sort of drink would spider-man get? I'll have one of those. 
-I locked myself out of my room and had to climb up the vent and jump to the ground to get in!
+I locked myself out of my room and had to climb up the vent and jump to the ground to get in! [x]
 
-Jerry: Just a cuppa joe, please. I know this stuff makes some folks anxious, but it's never bothered me like that. I know anxiety, I feel anxious about any and everything. I'm seeing a therapist now, it'll all work out.
+Jerry: 
+Just a cuppa joe, please. I know this stuff makes some folks anxious, but it's never bothered me like that. 
+I know anxiety, I feel anxious about any and everything. I'm seeing a therapist now, it'll all work out. [x]
 
-Jello: What do overworked college students drink? I'm one of those now, I guess. One of my days is absolutely packed with classes, how am I supposed to know what to do, what to bring? Oh and could I get that iced? Don't want anything to burn down.
+Jello: What do overworked college students drink? I'm one of those now, I guess. 
+One of my days is absolutely packed with classes, how am I supposed to know what to do, what to bring? 
+Oh and could I get an extra shot? My sleep schedule is all out of whack. [x]
 
-Sara: Do you ever people watch? I know some folks do it to judge others, but it's not like that. It's more like... seeing the person beneath the facade, if you know what to look for you can see them in their quiet moments, their little secrets. People are worlds, it's a shame they're not seen as such.
+Sara: 
+Do you ever people watch? I know some folks do it to judge others, but it's not like that. 
+It's more like... seeing the person beneath the facade...
+if you know what to look for you can see them in their quiet moments, their little secrets. 
+People are worlds, it's a shame they're not seen as such. [x]
 
-Quote: What sort of drink do you give someone who's lonely, but not alone? I have friends, people, groups, but I don't feel connected.
-I miss the mountains, I miss hiking.
+Quote: 
+What sort of drink do you give someone who's lonely, but not alone? 
+I have friends, people, groups, but I don't feel connected.
+I miss the mountains, I miss hiking. [x]

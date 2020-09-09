@@ -10,7 +10,6 @@
 		"intro2": {
 	  	"avatar": "Sara/Sara.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "It's more like... seeing the person beneath the facade...",
 		"next": "intro3"
@@ -18,7 +17,6 @@
 		"intro3": {
 	  	"avatar": "Sara/Sara.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "If you know what to look for you can see them in their quiet moments, their little secrets.",
 		"next": "intro4"
@@ -26,9 +24,7 @@
 		"intro4": {
 	  	"avatar": "Sara/Sara.png",
 		"position": "left",
-		"animation_in": "move_in",
 		"type": "text",
 		"content": "People are worlds, it's a shame they're not seen as such",
-		"next": "intro5"
 	}
 }

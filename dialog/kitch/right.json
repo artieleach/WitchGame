@@ -1,9 +1,9 @@
 {
 	"first": {
-	  	"avatar": "Jerry/Jerry.png",
+	  	"avatar": "Kitch/Kitch.png",
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
-		"content": "Thank you, have a nice day!",
+		"content": "Cheers mate, that's lovely stuff.",
 	}
 }

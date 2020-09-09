@@ -1,4 +1,4 @@
-add more animations for customers and finish their AI
+add more animations for customer_sprites and finish their AI
 	- add idle animations while sitting down (checking phone, looking at a book, all that good stuff)
 
 add more items/clean up back wall
