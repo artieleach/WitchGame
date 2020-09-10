@@ -1,6 +1,6 @@
 {
 	"first": {
-	  	"avatar": "Mialeah/mialeah_default.png",
+	  	"avatar": "Mialeah/Mialeah.png",
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
@@ -8,7 +8,7 @@
 		"next": "intro2"
 	},
 	"intro2": {
-	  	"avatar": "Mialeah/mialeah_default.png",
+	  	"avatar": "Mialeah/Mialeah.png",
 		"position": "left",
 		"type": "text",
 		"content": "Could I just get a black coffee, please?",

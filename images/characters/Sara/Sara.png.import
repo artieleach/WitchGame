@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprites10.png-8c928e2047787aed760c3aaacc15a364.stex"
+path="res://.import/Sara.png-455bf5660062b0e6747de1f519069ddc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/Nick/sprites10.png"
-dest_files=[ "res://.import/sprites10.png-8c928e2047787aed760c3aaacc15a364.stex" ]
+source_file="res://images/characters/Sara/Sara.png"
+dest_files=[ "res://.import/Sara.png-455bf5660062b0e6747de1f519069ddc.stex" ]
 
 [params]
 

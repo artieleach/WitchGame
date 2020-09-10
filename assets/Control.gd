@@ -19,6 +19,7 @@ var current_cup_contents
 var time_elapsed = 0
 var someone_bought_something
 var customers
+var scheduled_customers = []
 
 func _ready():
 	randomize()
@@ -31,12 +32,8 @@ func _ready():
 	$Kitch.show()
 	dialog.show()
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
-	
 	seats = get_tree().get_nodes_in_group("seats")
-	
-	for i in customers.keys():
-		create_customer(i)
-		yield(get_tree().create_timer(20), "timeout")
+	start_day()
 
 
 func make_food(foodtype):
@@ -102,7 +99,13 @@ func create_customer(customer):
 	customer_line += [new_customer]
 	new_customer.name = customer
 	new_customer.add_to_group("customers")
-	new_customer.want = customers[customer]["drink"]
+	new_customer.progress = customers[customer]["progress"]
+	new_customer.mistakes = customers[customer]["mistakes"]
+	new_customer.want = customers[customer]["drink"][new_customer.progress]
+	if new_customer.name == "generic":
+		var which = randi() % len(customers[customer]["drink"])
+		new_customer.want = customers[customer]["drink"][which]
+		new_customer.progress = which # ???
 	new_customer.spot_in_line = customer_line.find(new_customer)
 	new_customer.target = $backwall/register
 	new_customer.get_node("sprite").position = Vector2(212, 26)
@@ -121,24 +124,27 @@ func create_customer(customer):
 	$backwall.add_child(new_customer)
 
 
-func _on_dialog(speaker, spesific_response=null):
+func _on_dialog(cur_speaker, spesific_response=null):
 	if spesific_response:
-		dialog.initiate('%s/%s' % [speaker.name, spesific_response])
+		dialog.initiate('%s/%s' % [cur_speaker.name, spesific_response])
 	else:
-		dialog.initiate('%s/%s_%s' % [speaker.name, speaker.name, speaker.progress])
-	someone_bought_something = speaker.has_item
-	speaker.progress += 1
+		dialog.initiate('%s/%s_%s' % [cur_speaker.name, cur_speaker.name, cur_speaker.progress])
+	someone_bought_something = cur_speaker.has_item
+	cur_speaker.progress += 1
 
 
 func _on_buying(buyer):
 	if len($counter/cup.ingredients) == 16:
 		var drink_made = $counter/cup.serve()
 		buyer.has_item = true
-		buyer.upset = drink_made == buyer.want
-		if drink_made == buyer.want:
+		if calculate_score(drink_made, buyer.want) > 0.9:
 			buyer.emit_signal("begin_dialog", buyer, "right")
+			buyer.progress += 1
+			buyer.upset = false
 		else:
 			buyer.emit_signal("begin_dialog", buyer, "wrong")
+			buyer.mistakes += 1
+			buyer.upset = false
 
 
 func _on_advance_dialog_pressed():
@@ -159,6 +165,14 @@ func _on_Dialog_block_ended():
 		customer_line.erase(customer_line[0])
 		someone_bought_something = false
 
+func calculate_score(served_drink, expected):
+	if len(served_drink) != len(expected):
+		return 0
+	var score = 0
+	for index in len(served_drink):
+		if served_drink[index - 1] == expected[index - 1]:
+			score += 1
+	return float(score) / float(len(served_drink))
 
 func _on_blackboard_pressed():
 	for node in get_children():
@@ -183,7 +197,7 @@ func _on_coffee_machine_pressed():
 		$backwall/coffee_machine/object_sprite.frame = 0
 
 
-func _process(delta):
+func _process(_delta):
 	time_elapsed += 1
 	$"character bg/sky".rect_position = Vector2(15, -766 + int(time_elapsed / 60))
 	if int(time_elapsed / 60) > 766:
@@ -197,7 +211,21 @@ func end_day():
 	$Tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
 	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
 	$Tween.start()
-	
+
+func start_day():
+	var all_cusotmers = customers.keys()
+	scheduled_customers =  ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
+	scheduled_customers.shuffle()
+	print(scheduled_customers)
+	while time_elapsed / 60 < 766:
+		for i in scheduled_customers:
+			print(i)
+			if customers[i].has("drink"):
+				if len(customer_line) == 0 and time_elapsed % 60 < 700:
+					create_customer(i)
+			yield(get_tree().create_timer(randi() % 50 + 10), "timeout")
+
+		
 
 
 func _on_end_of_day_gui_input(event):

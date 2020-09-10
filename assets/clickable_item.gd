@@ -9,7 +9,6 @@ export (bool) var creates_drink
 
 signal add_to_cup
 signal add_sprite_to_cup
-signal counter_item_clicked
 
 var held = 0
 var times_held = 0
@@ -27,7 +26,7 @@ func _ready():
 	$pchoo.position.x = int(rect_size.x / 2)
 
 
-func _process(delta):
+func _process(_delta):
 	if targeted and Input.is_mouse_button_pressed(1):
 		held += 1
 		if held == 15 - times_held:

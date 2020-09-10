@@ -8,4 +8,3 @@ at the start of the day:
 	- so add some sort of "Start of day" script that pulls the customers and their drinks
 		make sure it's a set, to account for duplicate entries
 
-add a scoring system (hidden?) to drinks, so they can be off by a lil bit.

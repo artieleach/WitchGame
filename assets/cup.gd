@@ -16,7 +16,7 @@ func serve():
 	ingredients = []
 	sprite_contents = []
 	cup_code.sort()
-	var output = str(cup_code).replace(", ", "")
+	var output = str(cup_code).replace(", ", "").replace("]", "").replace("[", "")
 	print(output)
 	return output
 
@@ -86,7 +86,7 @@ func _draw():
 			"green tea":
 				draw_texture(green_tea, Vector2(-2, -1))
 			"black tea":
-				draw_texture(black_tea, Vector2(3, -1))
+				draw_texture(black_tea, Vector2(4, -1))
 	if not contents.empty():
 		draw_multiline_colors(contents, content_colors)
 

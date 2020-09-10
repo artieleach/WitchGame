@@ -1,25 +1,4 @@
 {
-	"Snowy Owl": {
-		"recipe": "ORXXXXXXXXXXXXXX",
-		"description": "\nFor long days and slow evenings, calming, soothing, always a treat.",
-		"ingredients": ["1 pump chocolate", "1 pump caramel", "2 shots espresso"]
-	},
-	"Blue Moon": {
-		"recipe": "ORXXXXXXXXXXXXXX",
-		"description": "\n3.14159265358979323846264338327950288419716939937510",
-		"ingredients": ["1 pump vanilla", "sprinkle cinnamon", "2 shots espresso"]
-	},
-	"Rusty Venture": {
-		"recipe": "ORXXXXXXXXXXXXXX",
-		"description": "\n I dont think any of us are hello escape hello escape",
-		"ingredients": ["1 pump vanilla", "1 pump caramel", "1 pump chocolate", "sprinkle cinnamon", "2 shots espresso"]
-	},
-	"Chocolieb": {
-		"color": "#442800",
-		"recipe": "ORXXXXXXXXXXXXXX",
-		"description": "\nI'm a weeb",
-		"ingredients": ["3 pump chocolate", "2 shots espresso"]
-	},
 	"Chachalaca": {
 		"color":"#C19F8A",
 		"recipe": "MMMMMMNORVXXXXXX",
@@ -38,5 +17,11 @@
 		"recipe": "CCCCCCCCOOXXXXXX",
 		"description": "\nTake a trip on the wild side, goin",
 		"ingredients": ["Fill the cup halfway with coffee", "1 pump chocolate", "As much espresso as possible"]
+	},
+	"Witches Brew": {
+		"color": "#BC595A",
+		"recipe": "CCCCCCHVWWWWXXXX",
+		"description": "\nA doubled double, toiled, free of trouble.",
+		"ingredients": ["One part Nectarre of Bee", "One Petal of Flower", "Six parts Brewed Beane of Coffee", "Equal parts Water and Filtered Beane"]
 	},
 }

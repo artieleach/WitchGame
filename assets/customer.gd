@@ -11,7 +11,7 @@ var history = []
 signal buying
 signal begin_dialog
 
-var progress = 0
+var progress
 var my_name
 var want
 var has_item = false
@@ -21,6 +21,7 @@ var exit
 var speed = 1
 var spot_in_line
 var upset
+var mistakes
 
 func _ready():
 	exit = get_tree().get_nodes_in_group("exit")[0]

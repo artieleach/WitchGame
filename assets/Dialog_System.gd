@@ -129,7 +129,7 @@ func _ready():
 	set_frame()
 
 
-func _process(delta):
+func _process(_delta):
 	if shaking:
 		sprite.offset = Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount)
 	pass
@@ -159,7 +159,7 @@ func set_frame(): # Mostly aligment operations.
 			frame_height - continue_indicator.get_rect().size.y - label_margin)
 	
 	frame.rect_size = Vector2(frame_width, frame_height)
-	frame.rect_position = Vector2(-frame_width/2, 0)
+	frame.rect_position = Vector2(int(-frame_width/2.0), 0)
 	
 	label.rect_size = Vector2(frame_width - (label_margin * 2), frame_height - (label_margin * 2) )
 	label.rect_position = Vector2(label_margin, label_margin)
@@ -633,13 +633,6 @@ func load_image(char_sprite, image):
 func question(text, options, next):
 	check_pauses(label.get_text())
 	var n = 0 # Just a looping var.
-	var choice_node_align_x = 0
-	
-	if choice_node_alignment == 'right':
-		choice_node_align_x = frame_width - (choice_width + label_margin + choice_margin_horizontal)
-	else:
-		choice_node_align_x = label_margin + choice_margin_horizontal
-	
 	choices.rect_position = Vector2(0, 32)
 	for a in options:
 		var choice = choice_scene.instance()
