@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bossa-antigua-by-kevin-macleod.wav-e3d5ed35a82f6287a3590a582439ca4c.sample"
+
+[deps]
+
+source_file="res://audio/bossa-antigua-by-kevin-macleod.wav"
+dest_files=[ "res://.import/bossa-antigua-by-kevin-macleod.wav-e3d5ed35a82f6287a3590a582439ca4c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

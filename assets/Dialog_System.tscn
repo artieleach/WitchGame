@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://160678__bmaczero__typewriter.wav" type="AudioStream" id=1]
+[ext_resource path="res://audio/typewriter.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/Dialog_System.gd" type="Script" id=2]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=3]
 [ext_resource path="res://fonts/m5x7-bold.tres" type="DynamicFont" id=4]

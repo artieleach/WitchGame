@@ -219,7 +219,7 @@ func end_day():
 func start_day():
 	scheduled_customers = customers.keys()
 	scheduled_customers.shuffle()
-	scheduled_customers = ["kitch"]
+	scheduled_customers += ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
 	print(scheduled_customers)
 	while time_elapsed / 60 < 766:
 		for i in scheduled_customers:
