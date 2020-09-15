@@ -165,6 +165,7 @@ func _on_Dialog_block_ended():
 		customer_line.erase(customer_line[0])
 		someone_bought_something = false
 
+
 func calculate_score(served_drink, expected):
 	if len(served_drink) != len(expected):
 		return 0
@@ -173,6 +174,7 @@ func calculate_score(served_drink, expected):
 		if served_drink[index - 1] == expected[index - 1]:
 			score += 1
 	return float(score) / float(len(served_drink))
+
 
 func _on_blackboard_pressed():
 	for node in get_children():
@@ -204,6 +206,7 @@ func _process(_delta):
 		end_day()
 		time_elapsed = 0
 
+
 func end_day():
 	for customer in get_tree().get_nodes_in_group("customers"):
 		customer.queue_free()
@@ -212,20 +215,18 @@ func end_day():
 	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
 	$Tween.start()
 
+
 func start_day():
-	var all_cusotmers = customers.keys()
-	scheduled_customers =  ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
+	scheduled_customers = customers.keys()
 	scheduled_customers.shuffle()
+	scheduled_customers = ["kitch"]
 	print(scheduled_customers)
 	while time_elapsed / 60 < 766:
 		for i in scheduled_customers:
-			print(i)
 			if customers[i].has("drink"):
 				if len(customer_line) == 0 and time_elapsed % 60 < 700:
 					create_customer(i)
-			yield(get_tree().create_timer(randi() % 50 + 10), "timeout")
-
-		
+			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
 
 
 func _on_end_of_day_gui_input(event):

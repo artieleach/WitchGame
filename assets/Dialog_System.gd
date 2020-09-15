@@ -25,7 +25,7 @@ onready var sprite_right : Node = $SpriteRight
 onready var name_left : Node = $Frame/NameLeft
 onready var name_right : Node = $Frame/NameRight
 ## Typewriter effect ##
-var wait_time : float = 0.02 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
+var wait_time : float = 0.03 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
 var pause_time : float = 2.0 # Duration of each pause when the typewriter effect is active.
 var pause_char : String = '|' # The character used in the JSON file to define where pauses should be. If you change this you'll need to edit all your dialogue files.
 var newline_char : String = '@' # The character used in the JSON file to break lines. If you change this you'll need to edit all your dialogue files.
@@ -712,10 +712,14 @@ func _on_Timer_timeout():
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
+				$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
+				$AudioStreamPlayer.play()
 				label.visible_characters += 1
 		else: # Phrase doesn't have any pauses.
+			$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
+			$AudioStreamPlayer.play()
 			label.visible_characters += 1
-		
+			
 		timer.start()
 	else:
 		if is_question:
