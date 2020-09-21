@@ -164,7 +164,7 @@ func set_frame(): # Mostly aligment operations.
 	label.rect_size = Vector2(frame_width - (label_margin * 2), frame_height - (label_margin * 2) )
 	label.rect_position = Vector2(label_margin, label_margin)
 	
-	frame.hide() # Hide the dialogue frame
+	#frame.hide() # Hide the dialogue frame
 	continue_indicator.hide()
 	
 	sprite_left.modulate = white_transparent
@@ -712,13 +712,13 @@ func _on_Timer_timeout():
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
-				print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
+				# print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
 				$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
 				$AudioStreamPlayer.play()
 				label.visible_characters += 1
 		else: # Phrase doesn't have any pauses.
 			
-			print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
+			# print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
 			$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
 			$AudioStreamPlayer.play()
 			label.visible_characters += 1

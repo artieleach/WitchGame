@@ -137,6 +137,8 @@ func _on_buying(buyer):
 	if len($counter/cup.ingredients) == 16:
 		var drink_made = $counter/cup.serve()
 		buyer.has_item = true
+		print("made: " + drink_made)
+		print("expected: " + buyer.want)
 		if calculate_score(drink_made, buyer.want) > 0.9:
 			buyer.emit_signal("begin_dialog", buyer, "right")
 			buyer.progress += 1
@@ -220,7 +222,7 @@ func start_day():
 	scheduled_customers = customers.keys()
 	scheduled_customers.shuffle()
 	scheduled_customers += ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
-	print(scheduled_customers)
+	scheduled_customers = scheduled_customers.slice(0, 13)
 	while time_elapsed / 60 < 766:
 		for i in scheduled_customers:
 			if customers[i].has("drink"):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/counter_mockup.png-f1164d81b6172b3c908925674dc67282.stex"
+path="res://.import/counter_mockup.png-2390121b42b330a0fbb655035150bc05.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://counter_mockup.png"
-dest_files=[ "res://.import/counter_mockup.png-f1164d81b6172b3c908925674dc67282.stex" ]
+source_file="res://images/counter_mockup.png"
+dest_files=[ "res://.import/counter_mockup.png-2390121b42b330a0fbb655035150bc05.stex" ]
 
 [params]
 

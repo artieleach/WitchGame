@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/cup.gd" type="Script" id=2]
-[ext_resource path="res://counter_mockup.png" type="Texture" id=3]
+[ext_resource path="res://images/counter_mockup.png" type="Texture" id=3]
 [ext_resource path="res://assets/clickable_item.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/cup.png" type="Texture" id=5]
+
 
 [node name="counter" type="TextureRect"]
 margin_left = 54.0

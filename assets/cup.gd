@@ -17,7 +17,6 @@ func serve():
 	sprite_contents = []
 	cup_code.sort()
 	var output = str(cup_code).replace(", ", "").replace("]", "").replace("[", "")
-	print(output)
 	return output
 
 
