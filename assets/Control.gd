@@ -16,10 +16,12 @@ var customer_line = []
 var speaker
 var drink = []
 var current_cup_contents
-var time_elapsed = 0
 var someone_bought_something
 var customers
 var scheduled_customers = []
+var sound = true
+var music = true
+
 
 func _ready():
 	randomize()
@@ -29,21 +31,11 @@ func _ready():
 	customers = JSON.parse(json).result
 	file.close()
 	$blackboard.hide()
-	$Kitch.show()
+	$cheater.show()
 	dialog.show()
 	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
-
-
-func make_food(foodtype):
-	var new_food = Foodstuff.instance()
-	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
-	new_food.my_type = foodtype
-	new_food.connect("food_expired", self, "_on_food_expired")
-	add_child(new_food)
-	inventory += [new_food]
-	organize_food(foodtype)
 
 
 func _on_add_to_cup(item):
@@ -55,25 +47,6 @@ func _on_add_sprite_to_cup(item):
 	if not item in $counter/cup.sprite_contents:
 		$counter/cup.sprite_contents += [item]
 		$counter/cup.add_to_drink()
-
-
-func organize_food(food_type):
-	var num_cakes = 0
-	num_cupcakes = 0
-	num_bev = 0
-	match food_type:
-		"cupcake":
-			for item in inventory:
-				if item.my_type == food_type:
-					item.position = Vector2($backwall/cupcakeholder.rect_position.x + 4 + (num_cakes % 3) * 5, $backwall/cupcakeholder.rect_position.y + 5 + int(num_cakes / 3) * 6)
-					num_cakes += 1
-					num_cupcakes += 1
-		"coffee", "tea":
-			for item in inventory:
-				if item.my_type in ["coffee", "tea"]:
-					item.position = Vector2($backwall/coffeeholder.rect_position.x + 3 + (num_cakes % 3) * 4, $backwall/coffeeholder.rect_position.y + 1 + int(num_cakes / 3) * 5)
-					num_cakes += 1
-					num_bev += 1
 
 
 func _on_food_expired(food):
@@ -88,7 +61,6 @@ func _on_coffee_grinder_pressed():
 
 func _on_oven_animation_finished():
 	if 6 > num_cupcakes:
-		make_food("cupcake")
 		$backwall/oven/object_sprite.playing = false
 		$backwall/oven.ding()
 		$backwall/oven/object_sprite.frame = 0
@@ -202,11 +174,7 @@ func _on_coffee_machine_pressed():
 
 
 func _process(_delta):
-	time_elapsed += 1
-	$"character bg/sky".rect_position = Vector2(15, -766 + int(time_elapsed / 60))
-	if int(time_elapsed / 60) > 766:
-		end_day()
-		time_elapsed = 0
+	$"character bg/sky".rect_position = Vector2(15, -766 + $Timer.time_left)
 
 
 func end_day():
@@ -223,10 +191,10 @@ func start_day():
 	scheduled_customers.shuffle()
 	scheduled_customers += ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
 	scheduled_customers = scheduled_customers.slice(0, 13)
-	while time_elapsed / 60 < 766:
+	while $Timer.time_left > 0:
 		for i in scheduled_customers:
 			if customers[i].has("drink"):
-				if len(customer_line) == 0 and time_elapsed % 60 < 700:
+				if len(customer_line) == 0 and $Timer.time_left > 66:
 					create_customer(i)
 			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
 
@@ -236,6 +204,7 @@ func _on_end_of_day_gui_input(event):
 		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
 		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
 		$Tween.start()
+		$Timer.start()
 
 
 func _on_Control_tree_exiting():
@@ -243,3 +212,23 @@ func _on_Control_tree_exiting():
 	file.open('res://dialog/Characters.json', file.WRITE)
 	var out = to_json(customers)
 	file.store_line(out)
+
+
+func _on_Timer_timeout():
+	end_day()
+
+
+func _on_sound_toggled(button_pressed):
+	sound = not(sound)
+	if sound:
+		$Dialog/AudioStreamPlayer.volume_db = -5.0
+	else:
+		$Dialog/AudioStreamPlayer.volume_db = -80.0
+
+
+func _on_music_toggled(button_pressed):
+	music = not(music)
+	if music:
+		$AudioStreamPlayer.stream_paused = false
+	else:
+		$AudioStreamPlayer.stream_paused = true

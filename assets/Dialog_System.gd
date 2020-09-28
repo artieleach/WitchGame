@@ -9,6 +9,7 @@ Repository: https://bitbucket.org/jsena42/godot-open-dialogue/
 
 extends Control
 
+
 ##### SETUP #####
 ## Paths ##
 var dialogues_folder = 'res://dialog' # Folder where the JSON files will be stored
@@ -712,13 +713,11 @@ func _on_Timer_timeout():
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
-				# print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
+				
 				$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
 				$AudioStreamPlayer.play()
 				label.visible_characters += 1
 		else: # Phrase doesn't have any pauses.
-			
-			# print(1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5)
 			$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
 			$AudioStreamPlayer.play()
 			label.visible_characters += 1

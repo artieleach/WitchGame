@@ -18,7 +18,7 @@ var has_item = false
 var target
 var where_to_sit
 var exit
-var speed = 1
+var speed = 28
 var spot_in_line
 var upset
 var mistakes
@@ -44,10 +44,12 @@ func back():
 func _enter_state():
 	if DEBUG:
 		print("Entering state: ", state.name)
+		printt(history)
 	# Give the new state a reference to it's state machine i.e. this one
 	$sprite/TextureRect.hint_tooltip = state.name
 	state.fsm = self
 	state.enter()
+
 
 func _process(delta):
 	if state.has_method("process"):

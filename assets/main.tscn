@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://images/table.png" type="Texture" id=1]
 [ext_resource path="res://images/counter_mockup.png" type="Texture" id=2]
@@ -27,6 +27,10 @@
 [ext_resource path="res://images/border_cheater.png" type="Texture" id=25]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=26]
 [ext_resource path="res://assets/AudioStreamPlayer.gd" type="Script" id=27]
+[ext_resource path="res://images/music_off.png" type="Texture" id=28]
+[ext_resource path="res://images/sound_on.png" type="Texture" id=29]
+[ext_resource path="res://images/sound_off.png" type="Texture" id=30]
+[ext_resource path="res://images/music_on.png" type="Texture" id=31]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -477,7 +481,7 @@ creates_drink = true
 [node name="object_sprite" parent="counter/pitcher" index="1"]
 position = Vector2( 0, -1 )
 
-[node name="Kitch" type="TextureRect" parent="."]
+[node name="cheater" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.517647, 0.266667, 0.0784314, 1 )
 margin_right = 208.0
@@ -534,6 +538,34 @@ text = "another day, another dollar"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -6.0
 script = ExtResource( 27 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 766.0
+autostart = true
+
+[node name="sound_holder" type="Control" parent="."]
+margin_top = 1.0
+margin_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound" type="TextureButton" parent="sound_holder"]
+toggle_mode = true
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 29 )
+
+[node name="music" type="TextureButton" parent="sound_holder"]
+margin_left = 7.0
+margin_right = 15.0
+margin_bottom = 8.0
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
@@ -546,6 +578,9 @@ script = ExtResource( 27 )
 [connection signal="pressed" from="blackboard/x_button" to="." method="_on_x_button_pressed"]
 [connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="toggled" from="sound_holder/sound" to="." method="_on_sound_toggled"]
+[connection signal="toggled" from="sound_holder/music" to="." method="_on_music_toggled"]
 
 [editable path="backwall/coffee_grinder"]
 

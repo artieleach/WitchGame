@@ -14,6 +14,7 @@ var held = 0
 var times_held = 0
 var targeted = false
 
+
 func _ready():
 	if creates_drink:
 		connect("add_to_cup", owner, "_on_add_to_cup")
@@ -26,14 +27,15 @@ func _ready():
 	$pchoo.position.x = int(rect_size.x / 2)
 
 
-func _process(_delta):
+func _process(delta):
 	if targeted and Input.is_mouse_button_pressed(1):
-		held += 1
-		if held == 15 - times_held:
+		held += 1 * delta
+		if held > 0.3 - times_held:
 			_on_clickable_item_pressed()
 			held = 0
-			if times_held < 12:
-				times_held += 1
+			if times_held < 0.25:
+				times_held += 0.05
+
 
 func _on_clickable_item_pressed():
 	disabled = true
@@ -52,16 +54,20 @@ func _on_clickable_item_pressed():
 				emit_signal("add_to_cup", sprite)
 		disabled = false
 
+
 func ding():
 	$pchoo.show()
 	$pchoo.frame = 0
 	$pchoo.playing = true
 
+
 func _on_cook_timer_timeout():
 	disabled = false
 
+
 func _on_pchoo_animation_finished():
 	$pchoo.hide()
+
 
 func _on_clickable_item_mouse_entered():
 	held = 0

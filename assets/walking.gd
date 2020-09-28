@@ -20,11 +20,12 @@ func enter():
 func exit(next_state):
 	fsm.change_to(next_state)
 
-func process(_delta):
+
+func process(delta):
 	if destination.rect_position.x + owner.spot_in_line * 10 + dest_pos > owner.get_node("sprite").position.x:
-		owner.get_node("sprite").position.x += owner.speed
+		owner.get_node("sprite").position.x += owner.speed * delta
 	elif destination.rect_position.x + destination.rect_size.x + owner.spot_in_line * 10  + dest_pos < owner.get_node("sprite").position.x:
-		owner.get_node("sprite").position.x -= owner.speed
+		owner.get_node("sprite").position.x -= owner.speed * delta
 	else:
 		if destination in get_tree().get_nodes_in_group("seats"):
 			exit("sit_down")

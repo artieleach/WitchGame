@@ -59,104 +59,104 @@ atlas = ExtResource( 1 )
 region = Rect2( 171, 0, 19, 12 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 16 )
-region = Rect2( 0, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 16 )
-region = Rect2( 8, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 16 )
-region = Rect2( 16, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 16 )
-region = Rect2( 24, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 16 )
-region = Rect2( 32, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 16 )
-region = Rect2( 40, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 16 )
-region = Rect2( 48, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 16 )
-region = Rect2( 56, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 16 )
-region = Rect2( 64, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 16 )
-region = Rect2( 72, 0, 8, 9 )
-
-[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 6 )
 region = Rect2( 11, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 6 )
 region = Rect2( 22, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 6 )
 region = Rect2( 33, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
 region = Rect2( 44, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 6 )
 region = Rect2( 55, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 6 )
 region = Rect2( 66, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 6 )
 region = Rect2( 77, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 6 )
 region = Rect2( 88, 0, 11, 9 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 5 )
 region = Rect2( 35, 0, 7, 9 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 5 )
 region = Rect2( 28, 0, 7, 9 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 5 )
 region = Rect2( 21, 0, 7, 9 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 5 )
 region = Rect2( 14, 0, 7, 9 )
 
-[sub_resource type="AtlasTexture" id=34]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 5 )
 region = Rect2( 7, 0, 7, 9 )
 
-[sub_resource type="AtlasTexture" id=35]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 7, 9 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 16 )
+region = Rect2( 8, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 16 )
+region = Rect2( 16, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 16 )
+region = Rect2( 24, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 16 )
+region = Rect2( 40, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 16 )
+region = Rect2( 48, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 16 )
+region = Rect2( 56, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 8, 9 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 16 )
+region = Rect2( 72, 0, 8, 9 )
 
 [sub_resource type="SpriteFrames" id=36]
 animations = [ {
@@ -173,6 +173,36 @@ animations = [ {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "honey",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "vanilla",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "caramel",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "shot",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 18 ), SubResource( 19 ), SubResource( 11 ) ],
+"loop": false,
+"name": "water",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "milk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "coffee grinder",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -195,7 +225,7 @@ animations = [ {
 "name": "green tea",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
 "loop": true,
 "name": "coffee",
 "speed": 5.0
@@ -203,36 +233,6 @@ animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "strawberry",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "vanilla",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "caramel",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "shot",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 28 ), SubResource( 29 ), SubResource( 21 ) ],
-"loop": false,
-"name": "water",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ) ],
-"loop": true,
-"name": "milk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
-"loop": true,
-"name": "coffee grinder",
 "speed": 5.0
 } ]
 
