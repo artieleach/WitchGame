@@ -35,6 +35,7 @@ window/size/width=208
 window/size/height=117
 window/size/test_width=1280
 window/size/test_height=720
+window/vsync/use_vsync=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

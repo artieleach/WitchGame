@@ -35,7 +35,7 @@ func generate_item(menu_item):
 	num_of_children = 0
 
 
-func generate_child(parent, child_text, colour="fce08c", is_desc=false):
+func generate_child(parent, child_text, colour="fce08c"):
 	var menu_item_entry = Label.instance()
 	add_child(menu_item_entry)
 	menu_item_entry.rect_position = Vector2(80, num_of_children * 80 + 3)
