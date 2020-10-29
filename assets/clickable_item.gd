@@ -39,20 +39,23 @@ func _process(delta):
 
 func _on_clickable_item_pressed():
 	disabled = true
-	match sprite:
-		"oven", "kettle":
-			$object_sprite.frame = 0
-			$object_sprite.playing = true
-			disabled = true
-		_:
-			ding()
-	if creates_drink:
+	if owner.grabbed:
+		return
+	else:
 		match sprite:
-			"green tea", "black tea":
-				emit_signal("add_sprite_to_cup", sprite)
+			"oven", "kettle":
+				$object_sprite.frame = 0
+				$object_sprite.playing = true
+				disabled = true
 			_:
-				emit_signal("add_to_cup", sprite)
-		disabled = false
+				ding()
+		if creates_drink:
+			match sprite:
+				"green tea", "black tea":
+					emit_signal("add_sprite_to_cup", sprite)
+				_:
+					emit_signal("add_to_cup", sprite)
+			disabled = false
 
 
 func ding():

@@ -26,7 +26,7 @@ onready var sprite_right : Node = $SpriteRight
 onready var name_left : Node = $Frame/NameLeft
 onready var name_right : Node = $Frame/NameRight
 ## Typewriter effect ##
-var wait_time : float = 0.03 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
+var wait_time : float = 0.05 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
 var pause_time : float = 2.0 # Duration of each pause when the typewriter effect is active.
 var pause_char : String = '|' # The character used in the JSON file to define where pauses should be. If you change this you'll need to edit all your dialogue files.
 var newline_char : String = '@' # The character used in the JSON file to break lines. If you change this you'll need to edit all your dialogue files.
@@ -45,7 +45,7 @@ var choice_node_alignment : String = 'right' # Alignment of the 'Choice' node. C
 var previous_command : String = 'ui_left' # Input commmand for the navigating through question choices 
 var next_command : String = 'ui_right' # Input commmand for the navigating through question choices
 var frame_height : int = 40 # Dialog frame height (in pixels)
-var frame_width : int = 206 # Dialog frame width (in pixels)
+var frame_width : int = 222 # Dialog frame width (in pixels)
 var frame_position : String = 'bottom' # Use to 'top' or 'bottom' to change the dialogue frame vertical alignment 
 var frame_margin_vertical : int = 1 # Vertical space (in pixels) between the dialogue box and the window border
 var label_margin : int = 1 # Space (in pixels) between the dialogue frame border and the text
@@ -64,7 +64,6 @@ var phrase = ''
 var phrase_raw = ''
 var current = ''
 var number_characters : = 0
-var dictionary
 
 var is_question : = false
 var current_choice : = 0
@@ -73,10 +72,17 @@ var number_choices : = 0
 var pause_index : = 0
 var paused : = false
 var pause_array : = []
+var words
+var characters_to_hit = 0
 
 
-
-
+var notes = ["d", "e", "f", "g"]
+var current_pitch = randi() % 4 + 1
+var current_note = notes[randi() % notes.size()]
+var pos_in_word = 0
+var current_syllable = 0
+var syllables_for_dialog = 0
+var current_word = -1
 
 
 #
@@ -122,12 +128,17 @@ var avatar_left : String = ''
 var avatar_right : String = ''
 
 var shaking : bool = false
+var files = []
+
 
 func _ready():
 	set_physics_process(true)
 	timer.connect('timeout', self, '_on_Timer_timeout')
 	sprite_timer.connect('timeout', self, '_on_Sprite_Timer_timeout')
 	set_frame()
+	$AnimationPlayer.play("AAA")
+	$AnimationPlayer.seek(4)
+	
 
 
 func _process(_delta):
@@ -145,7 +156,6 @@ func set_frame(): # Mostly aligment operations.
 			self.anchor_bottom = 0
 			self.rect_position = Vector2(0, frame_margin_vertical)
 		'bottom':
-			print('bottom')
 			self.anchor_left = 0.5
 			self.anchor_top = 1
 			self.anchor_right = 0.5
@@ -188,9 +198,13 @@ func initiate(file_id, block = 'first'): # Load the whole dialogue into a variab
 	var json = file.get_as_text()
 	dialogue = JSON.parse(json).result
 	file.close()
+	var syllable_file = File.new()
+	syllable_file.open('res://words.json', syllable_file.READ)
+	json = syllable_file.get_as_text()
+	words = JSON.parse(json).result
+	syllable_file.close()
 	first(block) # Call the first dialogue block	
 
-#func start_from(file_id, block): # Similar to 
 
 func clean(): # Resets some variables to prevent errors.
 	continue_indicator.hide()
@@ -226,6 +240,13 @@ func update_dialogue(step): # step == whole dialogue block
 	current = step
 	number_characters = 0 # Resets the counter
 	# Check what kind of interaction the block is
+	syllables_for_dialog = []
+	current_word = -1
+	for word in step["content"].split(' '):
+		if word.to_lower() in words:
+			syllables_for_dialog.append([word, words[word.to_lower()]])
+		else:
+			syllables_for_dialog.append([word, int(len(word) / 3)])
 	match step['type']:
 		'text': # Simple text.
 			not_question()
@@ -392,7 +413,7 @@ func next():
 		return
 	clean() # Be sure all the variables used before are restored to their default values.
 	if wait_time > 0: # Check if the typewriter effect is active.
-		if label.visible_characters < number_characters: # Checks if the phrase is complete.
+		if label.visible_characters < number_characters: # Checks if the phrase is complete
 			label.visible_characters = number_characters # Finishes the phrase.
 			return # Stop the function here.
 	else: # The typewriter effect is disabled so we need to make sure the text is fully displayed.
@@ -702,26 +723,49 @@ func _input(event): # This function can be easily replaced. Just make sure you c
 		change_choice('next')
 
 
+func check_word_position():
+	if label.visible_characters == 0 or label.bbcode_text[label.visible_characters - 1] == " ":
+		pos_in_word = 0
+		current_word += 1
+		current_syllable = 0
+	if pos_in_word == 0:
+		play_audio(true, false)
+	elif syllables_for_dialog[current_word][1] > 1 and pos_in_word == int(len(syllables_for_dialog[current_word][0]) / syllables_for_dialog[current_word][1]) * current_syllable:
+		play_audio(false, true)
+	pos_in_word += 1
+	label.visible_characters += 1
+
+
+func play_audio(change_pitch=false, change_note=false):
+	if change_note:
+		current_note = notes[randi() % notes.size()]
+	if change_pitch:
+		current_pitch += [-1, 1][randi() % 2]
+		if current_pitch > 4:
+			current_pitch = 3
+		if current_pitch < 1:
+			current_pitch = 2
+	$AnimationPlayer.play("%s" % current_note)
+	$AnimationPlayer.seek(current_pitch)
+	$soundtimer.start()
+	current_syllable += 1
+
+
 func _on_Timer_timeout():
 	if label.visible_characters < number_characters: # Check if the timer needs to be started
 		if paused:
 			update_pause()
 			return # If in pause, ignore the rest of the function.
-
+		
 		if pause_array.size() > 0: # Check if the phrase have any pauses left.
 			if label.visible_characters == pause_array[pause_index]: # pause_char == index of the last character before pause.
+				
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
-				
-				$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
-				$AudioStreamPlayer.play()
-				label.visible_characters += 1
+				check_word_position()
 		else: # Phrase doesn't have any pauses.
-			$AudioStreamPlayer.pitch_scale = 1 + abs(sin(float(label.visible_characters))) / 3 + randf() / 5
-			$AudioStreamPlayer.play()
-			label.visible_characters += 1
-			
+			check_word_position()
 		timer.start()
 	else:
 		if is_question:
@@ -750,3 +794,7 @@ func _on_Sprite_Timer_timeout():
 	set_process(false)
 	on_animation = false
 	shaking = false
+
+
+func _on_soundtimer_timeout():
+	$AnimationPlayer.stop()

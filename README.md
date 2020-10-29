@@ -4,6 +4,12 @@ You may be wondering why there are so many bugs and why the game doesn't have a
 proper ending, this is because I'm bad at programming and. hope that clears
 everything up!
 
+## About the game:  
+You work at a mood cafe. Folks come in, tell you how theyre feeling and what's going on in thier lives. 
+You make them a drink based on how they feel. 
+There's no overarching narritive, no real ending. 
+It's just a cafe gig, like you had when you were younger. 
+
 ## credits:  
 **[Brian MacIntosh](https://twitter.com/brianamacintosh)** dialog sounds  
 **[Daniel Linssen](https://twitter.com/Managore)** m5x7 font  

@@ -4,7 +4,7 @@
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
-		"content": "Are you new in town? |It's a great place.",
+		"content": "Are you new in town? It's a great place.",
 		"next": "intro2"
 	},
 	"intro2": {

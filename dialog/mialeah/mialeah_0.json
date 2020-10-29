@@ -4,13 +4,20 @@
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
-		"content": "Hey.| Are you new here?| Welcome. I've been coming to this cafe for as long as I can remember. My name's Mialeah.",
+		"content": "Hey. Are you new here? Welcome. I've been coming to this cafe for as long as I can remember. My name's Mialeah.",
 		"next": "intro2"
 	},
 	"intro2": {
 	  	"avatar": "Mialeah/Mialeah.png",
 		"position": "left",
 		"type": "text",
-		"content": "Could I just get a black coffee, please?",
+		"content": "It's funny how people come and go, but the shop stays the same.",
+		"next": "intro3"
+	},
+	"intro3": {
+	  	"avatar": "Mialeah/Mialeah.png",
+		"position": "left",
+		"type": "text",
+		"content": "Anyway, I'll have the house special.",
 	}
 }

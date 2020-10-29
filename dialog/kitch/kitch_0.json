@@ -32,7 +32,7 @@
 	  	"avatar": "Kitch/Kitch.png",
 		"position": "left",
 		"type": "text",
-		"content": "He's quite prone to holding forth on unrelated topics yet could never once annoy anyone with his diversions. ",
+		"content": "He's quite prone to holding forth on unrelated topics yet could never once annoy anyone with his diversions.",
 		"next": "intro6"
 	},
 		"intro6": {

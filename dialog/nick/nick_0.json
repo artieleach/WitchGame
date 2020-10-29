@@ -4,20 +4,20 @@
 		"position": "left",
 		"animation_in": "move_in",
 		"type": "text",
-		"content": "Is this your first cafe job?| You meet a lot of interesting folks working in cafes. ",
+		"content": "Is this your first cafe job? You meet a lot of interesting folks working in cafes. ",
 		"next": "intro2"
 	},
 	"intro2": {
 	  	"avatar": "Nick/Nick.png",
 		"position": "left",
 		"type": "text",
-		"content": "Some guy reached over the counter and grabbed something, right in front of me. |Some people, I swear. ",
+		"content": "This guy reached over the counter and grabbed something, right in front of me. |Some people, I swear. ",
 		"next": "intro3"
 	},
 	"intro3": {
 	  	"avatar": "Nick/Nick.png",
 		"position": "left",
 		"type": "text",
-		"content": "Anyway, could I get the house special?",
+		"content": "",
 	}
 }

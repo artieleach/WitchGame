@@ -10,6 +10,7 @@ var history = []
 
 signal buying
 signal begin_dialog
+signal getting_up
 
 var progress
 var my_name
@@ -46,7 +47,6 @@ func _enter_state():
 		print("Entering state: ", state.name)
 		printt(history)
 	# Give the new state a reference to it's state machine i.e. this one
-	$sprite/TextureRect.hint_tooltip = state.name
 	state.fsm = self
 	state.enter()
 

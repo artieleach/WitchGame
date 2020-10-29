@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EEE-07.wav-15c9c6e4a57fefb4c7f71171e7a534e2.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/EEE-07.wav"
+dest_files=[ "res://.import/EEE-07.wav-15c9c6e4a57fefb4c7f71171e7a534e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

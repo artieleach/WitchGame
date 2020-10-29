@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://images/cup.png" type="Texture" id=2]
+[ext_resource path="res://Node2D.gd" type="Script" id=3]
+[ext_resource path="res://ball.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+ball = ExtResource( 4 )
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+node_a = NodePath("../KinematicBody2D")
+node_b = NodePath("../bottle")
+bias = 0.9
+length = 2.0
+rest_length = 1.0
+stiffness = 64.0
+
+[node name="KinematicBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="bottle" type="RigidBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bottle"]
+polygon = PoolVector2Array( -2, -9, -2, -8, -2, -2, -4, 0, -5, 0, -5, 6, -3, 6, -3, 7, 3, 7, 3, 6, 5, 6, 5, 0, 4, 0, 2, -2, 2, -8, 2, -9, 0, -9, 0, -22, 22, -22, 22, 26, -22, 26, -22, -22, 0, -22, 0, -9 )
+
+[node name="cup" type="Sprite" parent="bottle"]
+texture = ExtResource( 2 )

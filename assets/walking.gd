@@ -17,11 +17,13 @@ func enter():
 		owner.get_node("sprite").flip_h = destination.rect_position.x < owner.get_node("sprite").position.x
 
 
+
 func exit(next_state):
 	fsm.change_to(next_state)
 
 
 func process(delta):
+	var currnet_pos =  owner.get_node("sprite").position.x
 	if destination.rect_position.x + owner.spot_in_line * 10 + dest_pos > owner.get_node("sprite").position.x:
 		owner.get_node("sprite").position.x += owner.speed * delta
 	elif destination.rect_position.x + destination.rect_size.x + owner.spot_in_line * 10  + dest_pos < owner.get_node("sprite").position.x:

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/e-01.wav-a0c6a339d27adccb3dc7c3af642fe07a.sample"
+
+[deps]
+
+source_file="res://audio/own voice/e-01.wav"
+dest_files=[ "res://.import/e-01.wav-a0c6a339d27adccb3dc7c3af642fe07a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

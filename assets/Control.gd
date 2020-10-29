@@ -7,8 +7,6 @@ export (PackedScene) var Customer
 onready var dialog = get_node("Dialog")
 
 var coffee_grounds = 5
-var num_cupcakes = 0
-var num_bev = 0
 var inventory = []
 var cup_contents = []
 var seats = []
@@ -21,7 +19,9 @@ var customers
 var scheduled_customers = []
 var sound = true
 var music = true
-
+var words
+var grabbed = false
+var day = 1
 
 func _ready():
 	randomize()
@@ -37,33 +37,29 @@ func _ready():
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
 
+func get_files(path):
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin(true)
+
+	var file = dir.get_next()
+	while file != '':
+		files += [file]
+		file = dir.get_next()
+
+	return files
+
 
 func _on_add_to_cup(item):
-	$counter/cup.ingredients += [item]
-	$counter/cup.add_to_drink()
+	$Scrolling_Window/counter/cup.ingredients += [item]
+	$Scrolling_Window/counter/cup.add_to_drink()
 
 
 func _on_add_sprite_to_cup(item):
-	if not item in $counter/cup.sprite_contents:
-		$counter/cup.sprite_contents += [item]
-		$counter/cup.add_to_drink()
-
-
-func _on_food_expired(food):
-	inventory.erase(food)
-	food.queue_free()
-
-
-func _on_coffee_grinder_pressed():
-	coffee_grounds = 5
-	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
-
-
-func _on_oven_animation_finished():
-	if 6 > num_cupcakes:
-		$backwall/oven/object_sprite.playing = false
-		$backwall/oven.ding()
-		$backwall/oven/object_sprite.frame = 0
+	if not item in $Scrolling_Window/counter/cup.sprite_contents:
+		$Scrolling_Window/counter/cup.sprite_contents += [item]
+		$Scrolling_Window/counter/cup.add_to_drink()
 
 
 func create_customer(customer):
@@ -83,6 +79,7 @@ func create_customer(customer):
 	new_customer.get_node("sprite").position = Vector2(212, 26)
 	new_customer.connect("buying", self, "_on_buying")
 	new_customer.connect("begin_dialog", self, "_on_dialog")
+	new_customer.connect("getting_up", self, "_on_chair_clear")
 	var possible_seats = []
 	for chair in seats:
 		if chair.being_sat_in == false:
@@ -90,7 +87,7 @@ func create_customer(customer):
 	possible_seats.shuffle()
 	if len(possible_seats) > 0:
 		new_customer.where_to_sit = possible_seats[0]
-		possible_seats[0].being_sat_in = true
+		possible_seats[0].being_sat_in = new_customer
 	else:
 		new_customer.where_to_sit = null
 	$backwall.add_child(new_customer)
@@ -106,8 +103,8 @@ func _on_dialog(cur_speaker, spesific_response=null):
 
 
 func _on_buying(buyer):
-	if len($counter/cup.ingredients) == 16:
-		var drink_made = $counter/cup.serve()
+	if len($Scrolling_Window/counter/cup.ingredients) == 16:
+		var drink_made = $Scrolling_Window/counter/cup.serve()
 		buyer.has_item = true
 		print("made: " + drink_made)
 		print("expected: " + buyer.want)
@@ -119,6 +116,7 @@ func _on_buying(buyer):
 			buyer.emit_signal("begin_dialog", buyer, "wrong")
 			buyer.mistakes += 1
 			buyer.upset = false
+
 
 
 func _on_advance_dialog_pressed():
@@ -158,9 +156,8 @@ func _on_blackboard_pressed():
 
 
 func _on_x_button_pressed():
-	for node in get_children():
-		if node.is_in_group("customers"):
-			node.show()
+	for node in get_tree().get_nodes_in_group("customers"):
+		node.show()
 
 
 func _on_coffee_machine_pressed():
@@ -174,10 +171,10 @@ func _on_coffee_machine_pressed():
 
 
 func _process(_delta):
-	$"character bg/sky".rect_position = Vector2(15, -766 + $Timer.time_left)
-
+	$"character bg/sky".rect_position = Vector2(15, clamp(-$Timer.time_left, -766, 0))
 
 func end_day():
+	$end_of_day/end_day_summary.text = "Another day, another dollar.\nDay %d" % day
 	for customer in get_tree().get_nodes_in_group("customers"):
 		customer.queue_free()
 	$end_of_day.show()
@@ -187,10 +184,11 @@ func end_day():
 
 
 func start_day():
+	day += 1
 	scheduled_customers = customers.keys()
 	scheduled_customers.shuffle()
-	scheduled_customers += ["generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic"]
 	scheduled_customers = scheduled_customers.slice(0, 13)
+	$end_of_day.mouse_filter = Control.MOUSE_FILTER_STOP
 	while $Timer.time_left > 0:
 		for i in scheduled_customers:
 			if customers[i].has("drink"):
@@ -201,16 +199,19 @@ func start_day():
 
 func _on_end_of_day_gui_input(event):
 	if event is InputEventMouseButton:
+		$end_of_day.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
 		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
 		$Tween.start()
-		$Timer.start()
+		yield(get_node("Tween"), "tween_completed")
+		start_day()
+		$end_of_day.hide()
 
 
 func _on_Control_tree_exiting():
 	var file = File.new()
 	file.open('res://dialog/Characters.json', file.WRITE)
-	var out = to_json(customers)
+	var out = JSON.print(customers, '  ')
 	file.store_line(out)
 
 
@@ -225,6 +226,11 @@ func _on_sound_toggled(button_pressed):
 	else:
 		$Dialog/AudioStreamPlayer.volume_db = -80.0
 
+func _on_chair_clear(previous_owner):
+	for chair in seats:
+		if chair.being_sat_in == previous_owner:
+			chair.being_sat_in = false
+
 
 func _on_music_toggled(button_pressed):
 	music = not(music)
@@ -232,3 +238,4 @@ func _on_music_toggled(button_pressed):
 		$AudioStreamPlayer.stream_paused = false
 	else:
 		$AudioStreamPlayer.stream_paused = true
+

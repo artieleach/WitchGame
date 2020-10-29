@@ -3,7 +3,7 @@ extends Node
 var fsm: StateMachine
 
 var destination
-var dest_spot = 0
+var dest_pos = 0
 
 func enter():
 	destination = owner.where_to_sit
@@ -11,17 +11,19 @@ func enter():
 	owner.get_node("sprite").play()
 	owner.get_node("sprite").flip_h = not(destination.rect_position.x > owner.position.x)
 	if destination.flip_h:
-		dest_spot = destination.rect_position.x
+		dest_pos = destination.rect_position.x
 	else:
-		dest_spot =  destination.rect_position.x + destination.rect_size.x
+		dest_pos =  destination.rect_position.x + destination.rect_size.x
 
 
 func exit(next_state):
 	fsm.change_to(next_state)
 
-func process(_delta):
-	if dest_spot > owner.get_node("sprite").position.x:
-			owner.get_node("sprite").position.x += owner.speed
+func process(delta):
+	var currnet_pos =  owner.get_node("sprite").position.x
+	if destination.rect_position.x + owner.spot_in_line * 10 + dest_pos > owner.get_node("sprite").position.x:
+		owner.get_node("sprite").position.x += owner.speed * delta
+	elif destination.rect_position.x + destination.rect_size.x + owner.spot_in_line * 10  + dest_pos < owner.get_node("sprite").position.x:
+		owner.get_node("sprite").position.x -= owner.speed * delta
 	else:
-		exit("sit_down")
-
+		exit("sit down")

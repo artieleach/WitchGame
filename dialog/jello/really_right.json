@@ -1,0 +1,9 @@
+{
+	"first": {
+	  	"avatar": "Jello/Jello.png",
+		"position": "left",
+		"animation_in": "move_in",
+		"type": "text",
+		"content": "I think this is what I really needed.",
+	}
+}

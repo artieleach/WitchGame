@@ -31,11 +31,10 @@ PROGRESS="*res://progress.gd"
 
 [display]
 
-window/size/width=208
-window/size/height=117
-window/size/test_width=1280
-window/size/test_height=720
-window/vsync/use_vsync=false
+window/size/width=224
+window/size/height=126
+window/size/test_width=3136
+window/size/test_height=1764
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

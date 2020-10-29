@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/UUU-03.wav-3549f3f73089202ac4db1890b02989e4.sample"
+
+[deps]
+
+source_file="res://audio/Sounds/UUU-03.wav"
+dest_files=[ "res://.import/UUU-03.wav-3549f3f73089202ac4db1890b02989e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
