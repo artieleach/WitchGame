@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cafe_wall.png-d225168984f83ba8a51a2403f7703441.stex"
+path="res://.import/pep.png-cd6513c11be44fe41f6189ca7d27a171.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/cafe_wall.png"
-dest_files=[ "res://.import/cafe_wall.png-d225168984f83ba8a51a2403f7703441.stex" ]
+source_file="res://images/pep.png"
+dest_files=[ "res://.import/pep.png-cd6513c11be44fe41f6189ca7d27a171.stex" ]
 
 [params]
 

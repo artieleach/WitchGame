@@ -45,16 +45,17 @@ var choice_node_alignment : String = 'right' # Alignment of the 'Choice' node. C
 var previous_command : String = 'ui_left' # Input commmand for the navigating through question choices 
 var next_command : String = 'ui_right' # Input commmand for the navigating through question choices
 var frame_height : int = 40 # Dialog frame height (in pixels)
-var frame_width : int = 222 # Dialog frame width (in pixels)
+var frame_width : int = 222-40 # Dialog frame width (in pixels)
 var frame_position : String = 'bottom' # Use to 'top' or 'bottom' to change the dialogue frame vertical alignment 
 var frame_margin_vertical : int = 1 # Vertical space (in pixels) between the dialogue box and the window border
 var label_margin : int = 1 # Space (in pixels) between the dialogue frame border and the text
 var enable_continue_indicator : bool = false # Enable or disable the 'continue_indicator' animation when the text is completely displayed. If typewritter effect is disabled it will always be visible on every dialogue block.
-var sprite_offset : Vector2 = Vector2(30, 22) # Used for polishing avatars' position. Can use negative values.
+var sprite_offset : Vector2 = Vector2(-58, 103) # Used for polishing avatars' position. Can use negative values.
 var name_offset : Vector2 = Vector2(54, -10) # Offsets the name labels relative to the frame borders.
 var show_names : bool = true # Turn on and off the character name labels
 # END OF SETUP #
 
+signal play_audio
 
 # Default values. Don't change them unless you really know what you're doing.
 var id
@@ -160,7 +161,7 @@ func set_frame(): # Mostly aligment operations.
 			self.anchor_top = 1
 			self.anchor_right = 0.5
 			self.anchor_bottom = 1
-			self.rect_position = Vector2(0, -(frame_height + frame_margin_vertical))
+			self.rect_position = Vector2(20, -(frame_height + frame_margin_vertical))
 	
 	continue_indicator.anchor_left = 0.5
 	continue_indicator.anchor_top = 1
@@ -729,26 +730,12 @@ func check_word_position():
 		current_word += 1
 		current_syllable = 0
 	if pos_in_word == 0:
-		play_audio(true, false)
+		emit_signal("play_audio", true, false)
 	elif syllables_for_dialog[current_word][1] > 1 and pos_in_word == int(len(syllables_for_dialog[current_word][0]) / syllables_for_dialog[current_word][1]) * current_syllable:
-		play_audio(false, true)
+		emit_signal("play_audio", false, true)
 	pos_in_word += 1
 	label.visible_characters += 1
 
-
-func play_audio(change_pitch=false, change_note=false):
-	if change_note:
-		current_note = notes[randi() % notes.size()]
-	if change_pitch:
-		current_pitch += [-1, 1][randi() % 2]
-		if current_pitch > 4:
-			current_pitch = 3
-		if current_pitch < 1:
-			current_pitch = 2
-	$AnimationPlayer.play("%s" % current_note)
-	$AnimationPlayer.seek(current_pitch)
-	$soundtimer.start()
-	current_syllable += 1
 
 
 func _on_Timer_timeout():
@@ -798,3 +785,18 @@ func _on_Sprite_Timer_timeout():
 
 func _on_soundtimer_timeout():
 	$AnimationPlayer.stop()
+
+
+func _on_Dialog_play_audio(change_pitch=false, change_note=false):
+	if change_note:
+		current_note = notes[randi() % notes.size()]
+	if change_pitch:
+		current_pitch += [-1, 1][randi() % 2]
+		if current_pitch > 4:
+			current_pitch = 3
+		if current_pitch < 1:
+			current_pitch = 2
+	$AnimationPlayer.play("%s" % current_note)
+	$AnimationPlayer.seek(current_pitch)
+	$soundtimer.start()
+	current_syllable += 1

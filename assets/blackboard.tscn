@@ -6,8 +6,8 @@
 [ext_resource path="res://images/x_button.png" type="Texture" id=4]
 
 [node name="blackboard" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 224.0
+margin_bottom = 126.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -17,9 +17,10 @@ Label = ExtResource( 3 )
 [node name="blackboard_texture" type="TextureRect" parent="." groups=[
 "donothide",
 ]]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 1 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

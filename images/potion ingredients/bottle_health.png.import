@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thoughts.png-fad9b10e93b30d100f99a2cded322fef.stex"
+path="res://.import/bottle_health.png-dcc131fc48e37fee94e29564887bf842.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/thoughts.png"
-dest_files=[ "res://.import/thoughts.png-fad9b10e93b30d100f99a2cded322fef.stex" ]
+source_file="res://images/potion ingredients/bottle_health.png"
+dest_files=[ "res://.import/bottle_health.png-dcc131fc48e37fee94e29564887bf842.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

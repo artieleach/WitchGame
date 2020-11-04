@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thought_bubble-sheet.png-280e60778a56937013e03a6c7ebf641b.stex"
+path="res://.import/bottle_mana.png-a5ac8acd6e469ce06cf1f7057790fa52.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/thought_bubble-sheet.png"
-dest_files=[ "res://.import/thought_bubble-sheet.png-280e60778a56937013e03a6c7ebf641b.stex" ]
+source_file="res://images/potion ingredients/bottle_mana.png"
+dest_files=[ "res://.import/bottle_mana.png-a5ac8acd6e469ce06cf1f7057790fa52.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

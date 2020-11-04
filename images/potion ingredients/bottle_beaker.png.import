@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coffee.png-c9f6d747b3127f79df3c8984c8c5f2f1.stex"
+path="res://.import/bottle_beaker.png-e84530caf7465d11359b9b222e52c779.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/coffee.png"
-dest_files=[ "res://.import/coffee.png-c9f6d747b3127f79df3c8984c8c5f2f1.stex" ]
+source_file="res://images/potion ingredients/bottle_beaker.png"
+dest_files=[ "res://.import/bottle_beaker.png-e84530caf7465d11359b9b222e52c779.stex" ]
 
 [params]
 

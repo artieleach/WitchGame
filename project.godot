@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LABoulangerie"
+config/name="LaBoulangerie (LBGW)"
 config/description="a little cafe game"
 run/main_scene="res://assets/main.tscn"
 config/icon="res://icon.png"

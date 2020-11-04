@@ -18,4 +18,4 @@ It's just a cafe gig, like you had when you were younger.
 **All of the beautiful folks on the La Boulangerie server, who submitted dialog
 and watched me streams**  
 
-*made with love in [Godot 3.2.2](https://godotengine.org/)*
+*made with love in the [Godot Game Engine](https://godotengine.org/)*

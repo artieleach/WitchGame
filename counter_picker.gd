@@ -8,12 +8,13 @@ var counter
 var click_position
 
 func _ready():
+	rect_clip_content = true
 	counter = get_children()[0]
 	print(counter)
 
 func _process(delta):
 	if last_checked != moving:
-		distance = (moving - last_checked) * 1.5
+		distance = (moving - last_checked) * 1.0
 		if counter.rect_position.x > - distance - counter.rect_size.x + rect_size.x and counter.rect_position.x < - distance:
 			counter.rect_position.x += distance
 		last_checked = moving

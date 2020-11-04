@@ -24,7 +24,7 @@ func _ready():
 func generate_item(menu_item):
 	var menu_item_label = Label.instance()
 	add_child(menu_item_label)
-	menu_item_label.rect_position = Vector2(3, num_of_items * 12 + 3)
+	menu_item_label.rect_position = Vector2(12, num_of_items * 12 + 10)
 	menu_item_label.bbcode_text = '[color=%s][url=%s]%s[/url][/color]' % [drinks[menu_item]["color"], menu_item, menu_item]
 	menu_item_label.rect_size = Vector2(100, 12)
 	menu_item_label.name = menu_item
@@ -38,7 +38,7 @@ func generate_item(menu_item):
 func generate_child(parent, child_text, colour="fce08c"):
 	var menu_item_entry = Label.instance()
 	add_child(menu_item_entry)
-	menu_item_entry.rect_position = Vector2(80, num_of_children * 80 + 3)
+	menu_item_entry.rect_position = Vector2(80, num_of_children * 80 + 10)
 	menu_item_entry.rect_size = Vector2(120, 212)
 	menu_item_entry.bbcode_text = "[color=#%s]%s[/color]" % [colour, child_text]
 	menu_item_entry.add_to_group(parent.name)

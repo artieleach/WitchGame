@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/teacup_thought.png-f238940556e5f8d9794860cd03d83324.stex"
+path="res://.import/bottle_bars.png-c3cbfba3e1fecdb8f9134051a998fc63.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/teacup_thought.png"
-dest_files=[ "res://.import/teacup_thought.png-f238940556e5f8d9794860cd03d83324.stex" ]
+source_file="res://images/potion ingredients/bottle_bars.png"
+dest_files=[ "res://.import/bottle_bars.png-c3cbfba3e1fecdb8f9134051a998fc63.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

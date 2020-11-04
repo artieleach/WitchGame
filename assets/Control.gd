@@ -1,7 +1,6 @@
 extends Control
 
 export (PackedScene) var Clickable
-export (PackedScene) var Foodstuff
 export (PackedScene) var Customer
 
 onready var dialog = get_node("Dialog")
@@ -25,15 +24,13 @@ var day = 1
 
 func _ready():
 	randomize()
+	$blackboard.hide()
+	dialog.show()
 	var file = File.new()
 	file.open('res://dialog/Characters.json', file.READ)
 	var json = file.get_as_text()
 	customers = JSON.parse(json).result
 	file.close()
-	$blackboard.hide()
-	$cheater.show()
-	dialog.show()
-	$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
 
