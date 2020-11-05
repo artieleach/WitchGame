@@ -3,9 +3,9 @@
 [ext_resource path="res://counter_picker.gd" type="Script" id=1]
 
 [node name="Scrolling_Window" type="ColorRect"]
-anchor_right = 1.014
+anchor_right = 0.755
 anchor_bottom = 0.291
-margin_right = -57.912
+margin_right = 0.104004
 margin_bottom = -0.0470009
 rect_clip_content = true
 mouse_filter = 1

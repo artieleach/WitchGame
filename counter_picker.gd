@@ -6,24 +6,27 @@ var last_checked = 0
 var distance = 0
 var counter
 var click_position
+var counter_size
+
 
 func _ready():
 	rect_clip_content = true
 	counter = get_children()[0]
-	print(counter)
+	counter_size = counter.texture.get_size().x
 
 func _process(delta):
 	if last_checked != moving:
-		distance = (moving - last_checked) * 1.0
-		if counter.rect_position.x > - distance - counter.rect_size.x + rect_size.x and counter.rect_position.x < - distance:
-			counter.rect_position.x += distance
+		distance = moving - last_checked
+		if counter.position.x > - distance - counter_size + rect_size.x and counter.position.x < - distance:
+			counter.position.x += distance
 		last_checked = moving
+
 
 func _input(event):
 	if event is InputEventMouseButton:
-		last_checked = int(event.position.x)
-		click_position = int(event.position.x)
+		last_checked = event.position.x
+		click_position = event.position.x
 		owner.grabbed = event.is_pressed()
 	if owner.grabbed:
-		moving = int(event.position.x)
+		moving = event.position.x
 

@@ -48,7 +48,7 @@ var frame_height : int = 40 # Dialog frame height (in pixels)
 var frame_width : int = 222-40 # Dialog frame width (in pixels)
 var frame_position : String = 'bottom' # Use to 'top' or 'bottom' to change the dialogue frame vertical alignment 
 var frame_margin_vertical : int = 1 # Vertical space (in pixels) between the dialogue box and the window border
-var label_margin : int = 1 # Space (in pixels) between the dialogue frame border and the text
+var label_margin : int = 0 # Space (in pixels) between the dialogue frame border and the text
 var enable_continue_indicator : bool = false # Enable or disable the 'continue_indicator' animation when the text is completely displayed. If typewritter effect is disabled it will always be visible on every dialogue block.
 var sprite_offset : Vector2 = Vector2(-58, 103) # Used for polishing avatars' position. Can use negative values.
 var name_offset : Vector2 = Vector2(54, -10) # Offsets the name labels relative to the frame borders.
@@ -151,17 +151,17 @@ func _process(_delta):
 func set_frame(): # Mostly aligment operations.
 	match frame_position:
 		'top':
-			self.anchor_left = 0.5
-			self.anchor_top = 0
-			self.anchor_right = 0.5
-			self.anchor_bottom = 0
-			self.rect_position = Vector2(0, frame_margin_vertical)
+			anchor_left = 0.5
+			anchor_top = 0
+			anchor_right = 0.5
+			anchor_bottom = 0
+			rect_position = Vector2(0, frame_margin_vertical)
 		'bottom':
-			self.anchor_left = 0.5
-			self.anchor_top = 1
-			self.anchor_right = 0.5
-			self.anchor_bottom = 1
-			self.rect_position = Vector2(20, -(frame_height + frame_margin_vertical))
+			anchor_left = 0.5
+			anchor_top = 1
+			anchor_right = 0.5
+			anchor_bottom = 1
+			rect_position = Vector2(20, -(frame_height + frame_margin_vertical))
 	
 	continue_indicator.anchor_left = 0.5
 	continue_indicator.anchor_top = 1

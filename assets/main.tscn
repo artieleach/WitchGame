@@ -70,6 +70,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Dialog" parent="." instance=ExtResource( 7 )]
+margin_left = 133.0
+margin_top = 106.0
+margin_right = 133.0
+margin_bottom = 106.0
+
+[node name="advance_dialog" type="TextureButton" parent="Dialog"]
+margin_left = -104.0
+margin_right = 102.0
+margin_bottom = 43.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="backwall" type="TextureRect" parent="."]
 margin_left = 1.0
 margin_top = 1.0
@@ -400,7 +415,7 @@ __meta__ = {
 [node name="character bg" type="TextureRect" parent="."]
 margin_left = 1.0
 margin_top = 85.0
-margin_right = 40.0
+margin_right = 41.0
 margin_bottom = 125.0
 rect_clip_content = true
 texture = ExtResource( 6 )
@@ -430,15 +445,9 @@ margin_top = 41.0
 margin_right = 170.0
 margin_bottom = 84.0
 
-[node name="counter" type="TextureRect" parent="Scrolling_Window"]
-margin_right = 600.0
-margin_bottom = 43.0
+[node name="counter" type="Sprite" parent="Scrolling_Window"]
 texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+centered = false
 
 [node name="caramel" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
 visible = false
@@ -575,105 +584,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bottle_mana" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 110.0
-margin_top = 17.0
-margin_right = 125.0
-margin_bottom = 39.0
+[node name="bottle_mana" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 116, 27 )
 texture = ExtResource( 38 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_pepper" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 59.0
-margin_top = 23.0
-margin_right = 73.0
-margin_bottom = 41.0
+[node name="bottle_pepper" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 66, 28 )
 texture = ExtResource( 39 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_beaker" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 150.0
-margin_top = 15.0
-margin_right = 165.0
-margin_bottom = 39.0
+[node name="bottle_beaker" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 157, 25 )
 texture = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_herbs" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 5.0
-margin_top = 15.0
-margin_right = 20.0
-margin_bottom = 40.0
+[node name="bottle_herbs" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 12, 26 )
 texture = ExtResource( 42 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_mushroom" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 130.0
-margin_top = 15.0
-margin_right = 147.0
-margin_bottom = 38.0
+[node name="bottle_mushroom" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 136, 27 )
 texture = ExtResource( 43 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_conch" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 75.0
-margin_top = 15.0
-margin_right = 104.0
-margin_bottom = 38.0
+[node name="bottle_conch" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 90, 26 )
 texture = ExtResource( 41 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_shell" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 25.0
-margin_top = 25.0
-margin_right = 55.0
-margin_bottom = 39.0
+[node name="bottle_shell" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 40, 30 )
 texture = ExtResource( 44 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_feather" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 188.0
-margin_top = 9.0
-margin_right = 215.0
-margin_bottom = 36.0
+[node name="bottle_feather" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 201, 25 )
 texture = ExtResource( 45 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_health" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 171.0
-margin_top = 19.0
-margin_right = 185.0
-margin_bottom = 38.0
+[node name="bottle_health" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 174, 28 )
 texture = ExtResource( 46 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="bottle_bars" type="TextureRect" parent="Scrolling_Window/counter"]
-margin_left = 217.0
-margin_top = 12.0
-margin_right = 232.0
-margin_bottom = 37.0
+[node name="bottle_bars" type="Sprite" parent="Scrolling_Window/counter"]
+position = Vector2( 232, 25 )
 texture = ExtResource( 47 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="cauldron" type="TextureRect" parent="."]
 margin_left = 171.0
@@ -682,21 +631,6 @@ margin_right = 223.0
 margin_bottom = 84.0
 texture = ExtResource( 37 )
 stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Dialog" parent="." instance=ExtResource( 7 )]
-margin_left = 132.0
-margin_top = 106.0
-margin_right = 132.0
-margin_bottom = 106.0
-
-[node name="advance_dialog" type="TextureButton" parent="Dialog"]
-margin_left = -104.0
-margin_right = 102.0
-margin_bottom = 43.0
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -715,6 +649,7 @@ margin_left = -1.0
 margin_top = -1.0
 margin_right = 223.0
 margin_bottom = 125.0
+texture = ExtResource( 25 )
 
 [node name="x_button" parent="blackboard" index="1"]
 anchor_right = 1.0
@@ -786,13 +721,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
+[connection signal="block_ended" from="Dialog" to="." method="_on_Dialog_block_ended"]
+[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
 [connection signal="pressed" from="backwall/coffee_machine" to="." method="_on_coffee_machine_pressed"]
 [connection signal="gui_input" from="Scrolling_Window/counter/cup" to="Scrolling_Window/counter/cup" method="_on_cup_gui_input"]
 [connection signal="pressed" from="Scrolling_Window/counter/cup" to="." method="_on_cup_pressed"]
-[connection signal="block_ended" from="Dialog" to="." method="_on_Dialog_block_ended"]
-[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 [connection signal="pressed" from="blackboard/x_button" to="." method="_on_x_button_pressed"]
 [connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]

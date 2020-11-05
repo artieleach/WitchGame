@@ -5,8 +5,6 @@ export (PackedScene) var Customer
 
 onready var dialog = get_node("Dialog")
 
-var coffee_grounds = 5
-var inventory = []
 var cup_contents = []
 var seats = []
 var customer_line = []
@@ -22,6 +20,7 @@ var words
 var grabbed = false
 var day = 1
 
+
 func _ready():
 	randomize()
 	$blackboard.hide()
@@ -33,6 +32,7 @@ func _ready():
 	file.close()
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
+
 
 func get_files(path):
 	var files = []
@@ -115,7 +115,6 @@ func _on_buying(buyer):
 			buyer.upset = false
 
 
-
 func _on_advance_dialog_pressed():
 	dialog.next()
 
@@ -157,18 +156,9 @@ func _on_x_button_pressed():
 		node.show()
 
 
-func _on_coffee_machine_pressed():
-	if $backwall/coffee_machine/object_sprite.frame < 9:
-		$backwall/coffee_machine/object_sprite.frame += 1
-		$backwall/coffee_machine._on_clickable_item_pressed()
-	elif coffee_grounds > 0:
-		coffee_grounds -= 1
-		$backwall/coffee_grinder/object_sprite.frame = coffee_grounds
-		$backwall/coffee_machine/object_sprite.frame = 0
-
-
 func _process(_delta):
 	$"character bg/sky".rect_position = Vector2(15, clamp(-$Timer.time_left, -766, 0))
+
 
 func end_day():
 	$end_of_day/end_day_summary.text = "Another day, another dollar.\nDay %d" % day
