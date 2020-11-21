@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/credits.gd" type="Script" id=2]
+[ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=3]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 214.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Made with love in Godot
+Edward - my cool older brother (who is shorter than me)
+Mialeah Brett
+Jo Crane
+Oskar Lorentzon
+All of the fine folks on the La Boulangerie Discord
+Daniel Linssen - m5x7 font  
+Kevin Macleod - music  
+and viewers like you"
+text = "Made with love in Godot
+Edward - my cool older brother (who is shorter than me)
+Mialeah Brett
+Jo Crane
+Oskar Lorentzon
+All of the fine folks on the La Boulangerie Discord
+Daniel Linssen - m5x7 font  
+Kevin Macleod - music  
+and viewers like you"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransition" parent="." instance=ExtResource( 3 )]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

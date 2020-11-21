@@ -1,29 +1,28 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://images/table.png" type="Texture" id=1]
 [ext_resource path="res://images/counter_mockup.png" type="Texture" id=2]
 [ext_resource path="res://images/front_counter.png" type="Texture" id=3]
-[ext_resource path="res://images/stovetop.png" type="Texture" id=4]
-[ext_resource path="res://images/espressomachinsmalle.png" type="Texture" id=5]
+[ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=4]
+[ext_resource path="res://images/cauldron_mask.png" type="Texture" id=5]
 [ext_resource path="res://images/portrait_bg.png" type="Texture" id=6]
 [ext_resource path="res://assets/Dialog_System.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/back_counter.png" type="Texture" id=8]
 [ext_resource path="res://images/bulletin_board.png" type="Texture" id=9]
 [ext_resource path="res://images/coffee_display.png" type="Texture" id=10]
 [ext_resource path="res://images/register.png" type="Texture" id=11]
-[ext_resource path="res://assets/clickable_item.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/chair.tscn" type="PackedScene" id=13]
+[ext_resource path="res://images/portraitbg.png" type="Texture" id=14]
 [ext_resource path="res://images/cafe_lamps.png" type="Texture" id=15]
 [ext_resource path="res://images/shelf.png" type="Texture" id=16]
 [ext_resource path="res://assets/customer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Control.gd" type="Script" id=18]
 [ext_resource path="res://images/cafe_BG.png" type="Texture" id=19]
-[ext_resource path="res://images/cup.png" type="Texture" id=20]
-[ext_resource path="res://assets/cup.gd" type="Script" id=21]
+[ext_resource path="res://assets/Spellbook.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/cauldron.tscn" type="PackedScene" id=21]
 [ext_resource path="res://images/daynight.png" type="Texture" id=22]
 [ext_resource path="res://images/blackboard_small.png" type="Texture" id=23]
 [ext_resource path="res://assets/blackboard.tscn" type="PackedScene" id=24]
-[ext_resource path="res://images/book.png" type="Texture" id=25]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=26]
 [ext_resource path="res://assets/AudioStreamPlayer.gd" type="Script" id=27]
 [ext_resource path="res://images/jar_cabinet.png" type="Texture" id=28]
@@ -34,21 +33,50 @@
 [ext_resource path="res://images/plant.png" type="Texture" id=33]
 [ext_resource path="res://assets/scrolling_window.tscn" type="PackedScene" id=34]
 [ext_resource path="res://images/panrack.png" type="Texture" id=35]
-[ext_resource path="res://images/potion_refs.png" type="Texture" id=36]
-[ext_resource path="res://images/cauldron.png" type="Texture" id=37]
-[ext_resource path="res://images/potion ingredients/bottle_mana.png" type="Texture" id=38]
-[ext_resource path="res://images/potion ingredients/bottle_pepper.png" type="Texture" id=39]
-[ext_resource path="res://images/potion ingredients/bottle_beaker.png" type="Texture" id=40]
-[ext_resource path="res://images/potion ingredients/bottle_conch.png" type="Texture" id=41]
-[ext_resource path="res://images/potion ingredients/bottle_herbs.png" type="Texture" id=42]
-[ext_resource path="res://images/potion ingredients/bottle_mushroom.png" type="Texture" id=43]
-[ext_resource path="res://images/potion ingredients/bottle_shell.png" type="Texture" id=44]
-[ext_resource path="res://images/potion ingredients/bottle_feather.png" type="Texture" id=45]
-[ext_resource path="res://images/potion ingredients/bottle_health.png" type="Texture" id=46]
-[ext_resource path="res://images/potion ingredients/bottle_bars.png" type="Texture" id=47]
 [ext_resource path="res://images/portrait_test.png" type="Texture" id=48]
+[ext_resource path="res://assets/ingredient.tscn" type="PackedScene" id=49]
 
 [sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+// Texture must have 'Filter'-flag enabled!
+
+// Automatic smoothing
+// independent of geometry and perspective
+vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
+{
+	vec2 ddx = dFdx(uv);
+	vec2 ddy = dFdy(uv);
+	vec2 lxy = sqrt(ddx * ddx + ddy * ddy);
+	
+	vec2 uv_pixels = uv / pixel_size;
+	
+	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
+	vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
+	
+	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
+	
+	uv = uv_pixels_floor * pixel_size;
+	
+	return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
+}
+
+void fragment()
+{
+	COLOR = texturePointSmooth(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://fonts/m5x7.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+font_data = SubResource( 4 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -58,30 +86,15 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-Clickable = ExtResource( 12 )
 Customer = ExtResource( 17 )
+Ingredient = ExtResource( 49 )
 
 [node name="bg_color" type="ColorRect" parent="."]
 margin_right = 224.0
 margin_bottom = 126.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 __meta__ = {
 "_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Dialog" parent="." instance=ExtResource( 7 )]
-margin_left = 133.0
-margin_top = 106.0
-margin_right = 133.0
-margin_bottom = 106.0
-
-[node name="advance_dialog" type="TextureButton" parent="Dialog"]
-margin_left = -104.0
-margin_right = 102.0
-margin_bottom = 43.0
-expand = true
-__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -99,9 +112,9 @@ __meta__ = {
 
 [node name="panrack" type="TextureRect" parent="backwall"]
 margin_left = 2.0
-margin_top = 2.0
+margin_top = 14.0
 margin_right = 24.0
-margin_bottom = 12.0
+margin_bottom = 24.0
 texture = ExtResource( 35 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,9 +122,9 @@ __meta__ = {
 
 [node name="bulletin_board" type="TextureRect" parent="backwall"]
 margin_left = 192.0
-margin_top = 6.0
+margin_top = 7.0
 margin_right = 207.0
-margin_bottom = 26.0
+margin_bottom = 27.0
 texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,7 +143,7 @@ __meta__ = {
 [node name="cabinet" type="TextureRect" parent="backwall"]
 margin_left = 97.0
 margin_top = 4.0
-margin_right = 124.0
+margin_right = 125.0
 margin_bottom = 38.0
 texture = ExtResource( 29 )
 __meta__ = {
@@ -139,9 +152,9 @@ __meta__ = {
 
 [node name="jar_cabinet" type="TextureRect" parent="backwall"]
 margin_left = 30.0
-margin_top = 6.0
+margin_top = 7.0
 margin_right = 52.0
-margin_bottom = 23.0
+margin_bottom = 24.0
 texture = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -163,19 +176,19 @@ __meta__ = {
 }
 
 [node name="small_calinet" type="TextureRect" parent="backwall"]
-margin_left = 124.0
-margin_top = 14.0
-margin_right = 174.0
-margin_bottom = 27.0
+margin_left = 123.0
+margin_top = 15.0
+margin_right = 173.0
+margin_bottom = 28.0
 texture = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="backcounter" type="TextureRect" parent="backwall"]
-margin_top = 27.0
+margin_top = 28.0
 margin_right = 89.0
-margin_bottom = 37.0
+margin_bottom = 38.0
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_group_": true,
@@ -194,21 +207,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="espresso_machine_small" type="TextureRect" parent="backwall"]
-visible = false
-margin_left = 31.0
-margin_top = 17.0
-margin_right = 41.0
-margin_bottom = 28.0
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="bookcase" type="TextureRect" parent="backwall"]
-margin_left = 168.0
+margin_left = 167.0
 margin_top = 2.0
-margin_right = 188.0
+margin_right = 187.0
 margin_bottom = 38.0
 texture = ExtResource( 31 )
 __meta__ = {
@@ -217,9 +219,9 @@ __meta__ = {
 
 [node name="umbroomla" type="TextureRect" parent="backwall"]
 margin_left = 184.0
-margin_top = 10.0
+margin_top = 11.0
 margin_right = 196.0
-margin_bottom = 37.0
+margin_bottom = 38.0
 texture = ExtResource( 32 )
 flip_h = true
 __meta__ = {
@@ -228,66 +230,11 @@ __meta__ = {
 
 [node name="plant" type="TextureRect" parent="backwall"]
 margin_left = 205.0
-margin_top = 19.0
+margin_top = 20.0
 margin_right = 220.0
-margin_bottom = 37.0
+margin_bottom = 39.0
 texture = ExtResource( 33 )
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coffee_grinder" parent="backwall" groups=[
-"perspective",
-] instance=ExtResource( 12 )]
-visible = false
-margin_left = 25.0
-margin_top = 20.0
-margin_right = 32.0
-margin_bottom = 29.0
-cook_time = 5
-sprite = "coffee grinder"
-
-[node name="oven" parent="backwall" instance=ExtResource( 12 )]
-visible = false
-margin_left = -22.0
-margin_top = 26.0
-margin_right = -3.0
-margin_bottom = 38.0
-cook_time = 10
-sprite = "oven"
-creates_food = true
-
-[node name="kettle" parent="backwall" instance=ExtResource( 12 )]
-visible = false
-margin_left = -22.0
-margin_top = 14.0
-margin_right = -14.0
-margin_bottom = 23.0
-cook_time = 1
-sprite = "water"
-creates_drink = true
-
-[node name="coffee_machine" parent="backwall" instance=ExtResource( 12 )]
-visible = false
-margin_left = -14.0
-margin_top = 14.0
-margin_right = -6.0
-margin_bottom = 23.0
-cook_time = 3
-sprite = "coffee"
-creates_food = true
-creates_drink = true
-
-[node name="stovetop" type="TextureRect" parent="backwall"]
-visible = false
-margin_left = -27.0
-margin_top = 23.0
-margin_right = -6.0
-margin_bottom = 25.0
-texture = ExtResource( 4 )
-flip_h = true
-__meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -295,10 +242,11 @@ __meta__ = {
 "perspective",
 ]]
 margin_left = 10.0
-margin_top = 29.0
+margin_top = 30.0
 margin_right = 87.0
-margin_bottom = 38.0
+margin_bottom = 39.0
 texture = ExtResource( 3 )
+flip_h = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -308,9 +256,9 @@ __meta__ = {
 "perspective",
 ]]
 margin_left = 42.0
-margin_top = 24.0
+margin_top = 25.0
 margin_right = 55.0
-margin_bottom = 37.0
+margin_bottom = 38.0
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_group_": true,
@@ -321,10 +269,10 @@ __meta__ = {
 "perspective",
 "seats",
 ] instance=ExtResource( 13 )]
-margin_left = 123.0
-margin_top = 25.0
-margin_right = 134.0
-margin_bottom = 38.0
+margin_left = 126.0
+margin_top = 26.0
+margin_right = 137.0
+margin_bottom = 39.0
 stretch_mode = 4
 flip_h = false
 
@@ -332,10 +280,10 @@ flip_h = false
 "perspective",
 "seats",
 ] instance=ExtResource( 13 )]
-margin_left = 165.0
-margin_top = 25.0
-margin_right = 176.0
-margin_bottom = 38.0
+margin_left = 163.0
+margin_top = 26.0
+margin_right = 174.0
+margin_bottom = 39.0
 stretch_mode = 4
 flip_h = false
 
@@ -343,29 +291,29 @@ flip_h = false
 "perspective",
 "seats",
 ] instance=ExtResource( 13 )]
-margin_left = 182.0
-margin_top = 25.0
-margin_right = 193.0
-margin_bottom = 38.0
+margin_left = 181.0
+margin_top = 26.0
+margin_right = 192.0
+margin_bottom = 39.0
 stretch_mode = 4
 
 [node name="chair3" parent="backwall" groups=[
 "perspective",
 "seats",
 ] instance=ExtResource( 13 )]
-margin_left = 149.0
-margin_top = 25.0
-margin_right = 160.0
-margin_bottom = 38.0
+margin_left = 147.0
+margin_top = 26.0
+margin_right = 158.0
+margin_bottom = 39.0
 stretch_mode = 4
 
 [node name="table" type="TextureRect" parent="backwall" groups=[
 "perspective",
 ]]
 margin_left = 137.0
-margin_top = 28.0
+margin_top = 29.0
 margin_right = 147.0
-margin_bottom = 38.0
+margin_bottom = 39.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -375,10 +323,10 @@ __meta__ = {
 [node name="table2" type="TextureRect" parent="backwall" groups=[
 "perspective",
 ]]
-margin_left = 173.0
-margin_top = 28.0
-margin_right = 183.0
-margin_bottom = 38.0
+margin_left = 172.0
+margin_top = 29.0
+margin_right = 182.0
+margin_bottom = 39.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -388,9 +336,9 @@ __meta__ = {
 [node name="exit" type="TextureRect" parent="backwall" groups=[
 "exit",
 ]]
-margin_left = 243.0
+margin_left = 254.0
 margin_top = 6.0
-margin_right = 275.0
+margin_right = 286.0
 margin_bottom = 38.0
 texture = ExtResource( 48 )
 __meta__ = {
@@ -402,9 +350,9 @@ __meta__ = {
 "perspective",
 ]]
 margin_left = 75.0
-margin_top = 23.0
+margin_top = 24.0
 margin_right = 80.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 texture = ExtResource( 11 )
 flip_h = true
 __meta__ = {
@@ -413,6 +361,7 @@ __meta__ = {
 }
 
 [node name="character bg" type="TextureRect" parent="."]
+visible = false
 margin_left = 1.0
 margin_top = 85.0
 margin_right = 41.0
@@ -438,202 +387,103 @@ __meta__ = {
 }
 
 [node name="Scrolling_Window" parent="." instance=ExtResource( 34 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+material = SubResource( 3 )
 margin_left = 1.0
-margin_top = 41.0
-margin_right = 170.0
-margin_bottom = 84.0
-
-[node name="counter" type="Sprite" parent="Scrolling_Window"]
-texture = ExtResource( 2 )
-centered = false
-
-[node name="caramel" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 112.0
-margin_top = 7.0
-margin_right = 128.0
-margin_bottom = 14.0
-cook_time = 1
-sprite = "caramel"
-creates_drink = true
-
-[node name="chocolate" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 86.184
-margin_top = 6.0
-margin_right = 102.184
-margin_bottom = 13.0
-cook_time = 1
-sprite = "chocolate"
-creates_drink = true
-
-[node name="vanilla" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 100.0
-margin_top = 7.0
-margin_right = 116.0
-margin_bottom = 14.0
-cook_time = 1
-sprite = "vanilla"
-creates_drink = true
-
-[node name="strawberry" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 87.0
-margin_top = 6.0
-margin_right = 103.0
-margin_bottom = 13.0
-cook_time = 1
-sprite = "strawberry"
-creates_drink = true
-
-[node name="cinnamon" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 79.0
-margin_top = 21.0
-margin_right = 95.0
-margin_bottom = 28.0
-cook_time = 1
-sprite = "cinnamon"
-creates_drink = true
-
-[node name="honey" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 68.0
-margin_top = 13.0
-margin_right = 84.0
-margin_bottom = 20.0
-cook_time = 1
-sprite = "honey"
-creates_drink = true
-
-[node name="sugar" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 50.0
-margin_top = 9.0
-margin_right = 66.0
-margin_bottom = 16.0
-cook_time = 1
-sprite = "sugar"
-creates_drink = true
-
-[node name="black_tea" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 126.0
-margin_top = 18.0
-margin_right = 142.0
-margin_bottom = 25.0
-cook_time = 1
-sprite = "black tea"
-creates_drink = true
-
-[node name="green_tea" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 129.0
-margin_top = 5.0
-margin_right = 145.0
-margin_bottom = 12.0
-cook_time = 1
-sprite = "green tea"
-creates_drink = true
-
-[node name="cup" type="TextureButton" parent="Scrolling_Window/counter"]
-visible = false
-margin_left = 150.0
-margin_top = 23.0
-margin_right = 164.0
-margin_bottom = 42.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 20 )
-script = ExtResource( 21 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="espresso_machine" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 17.0
-margin_bottom = 8.0
-cook_time = 1
-sprite = "shot"
-creates_drink = true
-
-[node name="pitcher" parent="Scrolling_Window/counter" instance=ExtResource( 12 )]
-visible = false
-margin_left = 30.0
-margin_top = 18.0
-margin_right = 46.0
-margin_bottom = 25.0
-cook_time = 1
-sprite = "milk"
-creates_drink = true
-
-[node name="potion_refs" type="TextureRect" parent="Scrolling_Window/counter"]
-visible = false
-margin_left = 3.0
-margin_top = 1.0
-margin_right = 517.0
-margin_bottom = 41.0
-texture = ExtResource( 36 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="bottle_mana" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 116, 27 )
-texture = ExtResource( 38 )
-
-[node name="bottle_pepper" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 66, 28 )
-texture = ExtResource( 39 )
-
-[node name="bottle_beaker" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 157, 25 )
-texture = ExtResource( 40 )
-
-[node name="bottle_herbs" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 12, 26 )
-texture = ExtResource( 42 )
-
-[node name="bottle_mushroom" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 136, 27 )
-texture = ExtResource( 43 )
-
-[node name="bottle_conch" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 90, 26 )
-texture = ExtResource( 41 )
-
-[node name="bottle_shell" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 40, 30 )
-texture = ExtResource( 44 )
-
-[node name="bottle_feather" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 201, 25 )
-texture = ExtResource( 45 )
-
-[node name="bottle_health" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 174, 28 )
-texture = ExtResource( 46 )
-
-[node name="bottle_bars" type="Sprite" parent="Scrolling_Window/counter"]
-position = Vector2( 232, 25 )
-texture = ExtResource( 47 )
-
-[node name="cauldron" type="TextureRect" parent="."]
-margin_left = 171.0
-margin_top = 41.0
+margin_top = 42.0
 margin_right = 223.0
 margin_bottom = 84.0
-texture = ExtResource( 37 )
-stretch_mode = 4
+
+[node name="counter" type="TextureRect" parent="Scrolling_Window"]
+margin_right = 331.0
+margin_bottom = 43.0
+texture = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="Mana" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 69.0
+margin_top = 15.0
+margin_right = 84.0
+margin_bottom = 40.0
+
+[node name="Beaker" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 188.0
+margin_top = 15.0
+margin_right = 203.0
+margin_bottom = 40.0
+
+[node name="Berries" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 167.0
+margin_top = 15.0
+margin_right = 182.0
+margin_bottom = 40.0
+
+[node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 135.0
+margin_top = 15.0
+margin_right = 150.0
+margin_bottom = 40.0
+
+[node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 89.0
+margin_top = 9.0
+margin_right = 104.0
+margin_bottom = 34.0
+
+[node name="Herbs" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 44.0
+margin_top = 13.0
+margin_right = 59.0
+margin_bottom = 38.0
+
+[node name="Mushroom" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 22.0
+margin_top = 15.0
+margin_right = 37.0
+margin_bottom = 40.0
+
+[node name="Pepper" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 3.0
+margin_top = 17.0
+margin_right = 18.0
+margin_bottom = 42.0
+
+[node name="Health" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 116.0
+margin_top = 17.0
+margin_right = 131.0
+margin_bottom = 42.0
+
+[node name="Perfume" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 210.0
+margin_top = 13.0
+margin_right = 225.0
+margin_bottom = 38.0
+
+[node name="Clover" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 227.0
+margin_top = 13.0
+margin_right = 242.0
+margin_bottom = 38.0
+
+[node name="cauldron_mask" type="Sprite" parent="Scrolling_Window"]
+position = Vector2( 191, 37 )
+z_index = 4
+z_as_relative = false
+texture = ExtResource( 5 )
+
+[node name="Cauldron" parent="." instance=ExtResource( 21 )]
+margin_left = 161.0
+margin_top = 42.0
+margin_right = 223.0
+margin_bottom = 84.0
+
+[node name="portraitbg" type="Sprite" parent="."]
+position = Vector2( 1, 85 )
+texture = ExtResource( 14 )
+centered = false
 
 [node name="blackboard" parent="." instance=ExtResource( 24 )]
 visible = false
@@ -643,21 +493,6 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = -223.0
 margin_bottom = -125.0
-
-[node name="blackboard_texture" parent="blackboard" index="0"]
-margin_left = -1.0
-margin_top = -1.0
-margin_right = 223.0
-margin_bottom = 125.0
-texture = ExtResource( 25 )
-
-[node name="x_button" parent="blackboard" index="1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 203.0
-margin_top = 10.0
-margin_right = 210.0
-margin_bottom = 18.0
 
 [node name="end_of_day" type="ColorRect" parent="."]
 visible = false
@@ -675,7 +510,7 @@ anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
 mouse_filter = 2
-custom_fonts/normal_font = ExtResource( 26 )
+custom_fonts/normal_font = SubResource( 5 )
 text = "another day, another dollar"
 
 [node name="Tween" type="Tween" parent="."]
@@ -689,8 +524,10 @@ wait_time = 766.0
 autostart = true
 
 [node name="sound_holder" type="Control" parent="."]
-margin_left = -21.0
-margin_right = -21.0
+margin_left = 14.0
+margin_top = 2.0
+margin_right = 14.0
+margin_bottom = 2.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -703,36 +540,63 @@ __meta__ = {
 }
 
 [node name="music" type="TextureButton" parent="sound_holder"]
-margin_left = 7.0
-margin_right = 15.0
-margin_bottom = 8.0
+margin_left = 46.0
+margin_top = 1.0
+margin_right = 54.0
+margin_bottom = 9.0
 toggle_mode = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="book" type="TextureRect" parent="."]
+[node name="Spellbook" parent="." instance=ExtResource( 20 )]
 visible = false
-margin_right = 224.0
-margin_bottom = 126.0
-texture = ExtResource( 25 )
-stretch_mode = 4
+
+[node name="Dialog" parent="." instance=ExtResource( 7 )]
+margin_left = 1.0
+margin_top = 85.0
+margin_right = 223.0
+margin_bottom = 125.0
+
+[node name="advance_dialog" type="TextureButton" parent="Dialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="ColorRect" parent="."]
+margin_left = 160.0
+margin_top = 41.0
+margin_right = 161.0
+margin_bottom = 85.0
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FPS" type="Label" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 23.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 26 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransition" parent="." instance=ExtResource( 4 )]
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
-[connection signal="block_ended" from="Dialog" to="." method="_on_Dialog_block_ended"]
-[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
-[connection signal="pressed" from="backwall/coffee_grinder" to="." method="_on_coffee_grinder_pressed"]
-[connection signal="pressed" from="backwall/coffee_machine" to="." method="_on_coffee_machine_pressed"]
-[connection signal="gui_input" from="Scrolling_Window/counter/cup" to="Scrolling_Window/counter/cup" method="_on_cup_gui_input"]
-[connection signal="pressed" from="Scrolling_Window/counter/cup" to="." method="_on_cup_pressed"]
-[connection signal="pressed" from="blackboard/x_button" to="." method="_on_x_button_pressed"]
 [connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="toggled" from="sound_holder/sound" to="." method="_on_sound_toggled"]
 [connection signal="toggled" from="sound_holder/music" to="." method="_on_music_toggled"]
+[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 
 [editable path="blackboard"]

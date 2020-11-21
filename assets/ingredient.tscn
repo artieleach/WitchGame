@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ingredient.gd" type="Script" id=2]
+[ext_resource path="res://images/ingredients/Health.png" type="Texture" id=3]
+[ext_resource path="res://assets/indicator_small.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "being_held"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("drawing/ingredient_sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("drawing/ingredient_sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.2, 1.2, 1.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="ingredient" type="TextureButton"]
+margin_right = 14.0
+margin_bottom = 19.0
+mouse_default_cursor_shape = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="drawing" type="Node2D" parent="."]
+
+[node name="ingredient_sprite" type="Sprite" parent="drawing"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Label" type="Label" parent="drawing"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = -10.0
+custom_fonts/font = ExtResource( 1 )
+text = "asdfasdfasdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="helpers" type="HBoxContainer" parent="drawing"]
+visible = false
+margin_top = -4.0
+margin_right = 12.0
+margin_bottom = -4.0
+mouse_filter = 2
+custom_constants/separation = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" parent="drawing/helpers" instance=ExtResource( 4 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="B" parent="drawing/helpers" instance=ExtResource( 4 )]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 0.0
+
+[node name="C" parent="drawing/helpers" instance=ExtResource( 4 )]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 0.0
+
+[node name="D" parent="drawing/helpers" instance=ExtResource( 4 )]
+margin_left = 12.0
+margin_right = 12.0
+margin_bottom = 0.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/being_held = SubResource( 1 )
+anims/hovering_over_potion = SubResource( 2 )
+[connection signal="mouse_exited" from="." to="." method="_on_ingredient_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

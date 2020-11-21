@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://images/book2.png" type="Texture" id=2]
+[ext_resource path="res://images/x_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/Spellbook.gd" type="Script" id=4]
+
+[node name="book_texture" type="Sprite"]
+position = Vector2( 6, 8 )
+z_index = 10
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 4 )
+
+[node name="x_button" type="TextureButton" parent="."]
+margin_left = 207.0
+margin_top = -5.0
+margin_right = 214.0
+margin_bottom = 3.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 7.0
+margin_top = 15.0
+margin_right = 97.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+text = "Potion"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 114.0
+margin_top = 15.0
+margin_right = 204.0
+margin_bottom = 98.0
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+text = "descriptionsdfgsdfgsdfgsdfgsdfgsdfgsdfg"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="x_button" to="." method="_on_x_button_pressed"]

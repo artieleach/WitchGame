@@ -1,0 +1,185 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://images/particles/circle_particle.png" type="Texture" id=1]
+[ext_resource path="res://images/cauldron_large.png" type="Texture" id=2]
+[ext_resource path="res://images/symbols/D.png" type="Texture" id=3]
+[ext_resource path="res://images/cauldron_particle_mask.png" type="Texture" id=4]
+[ext_resource path="res://images/symbols/B.png" type="Texture" id=5]
+[ext_resource path="res://images/symbols/A.png" type="Texture" id=6]
+[ext_resource path="res://images/symbols/C.png" type="Texture" id=7]
+[ext_resource path="res://assets/indicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://images/cauldron_mask.png" type="Texture" id=9]
+[ext_resource path="res://images/particles/heart_particle.png" type="Texture" id=10]
+[ext_resource path="res://images/particles/bubble_0.png" type="Texture" id=11]
+[ext_resource path="res://images/cauldron_liquid_mask.png" type="Texture" id=12]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id=4]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.186258, 0.00326359 ), 0.0, 2.86732, 0, 0, Vector2( 0.894868, 0 ), -11.3152, 0.0, 0, 0 ]
+
+[node name="Cauldron" type="Control"]
+margin_right = 62.0
+margin_bottom = 42.0
+rect_clip_content = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="cauldron_large" type="Sprite" parent="."]
+position = Vector2( 31, 21 )
+texture = ExtResource( 2 )
+
+[node name="liquid_particles" type="CPUParticles2D" parent="."]
+material = SubResource( 3 )
+position = Vector2( 32, 42 )
+amount = 30
+speed_scale = 0.25
+fract_delta = false
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 1 )
+direction = Vector2( 0, -10 )
+spread = 10.0
+initial_velocity = 42.0
+color = Color( 0.137255, 0.403922, 0.305882, 1 )
+
+[node name="cauldron_liquid_mask" type="Sprite" parent="."]
+position = Vector2( 31, 21 )
+texture = ExtResource( 12 )
+
+[node name="bubble_particles" type="CPUParticles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 32, 32 )
+amount = 3
+lifetime = 3.0
+fract_delta = false
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 9, 1 )
+direction = Vector2( 0, -1 )
+spread = 0.0
+gravity = Vector2( 0, -20 )
+initial_velocity = 10.0
+tangential_accel = 3.0
+tangential_accel_random = 1.0
+color = Color( 0.137255, 0.403922, 0.305882, 1 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="cauldron_particle_mask" type="Sprite" parent="."]
+position = Vector2( 31, 21 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="cauldron_mask" type="Sprite" parent="."]
+position = Vector2( 31, 37 )
+z_index = 2
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="splash_particles" type="CPUParticles2D" parent="."]
+material = SubResource( 5 )
+position = Vector2( 32, 32 )
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.95
+fract_delta = false
+texture = ExtResource( 10 )
+direction = Vector2( 0, -1 )
+spread = 50.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 40.0
+initial_velocity_random = 0.2
+damping = 5.0
+damping_random = 1.0
+scale_amount_curve = SubResource( 6 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 1.0
+margin_right = 62.0
+margin_bottom = 8.0
+custom_constants/separation = 6
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 8.0
+margin_right = 15.0
+margin_bottom = 7.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="indicator" parent="HBoxContainer/A" instance=ExtResource( 8 )]
+offset = Vector2( 0, 0 )
+
+[node name="B" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 21.0
+margin_right = 28.0
+margin_bottom = 7.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="indicator" parent="HBoxContainer/B" instance=ExtResource( 8 )]
+position = Vector2( -3.8147e-06, -8 )
+
+[node name="C" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 34.0
+margin_right = 41.0
+margin_bottom = 7.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="indicator" parent="HBoxContainer/C" instance=ExtResource( 8 )]
+position = Vector2( -0.000328064, -8 )
+
+[node name="D" type="TextureRect" parent="HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 47.0
+margin_right = 54.0
+margin_bottom = 7.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="indicator" parent="HBoxContainer/D" instance=ExtResource( 8 )]
+position = Vector2( 0, -8 )

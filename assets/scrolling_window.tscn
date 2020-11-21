@@ -1,12 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://counter_picker.gd" type="Script" id=1]
+[ext_resource path="res://assets/counter_picker.gd" type="Script" id=1]
 
 [node name="Scrolling_Window" type="ColorRect"]
-anchor_right = 0.755
-anchor_bottom = 0.291
-margin_right = 0.104004
-margin_bottom = -0.0470009
+margin_right = 162.0
+margin_bottom = 43.0
 rect_clip_content = true
 mouse_filter = 1
 script = ExtResource( 1 )

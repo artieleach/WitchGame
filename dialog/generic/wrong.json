@@ -1,9 +1,0 @@
-{
-	"first": {
-	  	"avatar": "generic/generic.png",
-		"position": "left",
-		"animation_in": "move_in",
-		"type": "text",
-		"content": "This| isn't right.",
-	}
-}

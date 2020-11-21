@@ -10,16 +10,52 @@
 [ext_resource path="res://images/small_calinet.png" type="Texture" id=8]
 [ext_resource path="res://images/cabinet.png" type="Texture" id=9]
 [ext_resource path="res://images/umbroomla.png" type="Texture" id=10]
-[ext_resource path="res://ParallaxBackground.gd" type="Script" id=11]
-[ext_resource path="res://parallaxbg.gd" type="Script" id=12]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+var mouse_pos =  Vector2(0, 0)
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	mouse_pos = get_global_mouse_position()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends ParallaxBackground
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	scroll_offset = owner.mouse_pos
+"
 
 [node name="parallaxbg" type="Node2D"]
 position = Vector2( -31, 4 )
-script = ExtResource( 12 )
+script = SubResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_base_offset = Vector2( -150, -100 )
-script = ExtResource( 11 )
+script = SubResource( 2 )
 
 [node name="bg" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.04, 0 )

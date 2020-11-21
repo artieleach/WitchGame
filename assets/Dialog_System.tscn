@@ -1,167 +1,14 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://audio/Sounds/AAA-03.wav" type="AudioStream" id=1]
+[ext_resource path="res://images/portraitbg.png" type="Texture" id=1]
 [ext_resource path="res://assets/Dialog_System.gd" type="Script" id=2]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=3]
-[ext_resource path="res://fonts/m5x7-bold.tres" type="DynamicFont" id=4]
-[ext_resource path="res://audio/Sounds/AAA-14.wav" type="AudioStream" id=5]
-[ext_resource path="res://audio/Sounds/AAA-10.wav" type="AudioStream" id=6]
-[ext_resource path="res://audio/Sounds/AAA-15.wav" type="AudioStream" id=7]
-[ext_resource path="res://audio/Sounds/AAA-04.wav" type="AudioStream" id=8]
-[ext_resource path="res://audio/Sounds/AAA-11.wav" type="AudioStream" id=9]
-[ext_resource path="res://audio/Sounds/AAA-12.wav" type="AudioStream" id=10]
-[ext_resource path="res://audio/Sounds/AAA-01.wav" type="AudioStream" id=11]
-[ext_resource path="res://audio/Sounds/AAA-13.wav" type="AudioStream" id=12]
-[ext_resource path="res://audio/Sounds/AAA-06.wav" type="AudioStream" id=13]
-[ext_resource path="res://audio/Sounds/AAA-02.wav" type="AudioStream" id=14]
-[ext_resource path="res://audio/Sounds/AAA-07.wav" type="AudioStream" id=15]
-[ext_resource path="res://audio/Sounds/AAA-08.wav" type="AudioStream" id=16]
-[ext_resource path="res://audio/Sounds/AAA-16.wav" type="AudioStream" id=17]
-[ext_resource path="res://audio/Sounds/AAA-09.wav" type="AudioStream" id=18]
-[ext_resource path="res://audio/Sounds/AAA-05.wav" type="AudioStream" id=19]
-[ext_resource path="res://audio/Sounds/OOO-06.wav" type="AudioStream" id=20]
-[ext_resource path="res://audio/Sounds/EEE-07.wav" type="AudioStream" id=21]
-[ext_resource path="res://audio/Sounds/OOO-16.wav" type="AudioStream" id=22]
-[ext_resource path="res://audio/Sounds/EEE-11.wav" type="AudioStream" id=23]
-[ext_resource path="res://audio/Sounds/OOO-13.wav" type="AudioStream" id=24]
-[ext_resource path="res://audio/Sounds/OOO-04.wav" type="AudioStream" id=25]
-[ext_resource path="res://audio/Sounds/OOO-03.wav" type="AudioStream" id=26]
-[ext_resource path="res://audio/Sounds/EEE-12.wav" type="AudioStream" id=27]
-[ext_resource path="res://audio/Sounds/OOO-10.wav" type="AudioStream" id=28]
-[ext_resource path="res://audio/Sounds/EEE-01.wav" type="AudioStream" id=29]
-[ext_resource path="res://audio/Sounds/EEE-09.wav" type="AudioStream" id=30]
-[ext_resource path="res://audio/Sounds/EEE-16.wav" type="AudioStream" id=31]
-[ext_resource path="res://audio/Sounds/OOO-05.wav" type="AudioStream" id=32]
-[ext_resource path="res://audio/Sounds/EEE-13.wav" type="AudioStream" id=33]
-[ext_resource path="res://audio/Sounds/OOO-07.wav" type="AudioStream" id=34]
-[ext_resource path="res://audio/Sounds/OOO-12.wav" type="AudioStream" id=35]
-[ext_resource path="res://audio/Sounds/OOO-11.wav" type="AudioStream" id=36]
-[ext_resource path="res://audio/Sounds/OOO-14.wav" type="AudioStream" id=37]
-[ext_resource path="res://audio/Sounds/OOO-02.wav" type="AudioStream" id=38]
-[ext_resource path="res://audio/Sounds/OOO-01.wav" type="AudioStream" id=39]
-[ext_resource path="res://audio/Sounds/EEE-06.wav" type="AudioStream" id=40]
-[ext_resource path="res://audio/Sounds/EEE-10.wav" type="AudioStream" id=41]
-[ext_resource path="res://audio/Sounds/EEE-08.wav" type="AudioStream" id=42]
-[ext_resource path="res://audio/Sounds/EEE-14.wav" type="AudioStream" id=43]
-[ext_resource path="res://audio/Sounds/EEE-03.wav" type="AudioStream" id=44]
-[ext_resource path="res://audio/Sounds/OOO-08.wav" type="AudioStream" id=45]
-[ext_resource path="res://audio/Sounds/OOO-09.wav" type="AudioStream" id=46]
-[ext_resource path="res://audio/Sounds/OOO-15.wav" type="AudioStream" id=47]
-[ext_resource path="res://audio/Sounds/EEE-02.wav" type="AudioStream" id=48]
-[ext_resource path="res://audio/Sounds/EEE-05.wav" type="AudioStream" id=49]
-[ext_resource path="res://audio/Sounds/EEE-04.wav" type="AudioStream" id=50]
-[ext_resource path="res://audio/Sounds/EEE-15.wav" type="AudioStream" id=51]
-[ext_resource path="res://audio/Sounds/UUU-01.wav" type="AudioStream" id=52]
-[ext_resource path="res://audio/Sounds/UUU-13.wav" type="AudioStream" id=53]
-[ext_resource path="res://audio/Sounds/UUU-06.wav" type="AudioStream" id=54]
-[ext_resource path="res://audio/Sounds/UUU-14.wav" type="AudioStream" id=55]
-[ext_resource path="res://audio/Sounds/UUU-04.wav" type="AudioStream" id=56]
-[ext_resource path="res://audio/Sounds/UUU-05.wav" type="AudioStream" id=57]
-[ext_resource path="res://audio/Sounds/UUU-07.wav" type="AudioStream" id=58]
-[ext_resource path="res://audio/Sounds/UUU-16.wav" type="AudioStream" id=59]
-[ext_resource path="res://audio/Sounds/UUU-09.wav" type="AudioStream" id=60]
-[ext_resource path="res://audio/Sounds/UUU-02.wav" type="AudioStream" id=61]
-[ext_resource path="res://audio/Sounds/UUU-11.wav" type="AudioStream" id=62]
-[ext_resource path="res://audio/Sounds/UUU-03.wav" type="AudioStream" id=63]
-[ext_resource path="res://audio/Sounds/UUU-10.wav" type="AudioStream" id=64]
-[ext_resource path="res://audio/Sounds/UUU-08.wav" type="AudioStream" id=65]
-[ext_resource path="res://audio/Sounds/UUU-15.wav" type="AudioStream" id=66]
-[ext_resource path="res://audio/Sounds/UUU-12.wav" type="AudioStream" id=67]
-[ext_resource path="res://audio/own voice/e-01.wav" type="AudioStream" id=68]
-[ext_resource path="res://audio/own voice/e-02.wav" type="AudioStream" id=69]
-[ext_resource path="res://audio/own voice/f-01.wav" type="AudioStream" id=70]
-[ext_resource path="res://audio/own voice/f-02.wav" type="AudioStream" id=71]
-[ext_resource path="res://audio/own voice/e-04.wav" type="AudioStream" id=72]
-[ext_resource path="res://audio/own voice/d-01.wav" type="AudioStream" id=73]
-[ext_resource path="res://audio/own voice/f-04.wav" type="AudioStream" id=74]
-[ext_resource path="res://audio/own voice/d-04.wav" type="AudioStream" id=75]
-[ext_resource path="res://audio/own voice/e-03.wav" type="AudioStream" id=76]
-[ext_resource path="res://audio/own voice/d-02.wav" type="AudioStream" id=77]
-[ext_resource path="res://audio/own voice/f-03.wav" type="AudioStream" id=78]
-[ext_resource path="res://audio/own voice/g-01.wav" type="AudioStream" id=79]
-[ext_resource path="res://audio/own voice/g-02.wav" type="AudioStream" id=80]
-[ext_resource path="res://audio/own voice/g-03.wav" type="AudioStream" id=81]
-[ext_resource path="res://audio/own voice/g-04.wav" type="AudioStream" id=82]
-[ext_resource path="res://audio/own voice/d-03.wav" type="AudioStream" id=83]
+[ext_resource path="res://images/frame.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "AAA"
 length = 17.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 11 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 14 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 1 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 8 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 19 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 13 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 15 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 16 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 18 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 6 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 9 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 10 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 12 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 7 )
-}, {
-"end_offset": 0.339815,
-"start_offset": 0.0,
-"stream": ExtResource( 17 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 )
-}
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -182,159 +29,11 @@ tracks/0/keys = {
 resource_name = "EEE"
 length = 17.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 29 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 48 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 44 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 50 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 49 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 40 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 21 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 42 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 30 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 41 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 23 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 27 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 33 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 43 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 51 )
-}, {
-"end_offset": 0.783051,
-"start_offset": 0.0,
-"stream": ExtResource( 31 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 )
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "OOO"
 length = 17.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 39 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 38 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 26 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 25 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 32 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 20 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 34 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 45 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 46 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 28 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 36 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 35 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 24 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 37 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 47 )
-}, {
-"end_offset": 0.945571,
-"start_offset": 0.0,
-"stream": ExtResource( 22 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 )
-}
 
 [sub_resource type="Animation" id=5]
 length = 17.0
@@ -344,207 +43,45 @@ step = 1.0
 resource_name = "UUU"
 length = 17.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 52 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 61 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 63 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 56 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 57 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 54 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 58 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 65 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 60 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 64 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 62 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 67 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 53 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 55 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 66 )
-}, {
-"end_offset": 1.0,
-"start_offset": 0.0,
-"stream": ExtResource( 59 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 )
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "d"
 length = 5.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 73 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 77 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 83 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 75 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4 )
-}
 
 [sub_resource type="Animation" id=8]
 resource_name = "e"
 length = 5.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 68 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 69 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 76 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 72 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4 )
-}
 
 [sub_resource type="Animation" id=9]
 resource_name = "f"
 length = 5.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 70 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 71 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 78 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 74 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4 )
-}
 
 [sub_resource type="Animation" id=10]
 resource_name = "g"
 length = 5.0
 step = 1.0
-tracks/0/type = "audio"
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 79 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 80 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 81 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 82 )
-} ],
-"times": PoolRealArray( 1, 2, 3, 4 )
-}
+
+[sub_resource type="DynamicFontData" id=11]
+font_path = "res://fonts/m5x7.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+font_data = SubResource( 11 )
 
 [node name="Dialog" type="Control"]
+margin_right = 224.0
+margin_bottom = 40.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bgcolor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -568,28 +105,30 @@ anims/g = SubResource( 10 )
 [node name="SpriteTimer" type="Timer" parent="."]
 
 [node name="SpriteLeft" type="Sprite" parent="."]
+position = Vector2( 4, 4 )
+z_index = 1
+z_as_relative = false
+centered = false
 
 [node name="SpriteRight" type="Sprite" parent="."]
 
 [node name="Frame" type="ColorRect" parent="."]
 anchor_right = 1.0
-margin_left = -91.0
-margin_top = -21.0
-margin_right = 91.0
-margin_bottom = 21.0
-color = Color( 0, 0, 0, 1 )
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.109804, 0.101961, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Frame"]
-margin_right = 182.0
-margin_bottom = 42.0
-custom_fonts/bold_font = ExtResource( 4 )
+margin_left = 42.0
+margin_right = 224.0
+margin_bottom = 40.0
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/shadow_offset_y = -2
 bbcode_enabled = true
-text = "AH@?"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -606,7 +145,7 @@ __meta__ = {
 visible = false
 margin_right = 40.0
 margin_bottom = 14.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -616,7 +155,7 @@ visible = false
 margin_left = 168.0
 margin_right = 208.0
 margin_bottom = 14.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -628,12 +167,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 82 )
-volume_db = -80.0
-
 [node name="soundtimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-[connection signal="play_audio" from="." to="." method="_on_Dialog_play_audio"]
+
+[node name="bg" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="border" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="line cheater" type="ColorRect" parent="."]
+margin_left = 40.0
+margin_right = 41.0
+margin_bottom = 40.0
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="soundtimer" to="." method="_on_soundtimer_timeout"]

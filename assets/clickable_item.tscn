@@ -301,8 +301,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cook_timer" type="Timer" parent="."]
-
 [node name="object_sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 36 )
 animation = "milk"
@@ -320,5 +318,4 @@ anims/hover = SubResource( 45 )
 [connection signal="mouse_entered" from="." to="." method="_on_clickable_item_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_clickable_item_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_clickable_item_pressed"]
-[connection signal="timeout" from="cook_timer" to="." method="_on_cook_timer_timeout"]
 [connection signal="animation_finished" from="pchoo" to="." method="_on_pchoo_animation_finished"]

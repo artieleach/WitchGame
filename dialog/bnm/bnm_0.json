@@ -1,9 +1,0 @@
-{
-	"first": {
-	  	"avatar": "BNM/BNM.png",
-		"position": "left",
-		"animation_in": "move_in",
-		"type": "text",
-		"content": "Hey, what should I take before my driving lessons? I want to be totally focused.",
-	}
-}

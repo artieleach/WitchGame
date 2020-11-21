@@ -1,9 +1,14 @@
 extends Control
 
-export (PackedScene) var Clickable
 export (PackedScene) var Customer
+export (PackedScene) var Ingredient
+
+const potion_vars = ['A', 'B', 'C', 'D']
 
 onready var dialog = get_node("Dialog")
+onready var counter = get_node("Scrolling_Window/counter")
+onready var cauldron = get_node("Cauldron")
+onready var spellbook = get_node("Spellbook")
 
 var cup_contents = []
 var seats = []
@@ -14,50 +19,60 @@ var current_cup_contents
 var someone_bought_something
 var customers
 var scheduled_customers = []
-var sound = true
-var music = true
-var words
-var grabbed = false
-var day = 1
+var sound: bool = true
+var music: bool = true
+var grabbed: bool = false
+var day: int = 1
+var potion_ingredients
+var scroll_offset: Vector2 = Vector2(0, 0)
+var can_drop_potions: bool = false
+var current_potion_state = [1, 1, 1, 1]
+var debug: bool = false
 
 
 func _ready():
+	$SceneTransition.transition({"Direction": "in", "Destination": "Game"})
+	if debug:
+		$FPS.show()
 	randomize()
-	$blackboard.hide()
-	dialog.show()
-	var file = File.new()
-	file.open('res://dialog/Characters.json', file.READ)
-	var json = file.get_as_text()
-	customers = JSON.parse(json).result
-	file.close()
+	customers = get_json('res://dialog/Characters.json')
+	potion_ingredients = get_json('res://dialog/Potions.json')
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
+	emit_signal("ready")
+
+func get_json(file_string):
+	var cur_file = File.new()
+	cur_file.open(file_string, cur_file.READ)
+	var json = cur_file.get_as_text()
+	var result = JSON.parse(json).result
+	cur_file.close()
+	if result == null:
+		print(file_string)
+	return result
 
 
-func get_files(path):
-	var files = []
-	var dir = Directory.new()
-	dir.open(path)
-	dir.list_dir_begin(true)
-
-	var file = dir.get_next()
-	while file != '':
-		files += [file]
-		file = dir.get_next()
-
-	return files
+func _on_ingredient_pressed(ingredient):
+	$Spellbook/Label.text = ingredient.name
+	$Spellbook/RichTextLabel.text = potion_ingredients[ingredient.name]["description"]
+	$Spellbook/Label.set("custom_colors/font_color", potion_ingredients[ingredient.name]["color"])
+	$Spellbook.show()
 
 
-func _on_add_to_cup(item):
-	$Scrolling_Window/counter/cup.ingredients += [item]
-	$Scrolling_Window/counter/cup.add_to_drink()
+func _on_potion_splash(ingredient):
+	cauldron.get_node("splash_particles").self_modulate = potion_ingredients[ingredient.name]["color"]
+	cauldron.get_node("splash_particles").emitting = true
 
 
-func _on_add_sprite_to_cup(item):
-	if not item in $Scrolling_Window/counter/cup.sprite_contents:
-		$Scrolling_Window/counter/cup.sprite_contents += [item]
-		$Scrolling_Window/counter/cup.add_to_drink()
+func _on_add_to_potion(ingredient):
+	for i in range(len(current_potion_state)):
+		current_potion_state[i] = clamp(current_potion_state[i] + potion_ingredients[ingredient.name]["features"][i], 0, 2)
+		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = current_potion_state[i]
 
+
+func _on_check_effects(ingredient):
+	for i in range(len(current_potion_state)):
+		ingredient.helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient.name]["features"][i] + 1
 
 func create_customer(customer):
 	var new_customer = Customer.instance()
@@ -157,6 +172,7 @@ func _on_x_button_pressed():
 
 
 func _process(_delta):
+	$FPS.text = str(int(Performance.get_monitor(0)))
 	$"character bg/sky".rect_position = Vector2(15, clamp(-$Timer.time_left, -766, 0))
 
 
@@ -173,11 +189,14 @@ func end_day():
 func start_day():
 	day += 1
 	scheduled_customers = customers.keys()
+	print(scheduled_customers)
 	scheduled_customers.shuffle()
 	scheduled_customers = scheduled_customers.slice(0, 13)
+	scheduled_customers = ['jello', 'jello', 'jello']
 	$end_of_day.mouse_filter = Control.MOUSE_FILTER_STOP
 	while $Timer.time_left > 0:
 		for i in scheduled_customers:
+			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
 			if customers[i].has("drink"):
 				if len(customer_line) == 0 and $Timer.time_left > 66:
 					create_customer(i)
@@ -196,14 +215,20 @@ func _on_end_of_day_gui_input(event):
 
 
 func _on_Control_tree_exiting():
-	var file = File.new()
-	file.open('res://dialog/Characters.json', file.WRITE)
+	var out_file = File.new()
+	out_file.open('res://dialog/Characters.json', out_file.WRITE)
 	var out = JSON.print(customers, '  ')
-	file.store_line(out)
+	out_file.store_line(out)
 
 
 func _on_Timer_timeout():
 	end_day()
+
+
+func _on_chair_clear(previous_owner):
+	for chair in seats:
+		if chair.being_sat_in == previous_owner:
+			chair.being_sat_in = false
 
 
 func _on_sound_toggled(button_pressed):
@@ -213,11 +238,6 @@ func _on_sound_toggled(button_pressed):
 	else:
 		$Dialog/AudioStreamPlayer.volume_db = -80.0
 
-func _on_chair_clear(previous_owner):
-	for chair in seats:
-		if chair.being_sat_in == previous_owner:
-			chair.being_sat_in = false
-
 
 func _on_music_toggled(button_pressed):
 	music = not(music)
@@ -225,4 +245,3 @@ func _on_music_toggled(button_pressed):
 		$AudioStreamPlayer.stream_paused = false
 	else:
 		$AudioStreamPlayer.stream_paused = true
-

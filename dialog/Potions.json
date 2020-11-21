@@ -1,0 +1,62 @@
+{
+  "Mana": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "285cc4",
+    "features": [-1, 1, -1, -1]
+  },
+  "Health": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "b4202a",
+    "features": [-1, 1, -1, 1]
+  },
+  "Beaker": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "5daf8d",
+    "features": [-1, 1, 1, -1]
+  },
+  "Berries": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "20d6c7",
+    "features": [1, -1, -1, -1]
+  },
+  "Conch": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "328464",
+    "features": [1, -1, -1, 1]
+  },
+  "Feather": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "333941",
+    "features": [1, -1, 1, -1]
+  },
+  "Herbs": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "24523b",
+    "features": [1, -1, 1, 1]
+  },
+  "Mushroom": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8e5252",
+    "features": [1, 1, -1, -1]
+  },
+  "Pepper": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "f4d29c",
+    "features": [1, 1, -1, 1]
+  },
+  "Perfume": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "3b1725",
+    "features": [1, 1, 1, -1]
+  },
+  "Shell": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8b93af",
+    "features": [-1, -1, 1, -1]
+  },
+  "Clover": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [-1, -1, -1, 1]
+  }
+}

@@ -45,17 +45,16 @@ var choice_node_alignment : String = 'right' # Alignment of the 'Choice' node. C
 var previous_command : String = 'ui_left' # Input commmand for the navigating through question choices 
 var next_command : String = 'ui_right' # Input commmand for the navigating through question choices
 var frame_height : int = 40 # Dialog frame height (in pixels)
-var frame_width : int = 222-40 # Dialog frame width (in pixels)
+var frame_width : int = 222-41 # Dialog frame width (in pixels)
 var frame_position : String = 'bottom' # Use to 'top' or 'bottom' to change the dialogue frame vertical alignment 
 var frame_margin_vertical : int = 1 # Vertical space (in pixels) between the dialogue box and the window border
-var label_margin : int = 0 # Space (in pixels) between the dialogue frame border and the text
+var label_margin : int = 1 # Space (in pixels) between the dialogue frame border and the text
 var enable_continue_indicator : bool = false # Enable or disable the 'continue_indicator' animation when the text is completely displayed. If typewritter effect is disabled it will always be visible on every dialogue block.
-var sprite_offset : Vector2 = Vector2(-58, 103) # Used for polishing avatars' position. Can use negative values.
+var sprite_offset : Vector2 = Vector2(-58, 98) # Used for polishing avatars' position. Can use negative values.
 var name_offset : Vector2 = Vector2(54, -10) # Offsets the name labels relative to the frame borders.
 var show_names : bool = true # Turn on and off the character name labels
 # END OF SETUP #
 
-signal play_audio
 
 # Default values. Don't change them unless you really know what you're doing.
 var id
@@ -65,6 +64,7 @@ var phrase = ''
 var phrase_raw = ''
 var current = ''
 var number_characters : = 0
+var dictionary
 
 var is_question : = false
 var current_choice : = 0
@@ -75,15 +75,6 @@ var paused : = false
 var pause_array : = []
 var words
 var characters_to_hit = 0
-
-
-var notes = ["d", "e", "f", "g"]
-var current_pitch = randi() % 4 + 1
-var current_note = notes[randi() % notes.size()]
-var pos_in_word = 0
-var current_syllable = 0
-var syllables_for_dialog = 0
-var current_word = -1
 
 
 #
@@ -137,9 +128,6 @@ func _ready():
 	timer.connect('timeout', self, '_on_Timer_timeout')
 	sprite_timer.connect('timeout', self, '_on_Sprite_Timer_timeout')
 	set_frame()
-	$AnimationPlayer.play("AAA")
-	$AnimationPlayer.seek(4)
-	
 
 
 func _process(_delta):
@@ -149,33 +137,12 @@ func _process(_delta):
 
 
 func set_frame(): # Mostly aligment operations.
-	match frame_position:
-		'top':
-			anchor_left = 0.5
-			anchor_top = 0
-			anchor_right = 0.5
-			anchor_bottom = 0
-			rect_position = Vector2(0, frame_margin_vertical)
-		'bottom':
-			anchor_left = 0.5
-			anchor_top = 1
-			anchor_right = 0.5
-			anchor_bottom = 1
-			rect_position = Vector2(20, -(frame_height + frame_margin_vertical))
-	
 	continue_indicator.anchor_left = 0.5
 	continue_indicator.anchor_top = 1
 	continue_indicator.anchor_right = 0.5
 	continue_indicator.anchor_bottom = 1
 	continue_indicator.rect_position = Vector2(-(continue_indicator.get_rect().size.x / 2) - label_margin,
 			frame_height - continue_indicator.get_rect().size.y - label_margin)
-	
-	frame.rect_size = Vector2(frame_width, frame_height)
-	frame.rect_position = Vector2(int(-frame_width/2.0), 0)
-	
-	label.rect_size = Vector2(frame_width - (label_margin * 2), frame_height - (label_margin * 2) )
-	label.rect_position = Vector2(label_margin, label_margin)
-	
 	#frame.hide() # Hide the dialogue frame
 	continue_indicator.hide()
 	
@@ -199,11 +166,6 @@ func initiate(file_id, block = 'first'): # Load the whole dialogue into a variab
 	var json = file.get_as_text()
 	dialogue = JSON.parse(json).result
 	file.close()
-	var syllable_file = File.new()
-	syllable_file.open('res://words.json', syllable_file.READ)
-	json = syllable_file.get_as_text()
-	words = JSON.parse(json).result
-	syllable_file.close()
 	first(block) # Call the first dialogue block	
 
 
@@ -241,13 +203,6 @@ func update_dialogue(step): # step == whole dialogue block
 	current = step
 	number_characters = 0 # Resets the counter
 	# Check what kind of interaction the block is
-	syllables_for_dialog = []
-	current_word = -1
-	for word in step["content"].split(' '):
-		if word.to_lower() in words:
-			syllables_for_dialog.append([word, words[word.to_lower()]])
-		else:
-			syllables_for_dialog.append([word, int(len(word) / 3)])
 	match step['type']:
 		'text': # Simple text.
 			not_question()
@@ -392,6 +347,7 @@ func check_newlines(string):
 func clean_bbcode(string):
 	phrase = string
 	var pause_search = 0
+	var line_search = 0
 	
 	pause_search = phrase.find('%s' % pause_char, pause_search)
 	
@@ -433,7 +389,6 @@ func next():
 		frame.hide() 
 		avatar_left = ''
 		avatar_right = ''
-		emit_signal("block_ended")
 	else:
 		label.bbcode_text = ''
 		if choices.get_child_count() > 0: # If has choices, remove them.
@@ -483,8 +438,7 @@ func check_animation(block):
 
 
 func reset_sprites():
-	sprite_left.position = Vector2(-(frame_width - (32 / 2) - sprite_offset.x) / 2, -(frame_height + (32 / 2) - sprite_offset.y) / 2)
-	sprite_right.position = Vector2((frame_width - (32 / 2) - sprite_offset.x) / 2, -(frame_height + (32 / 2) - sprite_offset.y) / 2)
+	pass
 # change the 32's in here to the dimensions of the sprite, if need be
 
 func animate_sprite(direction, image, animation):
@@ -724,20 +678,6 @@ func _input(event): # This function can be easily replaced. Just make sure you c
 		change_choice('next')
 
 
-func check_word_position():
-	if label.visible_characters == 0 or label.bbcode_text[label.visible_characters - 1] == " ":
-		pos_in_word = 0
-		current_word += 1
-		current_syllable = 0
-	if pos_in_word == 0:
-		emit_signal("play_audio", true, false)
-	elif syllables_for_dialog[current_word][1] > 1 and pos_in_word == int(len(syllables_for_dialog[current_word][0]) / syllables_for_dialog[current_word][1]) * current_syllable:
-		emit_signal("play_audio", false, true)
-	pos_in_word += 1
-	label.visible_characters += 1
-
-
-
 func _on_Timer_timeout():
 	if label.visible_characters < number_characters: # Check if the timer needs to be started
 		if paused:
@@ -750,9 +690,9 @@ func _on_Timer_timeout():
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
-				check_word_position()
+				label.visible_characters += 1
 		else: # Phrase doesn't have any pauses.
-			check_word_position()
+			label.visible_characters += 1
 		timer.start()
 	else:
 		if is_question:
@@ -786,17 +726,3 @@ func _on_Sprite_Timer_timeout():
 func _on_soundtimer_timeout():
 	$AnimationPlayer.stop()
 
-
-func _on_Dialog_play_audio(change_pitch=false, change_note=false):
-	if change_note:
-		current_note = notes[randi() % notes.size()]
-	if change_pitch:
-		current_pitch += [-1, 1][randi() % 2]
-		if current_pitch > 4:
-			current_pitch = 3
-		if current_pitch < 1:
-			current_pitch = 2
-	$AnimationPlayer.play("%s" % current_note)
-	$AnimationPlayer.seek(current_pitch)
-	$soundtimer.start()
-	current_syllable += 1
