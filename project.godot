@@ -20,14 +20,20 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LaBoulangerie (LBGW)"
-config/description="a little cafe game"
-run/main_scene="res://assets/main.tscn"
+config/name="witch game"
+config/description="witch game"
+run/main_scene="res://assets/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 PROGRESS="*res://progress.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

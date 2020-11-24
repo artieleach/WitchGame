@@ -10,5 +10,4 @@ func _on_transition_finished():
 
 func _on_TextureButton_pressed():
 	$SceneTransition.show()
-	print("here")
 	$SceneTransition.transition({"Direction": "out", "Destination": "Menu"})

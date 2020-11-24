@@ -105,13 +105,13 @@ func _gui_input(event):
 				label.hide()
 				helpers.hide()
 				held = false
-				if get_global_mouse_position().x > 185 and get_global_mouse_position().x < 185+25:
+				if get_global_mouse_position().x > 185 and get_global_mouse_position().x < 185+16:
 					add_to_potion()
 				else:
 					go_back()
 	if event is InputEventMouseMotion:
 		if held:
-			hovering_over_cauldron = get_global_mouse_position().x > 185 and get_global_mouse_position().x < 185+25
+			hovering_over_cauldron = get_global_mouse_position().x > 185 and get_global_mouse_position().x < 185+16
 			if hovering_over_cauldron:
 				$AnimationPlayer.play("hovering_over_potion")
 			elif $AnimationPlayer.current_animation == "hovering_over_potion":

@@ -4,6 +4,7 @@ export (PackedScene) var Customer
 export (PackedScene) var Ingredient
 
 const potion_vars = ['A', 'B', 'C', 'D']
+const DEBUG = true
 
 onready var dialog = get_node("Dialog")
 onready var counter = get_node("Scrolling_Window/counter")
@@ -27,19 +28,20 @@ var potion_ingredients
 var scroll_offset: Vector2 = Vector2(0, 0)
 var can_drop_potions: bool = false
 var current_potion_state = [1, 1, 1, 1]
-var debug: bool = false
+var paused: bool = false
 
 
 func _ready():
+	load_game()
 	$SceneTransition.transition({"Direction": "in", "Destination": "Game"})
-	if debug:
+	if DEBUG:
 		$FPS.show()
 	randomize()
-	customers = get_json('res://dialog/Characters.json')
 	potion_ingredients = get_json('res://dialog/Potions.json')
 	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
 	emit_signal("ready")
+
 
 func get_json(file_string):
 	var cur_file = File.new()
@@ -50,6 +52,41 @@ func get_json(file_string):
 	if result == null:
 		print(file_string)
 	return result
+
+
+func save():
+	var save_dict = {
+		"time": $Timer.time_left,
+		"scheduled_customers": scheduled_customers,
+		"current_potion_state": current_potion_state,
+		"day": day
+	}
+	return save_dict
+
+
+func save_to_disk():
+	var save_game = File.new()
+	save_game.open("user://savegame.save", File.WRITE)
+	save_game.store_line(to_json(save()))
+	save_game.close()
+	var out_file = File.new()
+	out_file.open('res://dialog/Characters.json', out_file.WRITE)
+	var out = JSON.print(customers, '  ')
+	out_file.store_line(out)
+
+
+func load_game():
+	var save_game = File.new()
+	if not save_game.file_exists("user://savegame.save"):
+		return
+	save_game.open("user://savegame.save", File.READ)
+	while save_game.get_position() < save_game.get_len():
+		var node_data = parse_json(save_game.get_line())
+		for i in node_data.keys():
+			set(i, node_data[i])
+	save_game.close()
+	customers = get_json('res://dialog/Characters.json')
+	set_indicators()
 
 
 func _on_ingredient_pressed(ingredient):
@@ -74,6 +111,10 @@ func _on_check_effects(ingredient):
 	for i in range(len(current_potion_state)):
 		ingredient.helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient.name]["features"][i] + 1
 
+func set_indicators():
+	for i in range(len(current_potion_state)):
+		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = current_potion_state[i]
+
 func create_customer(customer):
 	var new_customer = Customer.instance()
 	customer_line += [new_customer]
@@ -88,7 +129,7 @@ func create_customer(customer):
 		new_customer.progress = which # ???
 	new_customer.spot_in_line = customer_line.find(new_customer)
 	new_customer.target = $backwall/register
-	new_customer.get_node("sprite").position = Vector2(212, 26)
+	new_customer.get_node("sprite").position = $backwall/exit.rect_position
 	new_customer.connect("buying", self, "_on_buying")
 	new_customer.connect("begin_dialog", self, "_on_dialog")
 	new_customer.connect("getting_up", self, "_on_chair_clear")
@@ -114,29 +155,8 @@ func _on_dialog(cur_speaker, spesific_response=null):
 	cur_speaker.progress += 1
 
 
-func _on_buying(buyer):
-	if len($Scrolling_Window/counter/cup.ingredients) == 16:
-		var drink_made = $Scrolling_Window/counter/cup.serve()
-		buyer.has_item = true
-		print("made: " + drink_made)
-		print("expected: " + buyer.want)
-		if calculate_score(drink_made, buyer.want) > 0.9:
-			buyer.emit_signal("begin_dialog", buyer, "right")
-			buyer.progress += 1
-			buyer.upset = false
-		else:
-			buyer.emit_signal("begin_dialog", buyer, "wrong")
-			buyer.mistakes += 1
-			buyer.upset = false
-
-
 func _on_advance_dialog_pressed():
 	dialog.next()
-
-
-func _on_cup_pressed():
-	if customer_line:
-		customer_line[0].emit_signal("buying", customer_line[0])
 
 
 func _on_Dialog_block_ended():
@@ -147,16 +167,6 @@ func _on_Dialog_block_ended():
 			customer_line[0].change_to("walking")
 		customer_line.erase(customer_line[0])
 		someone_bought_something = false
-
-
-func calculate_score(served_drink, expected):
-	if len(served_drink) != len(expected):
-		return 0
-	var score = 0
-	for index in len(served_drink):
-		if served_drink[index - 1] == expected[index - 1]:
-			score += 1
-	return float(score) / float(len(served_drink))
 
 
 func _on_blackboard_pressed():
@@ -173,7 +183,6 @@ func _on_x_button_pressed():
 
 func _process(_delta):
 	$FPS.text = str(int(Performance.get_monitor(0)))
-	$"character bg/sky".rect_position = Vector2(15, clamp(-$Timer.time_left, -766, 0))
 
 
 func end_day():
@@ -194,6 +203,8 @@ func start_day():
 	scheduled_customers = scheduled_customers.slice(0, 13)
 	scheduled_customers = ['jello', 'jello', 'jello']
 	$end_of_day.mouse_filter = Control.MOUSE_FILTER_STOP
+	if DEBUG:
+		create_customer(scheduled_customers[0])
 	while $Timer.time_left > 0:
 		for i in scheduled_customers:
 			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
@@ -204,17 +215,19 @@ func start_day():
 
 
 func _on_end_of_day_gui_input(event):
+	save_to_disk()
 	if event is InputEventMouseButton:
 		$end_of_day.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
 		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
 		$Tween.start()
-		yield(get_node("Tween"), "tween_completed")
+		yield($Tween, "tween_completed")
 		start_day()
 		$end_of_day.hide()
 
 
 func _on_Control_tree_exiting():
+	save_to_disk()
 	var out_file = File.new()
 	out_file.open('res://dialog/Characters.json', out_file.WRITE)
 	var out = JSON.print(customers, '  ')
@@ -231,17 +244,11 @@ func _on_chair_clear(previous_owner):
 			chair.being_sat_in = false
 
 
-func _on_sound_toggled(button_pressed):
-	sound = not(sound)
-	if sound:
-		$Dialog/AudioStreamPlayer.volume_db = -5.0
-	else:
-		$Dialog/AudioStreamPlayer.volume_db = -80.0
+func _on_button_toggled(button_pressed):
+	if button_pressed == "Menu":
+		save_to_disk()
+		$SceneTransition.transition({"Direction": "out", "Destination": "Menu"})
 
 
-func _on_music_toggled(button_pressed):
-	music = not(music)
-	if music:
-		$AudioStreamPlayer.stream_paused = false
-	else:
-		$AudioStreamPlayer.stream_paused = true
+func _on_burger_pressed():
+	$OptionsMenu.slide()

@@ -19,7 +19,7 @@ var has_item = false
 var target
 var where_to_sit
 var exit
-var speed = 28
+var speed = 23
 var spot_in_line
 var upset
 var mistakes

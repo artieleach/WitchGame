@@ -2,15 +2,19 @@
 
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
 [ext_resource path="res://images/book2.png" type="Texture" id=2]
-[ext_resource path="res://images/x_button.png" type="Texture" id=3]
+[ext_resource path="res://images/GUI/x_button.png" type="Texture" id=3]
 [ext_resource path="res://assets/Spellbook.gd" type="Script" id=4]
 
-[node name="book_texture" type="Sprite"]
-position = Vector2( 6, 8 )
-z_index = 10
+[node name="book_texture" type="TextureRect"]
+margin_left = 6.0
+margin_top = 10.0
+margin_right = 218.0
+margin_bottom = 122.0
 texture = ExtResource( 2 )
-centered = false
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="x_button" type="TextureButton" parent="."]
 margin_left = 207.0

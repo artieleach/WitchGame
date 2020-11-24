@@ -447,12 +447,12 @@ func animate_sprite(direction, image, animation):
 	
 	if direction == 'left':
 		sprite = sprite_left
-		current_pos = sprite.position
+		current_pos = sprite.rect_position
 		
 		move_vector = Vector2(current_pos.x - move_distance, current_pos.y)
 	else:
 		sprite = sprite_right
-		current_pos = sprite.position
+		current_pos = sprite.rect_position
 		
 		move_vector = Vector2(current_pos.x + move_distance, current_pos.y)
 	
@@ -534,7 +534,7 @@ func animate_sprite(direction, image, animation):
 			
 		'fade_in':
 			load_image(sprite, image)
-			tween.interpolate_property(sprite, 'modulate',
+			tween.interpolate_property(sprite, 'rect_position',
 					white_transparent, white_opaque, ease_in_speed/1.25,
 					Tween.TRANS_QUAD, Tween.EASE_IN)
 					
@@ -544,7 +544,7 @@ func animate_sprite(direction, image, animation):
 			on_animation = true
 			
 		'fade_out':
-			tween.interpolate_property(sprite, 'modulate',
+			tween.interpolate_property(sprite, 'rect_position',
 					white_opaque, white_transparent, ease_out_speed/1.25,
 					Tween.TRANS_QUAD, Tween.EASE_OUT)
 					
@@ -555,7 +555,7 @@ func animate_sprite(direction, image, animation):
 			
 		'move_in':
 			load_image(sprite, image)
-			tween.interpolate_property(sprite, 'position',
+			tween.interpolate_property(sprite, 'rect_position',
 					move_vector, current_pos, ease_in_speed,
 					Tween.TRANS_QUINT, Tween.EASE_IN)
 					
@@ -569,7 +569,7 @@ func animate_sprite(direction, image, animation):
 			on_animation = true
 			
 		'move_out':
-			tween.interpolate_property(sprite, 'position',
+			tween.interpolate_property(sprite, 'rect_position',
 					current_pos, move_vector, ease_out_speed,
 					Tween.TRANS_BACK, Tween.EASE_OUT)
 					
@@ -717,7 +717,7 @@ func update_pause():
 
 
 func _on_Sprite_Timer_timeout():
-	sprite.position = previous_pos
+	sprite.rect_position = previous_pos
 	set_process(false)
 	on_animation = false
 	shaking = false

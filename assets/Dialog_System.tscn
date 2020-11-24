@@ -104,12 +104,6 @@ anims/g = SubResource( 10 )
 
 [node name="SpriteTimer" type="Timer" parent="."]
 
-[node name="SpriteLeft" type="Sprite" parent="."]
-position = Vector2( 4, 4 )
-z_index = 1
-z_as_relative = false
-centered = false
-
 [node name="SpriteRight" type="Sprite" parent="."]
 
 [node name="Frame" type="ColorRect" parent="."]
@@ -183,6 +177,15 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpriteLeft" type="TextureRect" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 36.0
+margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

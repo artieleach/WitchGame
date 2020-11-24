@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready():
-	pass
+	$SceneTransition.transition({"Direction": "in", "Destination": "Menu"})
 
 
 func _on_Credits_pressed():
@@ -15,4 +15,3 @@ func _on_Options_pressed():
 
 func _on_Play_pressed():
 	$SceneTransition.transition({"Direction": "out", "Destination": "Game"})
-

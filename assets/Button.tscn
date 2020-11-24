@@ -1,36 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
-[ext_resource path="res://images/button-sheet.png" type="Texture" id=2]
+[ext_resource path="res://images/GUI/button_buttom.png" type="Texture" id=2]
 [ext_resource path="res://assets/Button.gd" type="Script" id=3]
+[ext_resource path="res://images/GUI/button.png" type="Texture" id=4]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 48, 24 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 48, 24 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 48, 24 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 2 )
-region = Rect2( 144, 0, 48, 24 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 48, 24 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": false,
-"name": "default",
-"speed": 20.0
-} ]
+[sub_resource type="Animation" id=1]
+resource_name = "button_pressed"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Button" type="TextureButton"]
 margin_right = 48.0
@@ -41,14 +30,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 6 )
+[node name="Tween" type="Tween" parent="."]
+
+[node name="button_buttom" type="Sprite" parent="."]
+position = Vector2( 24, 20 )
+texture = ExtResource( 2 )
+
+[node name="button" type="Sprite" parent="."]
+texture = ExtResource( 4 )
 centered = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -3.0
+margin_top = 1.0
+margin_bottom = -1.0
 custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
@@ -56,6 +52,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/button_pressed = SubResource( 1 )
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]
-[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]

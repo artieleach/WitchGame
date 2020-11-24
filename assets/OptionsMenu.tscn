@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://images/book2.png" type="Texture" id=1]
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/GUI/x.png" type="Texture" id=3]
+[ext_resource path="res://images/GUI/sounds.png" type="Texture" id=4]
+[ext_resource path="res://images/GUI/music.png" type="Texture" id=5]
+[ext_resource path="res://assets/OptionsMenu.gd" type="Script" id=6]
+
+[node name="OptionsMenu" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Book" type="Sprite" parent="."]
+position = Vector2( -212, 0 )
+z_index = 5
+texture = ExtResource( 1 )
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="Book"]
+margin_left = 119.0
+margin_top = 13.0
+margin_right = 205.0
+margin_bottom = 99.0
+mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Book"]
+margin_left = 154.0
+margin_top = 16.0
+margin_right = 201.0
+margin_bottom = 101.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="TextureButton" parent="Book/VBoxContainer"]
+modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+margin_right = 47.0
+margin_bottom = 8.0
+toggle_mode = true
+texture_normal = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Book/VBoxContainer/Music"]
+margin_left = 10.0
+margin_right = 38.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 2 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="TextureButton" parent="Book/VBoxContainer"]
+modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+margin_top = 12.0
+margin_right = 47.0
+margin_bottom = 20.0
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Book/VBoxContainer/Sound"]
+margin_left = 10.0
+margin_right = 40.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sound"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Book/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 24.0
+margin_right = 47.0
+margin_bottom = 30.0
+custom_constants/separation = 6
+
+[node name="Menu" type="TextureButton" parent="Book/VBoxContainer"]
+modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+margin_top = 34.0
+margin_right = 47.0
+margin_bottom = 42.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Book/VBoxContainer/Menu"]
+margin_left = 10.0
+margin_right = 36.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 2 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="gui_input" from="." to="." method="_on_OptionsMenu_gui_input"]
+[connection signal="pressed" from="Book/VBoxContainer/Music" to="." method="_on_Music_pressed"]
+[connection signal="pressed" from="Book/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
+[connection signal="pressed" from="Book/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]

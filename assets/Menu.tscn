@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://fonts/HopeGold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/HopeGold.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Menu.gd" type="Script" id=3]
 [ext_resource path="res://images/witchhat.png" type="Texture" id=4]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=5]
@@ -14,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -30,22 +32,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 margin_left = 31.0
-margin_top = 20.0
+margin_top = 23.0
 margin_right = 193.0
-margin_bottom = 106.0
+margin_bottom = 103.0
 
 [node name="TitleCard" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_right = 94.0
-margin_bottom = 86.0
+margin_bottom = 80.0
 
 [node name="Label" type="Label" parent="CenterContainer/HBoxContainer/TitleCard"]
+visible = false
 margin_right = 94.0
-margin_bottom = 13.0
+margin_bottom = 2.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.341176, 0.27451, 0.439216, 1 )
 custom_constants/shadow_offset_x = 1
@@ -57,15 +61,14 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/HBoxContainer/TitleCard"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 17.0
 margin_right = 94.0
-margin_bottom = 29.0
+margin_bottom = 12.0
 custom_constants/separation = 12
 
 [node name="Hat" type="TextureRect" parent="CenterContainer/HBoxContainer/TitleCard"]
-margin_top = 33.0
+margin_top = 16.0
 margin_right = 94.0
-margin_bottom = 86.0
+margin_bottom = 69.0
 texture = ExtResource( 4 )
 stretch_mode = 1
 
@@ -73,28 +76,25 @@ stretch_mode = 1
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 98.0
 margin_right = 110.0
-margin_bottom = 86.0
+margin_bottom = 80.0
 custom_constants/separation = 12
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 114.0
 margin_right = 162.0
-margin_bottom = 86.0
+margin_bottom = 80.0
 alignment = 1
 
 [node name="Play" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
-margin_top = 3.0
-margin_bottom = 27.0
 
 [node name="Options" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
-margin_top = 31.0
-margin_bottom = 55.0
+margin_top = 28.0
+margin_bottom = 52.0
 
 [node name="Credits" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
-margin_top = 59.0
-margin_bottom = 83.0
+margin_top = 56.0
+margin_bottom = 80.0
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
-mouse_filter = 2
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]
