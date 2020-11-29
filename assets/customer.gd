@@ -10,7 +10,6 @@ var history = []
 
 signal buying
 signal begin_dialog
-signal getting_up
 
 var progress
 var my_name
@@ -19,10 +18,11 @@ var has_item = false
 var target
 var where_to_sit
 var exit
-var speed = 23
 var spot_in_line
 var upset
 var mistakes
+
+
 
 func _ready():
 	exit = get_tree().get_nodes_in_group("exit")[0]
@@ -54,3 +54,4 @@ func _enter_state():
 func _process(delta):
 	if state.has_method("process"):
 		state.process(delta)
+

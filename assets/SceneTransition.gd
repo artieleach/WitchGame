@@ -12,10 +12,12 @@ func transition(trans_type):
 		$Tween.interpolate_property($ColorRect, "color:a", 1, 0, 0.6)
 	$Tween.start()
 
-func _on_Tween_tween_completed(object, key):
+
+func _on_Tween_tween_completed(object, _key):
 	if object == $ColorRect:
 		hide()
 		transition_finished()
+
 
 func transition_finished():
 	if cur_trans["Direction"] == 'out':

@@ -28,7 +28,6 @@ func _ready():
 	helpers.rect_size = rect_size
 	emit_signal("check_effects")
 
-
 func _process(_delta):
 	if held:
 		$Tween.interpolate_property($drawing, "position", $drawing.position, get_global_mouse_position() - offset - rect_position - owner.scroll_offset - Vector2(1, 42), 0.09)

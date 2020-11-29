@@ -133,7 +133,7 @@ func _ready():
 func _process(_delta):
 	if shaking:
 		sprite.offset = Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount)
-	pass
+
 
 
 func set_frame(): # Mostly aligment operations.
@@ -710,7 +710,6 @@ func update_pause():
 	else: # Doesn't have any pauses left.
 		pause_array = []
 		pause_index = 0
-		
 	paused = false
 	timer.wait_time = wait_time
 	timer.start()

@@ -16,7 +16,7 @@ func _ready():
 		test_child.position = Vector2(20, 20)
 		test_child.texture = load("res://images/portrait_test.png")
 		add_child(test_child)
-	counter = get_children()[0]
+	counter = get_children()[1]
 	counter_size = counter.texture.get_size().x
 
 

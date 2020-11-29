@@ -1,8 +1,5 @@
 # La Boulangerie: The Server: The Cafe: The Videogame: Episode 1: Part 1: The Beginning
-Cafe games for my friends on da bes server  
-You may be wondering why there are so many bugs and why the game doesn't have a
-proper ending, this is because I'm bad at programming and. hope that clears
-everything up!
+little game about witches and potions
 
 ## About the game:  
 You work at a mood cafe. Folks come in, tell you how theyre feeling and what's going on in thier lives. 

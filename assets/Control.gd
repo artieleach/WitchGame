@@ -29,6 +29,7 @@ var scroll_offset: Vector2 = Vector2(0, 0)
 var can_drop_potions: bool = false
 var current_potion_state = [1, 1, 1, 1]
 var paused: bool = false
+var time_left: int = 766
 
 
 func _ready():
@@ -56,7 +57,7 @@ func get_json(file_string):
 
 func save():
 	var save_dict = {
-		"time": $Timer.time_left,
+		"time_left": $Timer.time_left,
 		"scheduled_customers": scheduled_customers,
 		"current_potion_state": current_potion_state,
 		"day": day
@@ -84,6 +85,7 @@ func load_game():
 		var node_data = parse_json(save_game.get_line())
 		for i in node_data.keys():
 			set(i, node_data[i])
+			print(i, node_data[i])
 	save_game.close()
 	customers = get_json('res://dialog/Characters.json')
 	set_indicators()
@@ -97,7 +99,10 @@ func _on_ingredient_pressed(ingredient):
 
 
 func _on_potion_splash(ingredient):
-	cauldron.get_node("splash_particles").self_modulate = potion_ingredients[ingredient.name]["color"]
+	cauldron.get_node("poof_particles").restart()
+	cauldron.get_node("splash_particles").restart()
+	cauldron.get_node("poof_particles").self_modulate = potion_ingredients[ingredient.name]["color"]
+	cauldron.get_node("poof_particles").emitting = true
 	cauldron.get_node("splash_particles").emitting = true
 
 
@@ -111,9 +116,11 @@ func _on_check_effects(ingredient):
 	for i in range(len(current_potion_state)):
 		ingredient.helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient.name]["features"][i] + 1
 
+
 func set_indicators():
 	for i in range(len(current_potion_state)):
 		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = current_potion_state[i]
+
 
 func create_customer(customer):
 	var new_customer = Customer.instance()
@@ -123,26 +130,11 @@ func create_customer(customer):
 	new_customer.progress = customers[customer]["progress"]
 	new_customer.mistakes = customers[customer]["mistakes"]
 	new_customer.want = customers[customer]["drink"][new_customer.progress]
-	if new_customer.name == "generic":
-		var which = randi() % len(customers[customer]["drink"])
-		new_customer.want = customers[customer]["drink"][which]
-		new_customer.progress = which # ???
 	new_customer.spot_in_line = customer_line.find(new_customer)
 	new_customer.target = $backwall/register
 	new_customer.get_node("sprite").position = $backwall/exit.rect_position
 	new_customer.connect("buying", self, "_on_buying")
 	new_customer.connect("begin_dialog", self, "_on_dialog")
-	new_customer.connect("getting_up", self, "_on_chair_clear")
-	var possible_seats = []
-	for chair in seats:
-		if chair.being_sat_in == false:
-			possible_seats += [chair]
-	possible_seats.shuffle()
-	if len(possible_seats) > 0:
-		new_customer.where_to_sit = possible_seats[0]
-		possible_seats[0].being_sat_in = new_customer
-	else:
-		new_customer.where_to_sit = null
 	$backwall.add_child(new_customer)
 
 
@@ -182,7 +174,16 @@ func _on_x_button_pressed():
 
 
 func _process(_delta):
-	$FPS.text = str(int(Performance.get_monitor(0)))
+	if DEBUG:
+		$FPS.text = str(int(Performance.get_monitor(0)))
+
+
+func check_next_customer():
+	if len(customer_line) == 0 and $Timer.time_left > 66:
+		customers.pop()
+		create_customer(customers[0])
+	$next_customer_timer.wait_time = randi() % 25 + 5
+	$next_customer_timer.start()
 
 
 func end_day():
@@ -193,25 +194,20 @@ func end_day():
 	$Tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
 	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
 	$Tween.start()
+	time_left = 766
+	day += 1
 
 
 func start_day():
-	day += 1
+	$Timer.wait_time = time_left
+	$Timer.start()
 	scheduled_customers = customers.keys()
-	print(scheduled_customers)
 	scheduled_customers.shuffle()
 	scheduled_customers = scheduled_customers.slice(0, 13)
-	scheduled_customers = ['jello', 'jello', 'jello']
+	scheduled_customers = ['kitch', 'kitch', 'kitch']
 	$end_of_day.mouse_filter = Control.MOUSE_FILTER_STOP
 	if DEBUG:
 		create_customer(scheduled_customers[0])
-	while $Timer.time_left > 0:
-		for i in scheduled_customers:
-			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
-			if customers[i].has("drink"):
-				if len(customer_line) == 0 and $Timer.time_left > 66:
-					create_customer(i)
-			yield(get_tree().create_timer(randi() % 25 + 5), "timeout")
 
 
 func _on_end_of_day_gui_input(event):
@@ -232,10 +228,15 @@ func _on_Control_tree_exiting():
 	out_file.open('res://dialog/Characters.json', out_file.WRITE)
 	var out = JSON.print(customers, '  ')
 	out_file.store_line(out)
+	out_file.close()
 
 
 func _on_Timer_timeout():
-	end_day()
+	if not $Dialog/Frame.visible:
+		end_day()
+	else:
+		$Timer.wait_time = 30
+		$Timer.start()
 
 
 func _on_chair_clear(previous_owner):
@@ -251,4 +252,10 @@ func _on_button_toggled(button_pressed):
 
 
 func _on_burger_pressed():
+	$blackboard.hide()
+	$Spellbook.hide()
 	$OptionsMenu.slide()
+
+
+func _on_next_customer_timer_timeout():
+	check_next_customer()

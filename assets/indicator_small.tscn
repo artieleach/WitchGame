@@ -20,8 +20,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 4.0
+margin_bottom = 4.0
+color = Color( 0.141176, 0.133333, 0.203922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="a" type="AnimatedSprite" parent="."]
 position = Vector2( 3.55271e-15, 5.96046e-08 )
-scale = Vector2( 1, 1 )
 frames = SubResource( 1 )
 centered = false

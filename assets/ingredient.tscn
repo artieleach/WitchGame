@@ -37,6 +37,7 @@ tracks/0/keys = {
 }
 
 [node name="ingredient" type="TextureButton"]
+light_mask = 2
 margin_right = 14.0
 margin_bottom = 19.0
 mouse_default_cursor_shape = 2
@@ -51,6 +52,7 @@ wait_time = 0.05
 [node name="drawing" type="Node2D" parent="."]
 
 [node name="ingredient_sprite" type="Sprite" parent="drawing"]
+light_mask = 2
 texture = ExtResource( 3 )
 centered = false
 
@@ -66,9 +68,9 @@ __meta__ = {
 
 [node name="helpers" type="HBoxContainer" parent="drawing"]
 visible = false
-margin_top = -4.0
+margin_top = -5.0
 margin_right = 12.0
-margin_bottom = -4.0
+margin_bottom = -5.0
 mouse_filter = 2
 custom_constants/separation = 4
 alignment = 1
