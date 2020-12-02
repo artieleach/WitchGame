@@ -6,6 +6,7 @@ var distance = 0
 var counter
 var counter_size
 var grabbed = false
+const scroll_factor = 5
 
 
 func _ready():
@@ -16,7 +17,7 @@ func _ready():
 		test_child.position = Vector2(20, 20)
 		test_child.texture = load("res://images/portrait_test.png")
 		add_child(test_child)
-	counter = get_children()[1]
+	counter = get_children()[0]
 	counter_size = counter.texture.get_size().x
 
 
@@ -31,6 +32,10 @@ func _process(_delta):
 
 func _gui_input(event):
 	if event is InputEventMouseButton:
+		if event.button_index == 5:
+			last_checked -= scroll_factor
+		if event.button_index == 4:
+			last_checked += scroll_factor
 		grabbed = event.is_pressed()
 		if grabbed:
 			last_checked = event.position.x

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white.png-cfaf1f5a1db6a2227fde63bfba014903.stex"
+path="res://.import/santa-hat-.jpg-6502c778561071226fab988430e86628.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/white.png"
-dest_files=[ "res://.import/white.png-cfaf1f5a1db6a2227fde63bfba014903.stex" ]
+source_file="res://santa-hat-.jpg"
+dest_files=[ "res://.import/santa-hat-.jpg-6502c778561071226fab988430e86628.stex" ]
 
 [params]
 

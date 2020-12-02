@@ -26,6 +26,8 @@ func _ready():
 	rect_size = ingredient_sprite.texture.get_size()
 	label.margin_right = ingredient_sprite.texture.get_width()
 	helpers.rect_size = rect_size
+	texture_normal = null
+	ingredient_sprite.show()
 	emit_signal("check_effects")
 
 func _process(_delta):

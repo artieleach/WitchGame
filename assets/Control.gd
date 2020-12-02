@@ -5,10 +5,9 @@ export (PackedScene) var Ingredient
 
 const potion_vars = ['A', 'B', 'C', 'D']
 const DEBUG = true
-
 onready var dialog = get_node("Dialog")
 onready var counter = get_node("Scrolling_Window/counter")
-onready var cauldron = get_node("Cauldron")
+onready var cauldron = get_node("Scrolling_Window/Cauldron")
 onready var spellbook = get_node("Spellbook")
 
 var cup_contents = []

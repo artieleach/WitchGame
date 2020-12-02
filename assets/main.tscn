@@ -1,10 +1,9 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://images/table.png" type="Texture" id=1]
 [ext_resource path="res://images/counter_bg.png" type="Texture" id=2]
 [ext_resource path="res://images/front_counter.png" type="Texture" id=3]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=4]
-[ext_resource path="res://images/cauldron_mask.png" type="Texture" id=5]
 [ext_resource path="res://images/kettle.png" type="Texture" id=6]
 [ext_resource path="res://assets/Dialog_System.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/back_counter.png" type="Texture" id=8]
@@ -13,12 +12,15 @@
 [ext_resource path="res://images/register.png" type="Texture" id=11]
 [ext_resource path="res://assets/OptionsMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/chair.tscn" type="PackedScene" id=13]
+[ext_resource path="res://images/ingredients/Berries.png" type="Texture" id=14]
+[ext_resource path="res://images/ingredients/Branch.png" type="Texture" id=15]
 [ext_resource path="res://images/shelf.png" type="Texture" id=16]
 [ext_resource path="res://assets/customer.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Control.gd" type="Script" id=18]
 [ext_resource path="res://images/cafe_BG.png" type="Texture" id=19]
 [ext_resource path="res://assets/Spellbook.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/cauldron.tscn" type="PackedScene" id=21]
+[ext_resource path="res://images/ingredients/Honeycomb.png" type="Texture" id=22]
 [ext_resource path="res://images/blackboard_small.png" type="Texture" id=23]
 [ext_resource path="res://assets/blackboard.tscn" type="PackedScene" id=24]
 [ext_resource path="res://images/GUI/menu.png" type="Texture" id=25]
@@ -32,6 +34,16 @@
 [ext_resource path="res://images/plant.png" type="Texture" id=33]
 [ext_resource path="res://assets/scrolling_window.tscn" type="PackedScene" id=34]
 [ext_resource path="res://images/panrack.png" type="Texture" id=35]
+[ext_resource path="res://images/ingredients/Dandy.png" type="Texture" id=36]
+[ext_resource path="res://images/ingredients/Shell.png" type="Texture" id=37]
+[ext_resource path="res://images/ingredients/Herbs.png" type="Texture" id=38]
+[ext_resource path="res://images/ingredients/Roots.png" type="Texture" id=39]
+[ext_resource path="res://images/ingredients/Beetle.png" type="Texture" id=40]
+[ext_resource path="res://images/ingredients/Clover.png" type="Texture" id=41]
+[ext_resource path="res://images/ingredients/Feather.png" type="Texture" id=42]
+[ext_resource path="res://images/ingredients/Mushroom.png" type="Texture" id=43]
+[ext_resource path="res://images/ingredients/Conch.png" type="Texture" id=44]
+[ext_resource path="res://images/ingredients/Flower.png" type="Texture" id=45]
 [ext_resource path="res://images/portrait_test.png" type="Texture" id=48]
 [ext_resource path="res://assets/ingredient.tscn" type="PackedScene" id=49]
 
@@ -394,108 +406,96 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mana" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 69.0
+[node name="Berries" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 142.0
+margin_top = 16.0
+margin_right = 163.0
+margin_bottom = 41.0
+texture_normal = ExtResource( 14 )
+
+[node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 113.0
+margin_top = 14.0
+margin_right = 141.0
+margin_bottom = 39.0
+texture_normal = ExtResource( 44 )
+
+[node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 85.0
+margin_top = 10.0
+margin_right = 112.0
+margin_bottom = 37.0
+texture_normal = ExtResource( 42 )
+
+[node name="Herbs" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 45.0
+margin_top = 14.0
+margin_right = 60.0
+margin_bottom = 39.0
+texture_normal = ExtResource( 38 )
+
+[node name="Mushroom" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 26.0
+margin_top = 15.0
+margin_right = 43.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 43 )
+
+[node name="Shell" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 236.0
+margin_top = 24.0
+margin_right = 266.0
+margin_bottom = 38.0
+texture_normal = ExtResource( 37 )
+
+[node name="Clover" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 193.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 36.0
+texture_normal = ExtResource( 41 )
+
+[node name="Flower" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 266.0
+margin_top = 12.0
+margin_right = 287.0
+margin_bottom = 37.0
+texture_normal = ExtResource( 45 )
+
+[node name="Roots" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 63.0
 margin_top = 15.0
 margin_right = 84.0
 margin_bottom = 40.0
+texture_normal = ExtResource( 39 )
 
-[node name="Roots" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 72.0
-margin_top = 15.0
-margin_right = 87.0
-margin_bottom = 40.0
-
-[node name="Beaker" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 188.0
-margin_top = 15.0
-margin_right = 203.0
-margin_bottom = 40.0
+[node name="Dandy" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 290.0
+margin_top = 10.0
+margin_right = 311.0
+margin_bottom = 36.0
+texture_normal = ExtResource( 36 )
 
 [node name="Honeycomb" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 180.0
-margin_top = 14.0
-margin_right = 195.0
-margin_bottom = 39.0
-
-[node name="Berries" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 152.0
-margin_top = 14.0
-margin_right = 167.0
-margin_bottom = 39.0
-
-[node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 120.0
-margin_top = 14.0
-margin_right = 135.0
-margin_bottom = 39.0
-
-[node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 94.0
-margin_top = 10.0
-margin_right = 109.0
-margin_bottom = 35.0
-
-[node name="Herbs" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 49.0
-margin_top = 14.0
-margin_right = 64.0
-margin_bottom = 39.0
-
-[node name="Mushroom" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 27.0
+margin_left = 165.0
 margin_top = 15.0
-margin_right = 42.0
+margin_right = 187.0
 margin_bottom = 40.0
+texture_normal = ExtResource( 22 )
 
-[node name="Pepper" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 3.0
-margin_top = 17.0
-margin_right = 18.0
-margin_bottom = 42.0
+[node name="Branch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+margin_left = 213.0
+margin_top = 15.0
+margin_right = 235.0
+margin_bottom = 39.0
+texture_normal = ExtResource( 15 )
 
 [node name="Beetle" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
 margin_left = 3.0
 margin_top = 14.0
 margin_right = 18.0
 margin_bottom = 39.0
-
-[node name="Health" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 116.0
-margin_top = 17.0
-margin_right = 131.0
-margin_bottom = 42.0
-
-[node name="Branch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 116.0
-margin_top = 17.0
-margin_right = 131.0
-margin_bottom = 42.0
-
-[node name="Perfume" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-visible = false
-margin_left = 210.0
-margin_top = 13.0
-margin_right = 225.0
-margin_bottom = 38.0
-
-[node name="Clover" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 207.0
-margin_top = 12.0
-margin_right = 222.0
-margin_bottom = 37.0
-
-[node name="cauldron_mask" type="Sprite" parent="Scrolling_Window"]
-position = Vector2( 165, 31 )
-z_index = 2
-z_as_relative = false
-texture = ExtResource( 5 )
-centered = false
+texture_normal = ExtResource( 40 )
 
 [node name="Panel" type="ColorRect" parent="Scrolling_Window"]
 margin_left = 159.0
@@ -507,11 +507,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cauldron" parent="." instance=ExtResource( 21 )]
-margin_left = 161.0
-margin_top = 42.0
-margin_right = 223.0
-margin_bottom = 84.0
+[node name="Cauldron" parent="Scrolling_Window" instance=ExtResource( 21 )]
+margin_left = 160.0
+margin_right = 222.0
 
 [node name="blackboard" parent="." instance=ExtResource( 24 )]
 visible = false
