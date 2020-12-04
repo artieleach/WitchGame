@@ -9,17 +9,14 @@ const offset = Vector2(10, 10)
 const item_height = 15
 
 
-func initiate(): # Load the whole dialogue into a variable
-	$blackboard_texture/x_button.connect("pressed", owner, "_on_x_button_pressed")
+
+func _ready():
+	yield (owner, "ready")
 	var file = File.new()
 	file.open('res://dialog/drinks.json', file.READ)
 	var json = file.get_as_text()
 	drinks = JSON.parse(json).result
 	file.close()
-
-
-func _ready():
-	initiate()
 	for drink in drinks:
 		generate_item(drink)
 

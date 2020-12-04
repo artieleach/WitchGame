@@ -14,4 +14,6 @@ func _on_Options_pressed():
 
 
 func _on_Play_pressed():
+	$Tween.interpolate_property($AudioStreamPlayer, "volume_db", $AudioStreamPlayer.volume_db, -80.0, 0.3)
+	$Tween.start()
 	$SceneTransition.transition({"Direction": "out", "Destination": "Game"})

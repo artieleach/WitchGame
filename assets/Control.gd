@@ -5,30 +5,28 @@ export (PackedScene) var Ingredient
 
 const potion_vars = ['A', 'B', 'C', 'D']
 const DEBUG = true
+
 onready var dialog = get_node("Dialog")
 onready var counter = get_node("Scrolling_Window/counter")
 onready var cauldron = get_node("Scrolling_Window/Cauldron")
 onready var spellbook = get_node("Spellbook")
+onready var animator = get_node("AnimationPlayer")
+onready var audioholder = get_node("AudioHolder")
 
-var cup_contents = []
-var seats = []
 var customer_line = []
 var speaker
-var drink = []
-var current_cup_contents
 var someone_bought_something
 var customers
 var scheduled_customers = []
 var sound: bool = true
 var music: bool = true
-var grabbed: bool = false
 var day: int = 1
 var potion_ingredients
 var scroll_offset: Vector2 = Vector2(0, 0)
 var can_drop_potions: bool = false
 var current_potion_state = [1, 1, 1, 1]
 var paused: bool = false
-var time_left: int = 766
+var time_left: int = 0
 
 
 func _ready():
@@ -38,9 +36,10 @@ func _ready():
 		$FPS.show()
 	randomize()
 	potion_ingredients = get_json('res://dialog/Potions.json')
-	seats = get_tree().get_nodes_in_group("seats")
 	start_day()
 	emit_signal("ready")
+	$Timer.wait_time = time_left
+	audioholder.play_audio("bubbles", 1)
 
 
 func get_json(file_string):
@@ -49,8 +48,6 @@ func get_json(file_string):
 	var json = cur_file.get_as_text()
 	var result = JSON.parse(json).result
 	cur_file.close()
-	if result == null:
-		print(file_string)
 	return result
 
 
@@ -59,7 +56,10 @@ func save():
 		"time_left": $Timer.time_left,
 		"scheduled_customers": scheduled_customers,
 		"current_potion_state": current_potion_state,
-		"day": day
+		"day": day,
+		"music": music,
+		"sound": sound,
+		"scroll_offset": scroll_offset
 	}
 	return save_dict
 
@@ -84,20 +84,20 @@ func load_game():
 		var node_data = parse_json(save_game.get_line())
 		for i in node_data.keys():
 			set(i, node_data[i])
-			print(i, node_data[i])
 	save_game.close()
 	customers = get_json('res://dialog/Characters.json')
 	set_indicators()
 
 
 func _on_ingredient_pressed(ingredient):
-	$Spellbook/Label.text = ingredient.name
-	$Spellbook/RichTextLabel.text = potion_ingredients[ingredient.name]["description"]
-	$Spellbook/Label.set("custom_colors/font_color", potion_ingredients[ingredient.name]["color"])
-	$Spellbook.show()
+	spellbook.get_node("Label").text = ingredient.name
+	spellbook.get_node("RichTextLabel").text = potion_ingredients[ingredient.name]["description"]
+	spellbook.get_node("Label").set("custom_colors/font_color", potion_ingredients[ingredient.name]["color"])
+	spellbook.show()
 
 
 func _on_potion_splash(ingredient):
+	animator.play("potion_splash")
 	cauldron.get_node("poof_particles").restart()
 	cauldron.get_node("splash_particles").restart()
 	cauldron.get_node("poof_particles").self_modulate = potion_ingredients[ingredient.name]["color"]
@@ -134,7 +134,9 @@ func create_customer(customer):
 	new_customer.get_node("sprite").position = $backwall/exit.rect_position
 	new_customer.connect("buying", self, "_on_buying")
 	new_customer.connect("begin_dialog", self, "_on_dialog")
-	$backwall.add_child(new_customer)
+	animator.play("customer_entered")
+	add_child(new_customer)
+
 
 
 func _on_dialog(cur_speaker, spesific_response=null):
@@ -167,11 +169,6 @@ func _on_blackboard_pressed():
 	$blackboard.show()
 
 
-func _on_x_button_pressed():
-	for node in get_tree().get_nodes_in_group("customers"):
-		node.show()
-
-
 func _process(_delta):
 	if DEBUG:
 		$FPS.text = str(int(Performance.get_monitor(0)))
@@ -193,7 +190,7 @@ func end_day():
 	$Tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
 	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
 	$Tween.start()
-	time_left = 766
+	$Timer.time_left = 766
 	day += 1
 
 
@@ -238,19 +235,24 @@ func _on_Timer_timeout():
 		$Timer.start()
 
 
-func _on_chair_clear(previous_owner):
-	for chair in seats:
-		if chair.being_sat_in == previous_owner:
-			chair.being_sat_in = false
-
-
 func _on_button_toggled(button_pressed):
 	if button_pressed == "Menu":
 		save_to_disk()
 		$SceneTransition.transition({"Direction": "out", "Destination": "Menu"})
+	if button_pressed == "Music":
+		music = $OptionsMenu.Music.pressed
+	if button_pressed == "Sound":
+		sound = $OptionsMenu.Sound.pressed
+	 # whats up future artie. past you is bad at programming so these values are flipped.
+	$MusicPlayer.playing = not music
+	if not sound:
+		$SoundPlayer.volume_db = -5.0
+	else:
+		$SoundPlayer.volume_db = -80.0
 
 
 func _on_burger_pressed():
+	audioholder.play_audio("bookOpen")
 	$blackboard.hide()
 	$Spellbook.hide()
 	$OptionsMenu.slide()

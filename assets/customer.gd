@@ -21,14 +21,19 @@ var exit
 var spot_in_line
 var upset
 var mistakes
-
+var footsteps = []
 
 
 func _ready():
+	for i in range(0, 10):
+		footsteps.append(load("res://audio/sounds/footstep0%d.wav" % i))
 	exit = get_tree().get_nodes_in_group("exit")[0]
 	state = get_child(0)
 	call_deferred("_enter_state")
 
+func footstep():
+	$AudioStreamPlayer.stream = footsteps[randi() % 10]
+	$AudioStreamPlayer.play()
 
 func change_to(new_state):
 	history.append(state.name)
@@ -50,6 +55,8 @@ func _enter_state():
 	state.fsm = self
 	state.enter()
 
+func toggle_sound():
+	pass
 
 func _process(delta):
 	if state.has_method("process"):

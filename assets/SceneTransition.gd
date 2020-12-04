@@ -7,14 +7,14 @@ func transition(trans_type):
 	show()
 	cur_trans = trans_type
 	if trans_type["Direction"] == "out":
-		$Tween.interpolate_property($ColorRect, "color:a", 0, 1, 0.75)
+		$Tween.interpolate_property($CanvasModulate, "color", Color(1.0, 1.0, 1.0), Color(0.0, 0.0, 0.0),  0.75)
 	else:
-		$Tween.interpolate_property($ColorRect, "color:a", 1, 0, 0.6)
+		$Tween.interpolate_property($CanvasModulate, "color", Color(0.0, 0.0, 0.0), Color(1.0, 1.0, 1.0), 0.6)
 	$Tween.start()
 
 
 func _on_Tween_tween_completed(object, _key):
-	if object == $ColorRect:
+	if object == $CanvasModulate:
 		hide()
 		transition_finished()
 

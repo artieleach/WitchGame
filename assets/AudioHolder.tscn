@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://AudioHolder.gd" type="Script" id=1]
+
+[node name="AudioHolder" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BGAudio" type="AudioStreamPlayer" parent="."]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://audio/magic-forest-by-kevin-macleod-from-filmmusic-io.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/Menu.gd" type="Script" id=3]
 [ext_resource path="res://images/witchhat.png" type="Texture" id=4]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=5]
@@ -79,5 +80,12 @@ margin_top = 66.0
 margin_bottom = 90.0
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -0.5
+autoplay = true
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]

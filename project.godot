@@ -25,6 +25,10 @@ config/description="witch game"
 run/main_scene="res://assets/Menu.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://assets/default_bus_layout.tres"
+
 [autoload]
 
 PROGRESS="*res://progress.gd"

@@ -8,7 +8,15 @@ signal button_toggled
 var button_pressed
 
 func _ready():
+	yield(owner, "ready")
 	connect("button_toggled", owner, "_on_button_toggled")
+	Music.pressed = owner.music
+	Sound.pressed = owner.sound
+	for item in [Music, Sound]:
+		if item.pressed:
+			item.modulate = Color("8b93af")
+		else:
+			item.modulate = Color("141013")
 
 
 func _on_Menu_pressed():

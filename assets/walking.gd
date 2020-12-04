@@ -34,6 +34,8 @@ func process(delta):
 
 
 func _on_sprite_frame_changed():
+	if owner.get_node("sprite").frame in [2, 6]:
+			owner.footstep()
 	if destination.rect_position.x + owner.spot_in_line * 10 + dest_pos > owner.get_node("sprite").position.x:
 		owner.get_node("sprite").position.x += frame_add[owner.get_node("sprite").frame]
 	elif destination.rect_position.x + destination.rect_size.x + owner.spot_in_line * 10  + dest_pos < owner.get_node("sprite").position.x:
