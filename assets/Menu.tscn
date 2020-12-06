@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://audio/magic-forest-by-kevin-macleod-from-filmmusic-io.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/Menu.gd" type="Script" id=3]
 [ext_resource path="res://images/witchhat.png" type="Texture" id=4]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/AudioHolder.tscn" type="PackedScene" id=7]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -62,22 +63,26 @@ __meta__ = {
 margin_left = 120.0
 margin_right = 168.0
 margin_bottom = 100.0
+custom_constants/separation = 10
 alignment = 1
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Play" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
-margin_top = 10.0
-margin_bottom = 34.0
+margin_top = 4.0
+margin_right = 48.0
+margin_bottom = 28.0
 
 [node name="Options" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
 margin_top = 38.0
+margin_right = 48.0
 margin_bottom = 62.0
 
 [node name="Credits" parent="CenterContainer/HBoxContainer/Buttons" instance=ExtResource( 6 )]
-margin_top = 66.0
-margin_bottom = 90.0
+margin_top = 72.0
+margin_right = 48.0
+margin_bottom = 96.0
 
 [node name="SceneTransition" parent="." instance=ExtResource( 5 )]
 
@@ -87,5 +92,7 @@ volume_db = -0.5
 autoplay = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioHolder" parent="." instance=ExtResource( 7 )]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/Buttons/Credits" to="." method="_on_Credits_pressed"]

@@ -49,8 +49,9 @@ func slide():
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	if $Book.position.x == -212:
+		get_tree().paused = false
 		hide()
-	
+
 
 
 func _on_OptionsMenu_gui_input(event):

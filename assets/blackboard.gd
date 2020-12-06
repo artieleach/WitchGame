@@ -9,7 +9,6 @@ const offset = Vector2(10, 10)
 const item_height = 15
 
 
-
 func _ready():
 	yield (owner, "ready")
 	var file = File.new()

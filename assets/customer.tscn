@@ -123,5 +123,4 @@ anims/walk = SubResource( 11 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -35.0
-bus = "Footsteps"
 [connection signal="frame_changed" from="sprite" to="walking" method="_on_sprite_frame_changed"]

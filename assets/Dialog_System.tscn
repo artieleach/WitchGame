@@ -71,6 +71,7 @@ font_path = "res://fonts/m5x7.ttf"
 font_data = SubResource( 11 )
 
 [node name="Dialog" type="Control"]
+light_mask = 0
 margin_right = 224.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
@@ -105,8 +106,10 @@ anims/g = SubResource( 10 )
 [node name="SpriteTimer" type="Timer" parent="."]
 
 [node name="SpriteRight" type="Sprite" parent="."]
+light_mask = 0
 
 [node name="Frame" type="ColorRect" parent="."]
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.133333, 0.109804, 0.101961, 1 )

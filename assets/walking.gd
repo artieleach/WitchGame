@@ -6,6 +6,7 @@ var destination
 var dest_pos = 0
 const frame_add = {0:1, 1:1, 2:2, 3:2, 4:0, 5:1, 6:2, 7:1}
 
+
 func enter():
 	destination = owner.target
 	if owner.has_item:

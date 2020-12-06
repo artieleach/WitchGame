@@ -1,0 +1,67 @@
+{
+    "Berries": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "20d6c7",
+    "features": [-1, -1, -1,  1]
+  },
+  "Conch": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "328464",
+    "features": [-1, -1,  1, -1]
+  },
+  "Feather": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "333941",
+    "features": [-1, -1,  1,  1]
+  },
+  "Herbs": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "24523b",
+    "features": [-1,  1, -1, -1]
+  },
+  "Mushroom": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8e5252",
+    "features": [-1,  1, -1,  1]
+  },
+  "Shell": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "8b93af",
+    "features": [-1,  1,  1, -1]
+  },
+  "Clover": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [-1,  1,  1,  1]
+  },
+  "Flower": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1, -1, -1, -1]
+  },
+  "Roots": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1, -1, -1,  1]
+  },
+  "Dandy": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1, -1,  1, -1]
+  },
+  "Honeycomb": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1, -1,  1,  1]
+  },
+  "Branch": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1,  1, -1, -1]
+  },
+  "Beetle": {
+    "description": "Rejuvenates ones inner such and such and so on",
+    "color": "59c135",
+    "features": [ 1,  1, -1,  1]
+  },
+}

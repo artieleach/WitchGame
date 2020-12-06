@@ -3,6 +3,7 @@ extends TextureButton
 onready var ingredient_sprite = get_node("drawing/ingredient_sprite")
 onready var label = get_node("drawing/Label")
 onready var helpers = get_node("drawing/helpers")
+
 var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
 var will_open_help: bool = false
@@ -22,6 +23,7 @@ func _ready():
 	connect("added_to_potion", owner, "_on_add_to_potion", [self])
 	connect("check_effects", owner, "_on_check_effects", [self])
 	ingredient_sprite.texture = load("res://images/ingredients/%s.png" % name)
+	ingredient_sprite.normal_map = load("res://images/ingredients/%s_NM.png" % name)
 	label.text = name
 	rect_size = ingredient_sprite.texture.get_size()
 	label.margin_right = ingredient_sprite.texture.get_width()

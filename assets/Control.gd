@@ -35,10 +35,11 @@ func _ready():
 	if DEBUG:
 		$FPS.show()
 	randomize()
-	potion_ingredients = get_json('res://dialog/Potions.json')
+	potion_ingredients = get_json('res://assets/ingredient_data.json')
 	start_day()
 	emit_signal("ready")
 	$Timer.wait_time = time_left
+	audioholder.update_volume()
 	audioholder.play_audio("bubbles", 1)
 
 
@@ -123,6 +124,8 @@ func set_indicators():
 
 func create_customer(customer):
 	var new_customer = Customer.instance()
+	add_child(new_customer)
+	new_customer.set_owner(self)
 	customer_line += [new_customer]
 	new_customer.name = customer
 	new_customer.add_to_group("customers")
@@ -135,8 +138,6 @@ func create_customer(customer):
 	new_customer.connect("buying", self, "_on_buying")
 	new_customer.connect("begin_dialog", self, "_on_dialog")
 	animator.play("customer_entered")
-	add_child(new_customer)
-
 
 
 func _on_dialog(cur_speaker, spesific_response=null):
@@ -243,19 +244,17 @@ func _on_button_toggled(button_pressed):
 		music = $OptionsMenu.Music.pressed
 	if button_pressed == "Sound":
 		sound = $OptionsMenu.Sound.pressed
+	audioholder.update_volume()
 	 # whats up future artie. past you is bad at programming so these values are flipped.
-	$MusicPlayer.playing = not music
-	if not sound:
-		$SoundPlayer.volume_db = -5.0
-	else:
-		$SoundPlayer.volume_db = -80.0
+
 
 
 func _on_burger_pressed():
-	audioholder.play_audio("bookOpen")
+	audioholder.play_audio("bookFlip2")
 	$blackboard.hide()
 	$Spellbook.hide()
 	$OptionsMenu.slide()
+	get_tree().paused = true
 
 
 func _on_next_customer_timer_timeout():

@@ -6,7 +6,7 @@ var distance = 0
 var counter
 var counter_size
 var grabbed = false
-const scroll_factor = 5
+const scroll_factor = 10
 
 
 func _ready():
@@ -24,8 +24,7 @@ func _ready():
 func _process(_delta):
 	if last_checked != moving:
 		distance = moving - last_checked
-		if counter.rect_position.x > - distance - counter_size + rect_size.x and counter.rect_position.x < - distance:
-			counter.rect_position.x += distance
+		counter.rect_position.x = clamp(counter.rect_position.x + distance, -distance - counter_size + rect_size.x, 0)
 		last_checked = moving
 		owner.scroll_offset = counter.rect_position
 

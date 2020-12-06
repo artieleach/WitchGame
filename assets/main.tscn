@@ -120,7 +120,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ "splash", 0 ],
+"args": [ "splash", -10 ],
 "method": "play_audio"
 }, {
 "args": [ "poof", 0 ],
@@ -197,6 +197,7 @@ margin_top = 4.0
 margin_right = 148.0
 margin_bottom = 21.0
 texture = ExtResource( 28 )
+flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -281,10 +282,10 @@ __meta__ = {
 [node name="frontcounter" type="TextureRect" parent="backwall" groups=[
 "perspective",
 ]]
-margin_left = 105.0
-margin_top = 30.0
-margin_right = 182.0
-margin_bottom = 39.0
+margin_left = 112.0
+margin_top = 29.0
+margin_right = 189.0
+margin_bottom = 38.0
 texture = ExtResource( 3 )
 flip_h = true
 __meta__ = {
@@ -448,93 +449,93 @@ __meta__ = {
 }
 
 [node name="Berries" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 142.0
-margin_top = 16.0
-margin_right = 163.0
-margin_bottom = 41.0
+margin_left = 2.0
+margin_top = 15.0
+margin_right = 23.0
+margin_bottom = 35.0
 texture_normal = ExtResource( 14 )
 
 [node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 113.0
-margin_top = 14.0
-margin_right = 141.0
-margin_bottom = 39.0
+margin_left = 25.0
+margin_top = 12.0
+margin_right = 53.0
+margin_bottom = 35.0
 texture_normal = ExtResource( 44 )
 
 [node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 85.0
+margin_left = 56.0
 margin_top = 10.0
-margin_right = 112.0
+margin_right = 83.0
 margin_bottom = 37.0
 texture_normal = ExtResource( 42 )
 
 [node name="Herbs" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 45.0
-margin_top = 14.0
-margin_right = 60.0
-margin_bottom = 39.0
+margin_left = 88.0
+margin_top = 13.0
+margin_right = 103.0
+margin_bottom = 37.0
 texture_normal = ExtResource( 38 )
 
 [node name="Mushroom" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 26.0
-margin_top = 15.0
-margin_right = 43.0
-margin_bottom = 40.0
+margin_left = 105.0
+margin_top = 14.0
+margin_right = 122.0
+margin_bottom = 37.0
 texture_normal = ExtResource( 43 )
 
 [node name="Shell" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 236.0
-margin_top = 24.0
-margin_right = 266.0
-margin_bottom = 38.0
+margin_left = 124.0
+margin_top = 22.0
+margin_right = 154.0
+margin_bottom = 36.0
 texture_normal = ExtResource( 37 )
 
 [node name="Clover" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 193.0
+margin_left = 158.0
 margin_top = 16.0
-margin_right = 208.0
+margin_right = 173.0
 margin_bottom = 36.0
 texture_normal = ExtResource( 41 )
 
 [node name="Flower" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 266.0
-margin_top = 12.0
-margin_right = 287.0
+margin_left = 176.0
+margin_top = 13.0
+margin_right = 197.0
 margin_bottom = 37.0
 texture_normal = ExtResource( 45 )
 
 [node name="Roots" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 63.0
-margin_top = 15.0
-margin_right = 84.0
-margin_bottom = 40.0
+margin_left = 200.0
+margin_top = 14.0
+margin_right = 221.0
+margin_bottom = 36.0
 texture_normal = ExtResource( 39 )
 
 [node name="Dandy" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 290.0
-margin_top = 10.0
-margin_right = 311.0
-margin_bottom = 36.0
+margin_left = 224.0
+margin_top = 13.0
+margin_right = 245.0
+margin_bottom = 39.0
 texture_normal = ExtResource( 36 )
 
 [node name="Honeycomb" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 165.0
+margin_left = 252.0
 margin_top = 15.0
-margin_right = 187.0
-margin_bottom = 40.0
+margin_right = 274.0
+margin_bottom = 36.0
 texture_normal = ExtResource( 22 )
 
 [node name="Branch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 213.0
+margin_left = 278.0
 margin_top = 15.0
-margin_right = 235.0
-margin_bottom = 39.0
+margin_right = 300.0
+margin_bottom = 37.0
 texture_normal = ExtResource( 15 )
 
 [node name="Beetle" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 3.0
+margin_left = 303.0
 margin_top = 14.0
-margin_right = 18.0
+margin_right = 327.0
 margin_bottom = 39.0
 texture_normal = ExtResource( 40 )
 
@@ -617,6 +618,7 @@ __meta__ = {
 visible = false
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
 
 [node name="end_of_day" type="ColorRect" parent="."]
 visible = false

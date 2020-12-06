@@ -42,6 +42,7 @@ __meta__ = {
 }
 
 [node name="cauldron_large" type="ColorRect" parent="."]
+light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0705882, 0.12549, 0.12549, 1 )
@@ -65,6 +66,7 @@ initial_velocity = 42.0
 color = Color( 0.137255, 0.403922, 0.305882, 1 )
 
 [node name="cauldron_liquid_mask" type="Sprite" parent="."]
+light_mask = 2
 position = Vector2( 31, 21 )
 texture = ExtResource( 12 )
 __meta__ = {
@@ -72,6 +74,7 @@ __meta__ = {
 }
 
 [node name="cauldron_particle_mask" type="Sprite" parent="."]
+light_mask = 2
 position = Vector2( 31, 21 )
 texture = ExtResource( 4 )
 __meta__ = {
@@ -98,7 +101,7 @@ color = Color( 0.137255, 0.403922, 0.305882, 1 )
 
 [node name="bubble_particles" type="CPUParticles2D" parent="."]
 material = SubResource( 2 )
-position = Vector2( 31, 32 )
+position = Vector2( 32, 32 )
 amount = 1
 lifetime = 5.0
 fract_delta = false
@@ -204,6 +207,7 @@ __meta__ = {
 position = Vector2( 0, -8 )
 
 [node name="sprite_mask" type="Sprite" parent="."]
+light_mask = 2
 position = Vector2( 31, 21 )
 z_index = 2
 texture = ExtResource( 4 )
