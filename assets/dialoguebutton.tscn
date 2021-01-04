@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
+
+[node name="dialoguebutton" type="TextureButton" groups=[
+"button",
+]]
+margin_right = 73.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 50, 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 29.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 1 )
+text = "asdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}

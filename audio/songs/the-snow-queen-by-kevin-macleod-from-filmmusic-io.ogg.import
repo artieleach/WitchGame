@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/the-snow-queen-by-kevin-macleod-from-filmmusic-io.ogg-ed4403eeb6ad9e82829794c2052e71e9.oggstr"
+
+[deps]
+
+source_file="res://audio/songs/the-snow-queen-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/the-snow-queen-by-kevin-macleod-from-filmmusic-io.ogg-ed4403eeb6ad9e82829794c2052e71e9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

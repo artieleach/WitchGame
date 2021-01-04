@@ -1,7 +1,7 @@
 extends Control
 
 export (PackedScene) var Label
-
+onready var blackboard : Node = $bg_fixer/blackboard_texture
 var num_of_items = 0
 var num_of_children = 0
 var drinks
@@ -10,7 +10,7 @@ const item_height = 15
 
 
 func _ready():
-	yield (owner, "ready")
+	#yield (owner, "ready")
 	var file = File.new()
 	file.open('res://dialog/drinks.json', file.READ)
 	var json = file.get_as_text()
@@ -22,13 +22,13 @@ func _ready():
 
 func generate_item(menu_item):
 	var menu_item_label = Label.instance()
-	$blackboard_texture.add_child(menu_item_label)
+	blackboard.add_child(menu_item_label)
 	menu_item_label.rect_position = Vector2(offset.x, num_of_items * offset.y + offset.y)
 	menu_item_label.bbcode_text = '[color=%s][url=%s]%s[/url][/color]' % [drinks[menu_item]["color"], menu_item, menu_item]
 	menu_item_label.rect_size = Vector2(100, 12)
 	menu_item_label.name = menu_item
 	menu_item_label.add_to_group("donothide")
-	menu_item_label.connect("clicked_innit", self, "_on_button_pressed")
+	menu_item_label.connect("meta_clicked", self, "_on_button_pressed")
 	menu_item_label.mouse_filter = MOUSE_FILTER_STOP
 	num_of_items += 1
 	num_of_children = 0
@@ -62,3 +62,5 @@ func _on_button_pressed(meta):
 func _on_x_button_pressed():
 	hide()
 
+func _on_bg_pressed():
+	hide()

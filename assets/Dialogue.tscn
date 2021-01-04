@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/dialogue_tree/scripts/dialogue.gd" type="Script" id=1]
+[ext_resource path="res://assets/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/dialogue_tree/resource/dialogue_tree.gd" type="Script" id=4]
+[ext_resource path="res://addons/dialogue_tree/assets/ResIcon.png" type="Texture" id=5]
+[ext_resource path="res://assets/dialoguebutton.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 5 )
+}
+connections = [ {
+"from": "StartNode",
+"from_port": 0,
+"to": "BasicDialogue",
+"to_port": 0
+}, {
+"from": "BasicDialogue",
+"from_port": 0,
+"to": "ChoiceDialogue",
+"to_port": 0
+} ]
+Nodes = [ {
+"filename": "res://addons/dialogue_tree/scenes/EndNode.tscn",
+"name": "EndNode",
+"rect_size_x": 141.0,
+"rect_size_y": 96.75,
+"rect_x": 2460.0,
+"rect_y": 414.0
+}, {
+"filename": "res://addons/dialogue_tree/scenes/StartNode.tscn",
+"name": "StartNode",
+"rect_size_x": 152.0,
+"rect_size_y": 96.75,
+"rect_x": 200.0,
+"rect_y": 334.0
+}, {
+"Actor": "test",
+"Dialogue": "test",
+"RefName": "",
+"filename": "res://addons/dialogue_tree/scenes/BasicDialogue.tscn",
+"name": "BasicDialogue",
+"rect_size_x": 294.0,
+"rect_size_y": 195.75,
+"rect_x": 0.0,
+"rect_y": 0.0
+}, {
+"Conditonal": false,
+"RefName": "",
+"choices": [ {
+"Conditional": "",
+"Dialogue": "[What can I do for you today?]",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "[Have you been to many towns?]",
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "[Symbiosis?]",
+"ToolTip": ""
+} ],
+"filename": "res://addons/dialogue_tree/scenes/ChoiceDialogue.tscn",
+"name": "ChoiceDialogue",
+"rect_size_x": 367.0,
+"rect_size_y": 289.75,
+"rect_x": 0.0,
+"rect_y": 0.0
+} ]
+DialogueTree = {
+"dialogue": [ {
+"Actor": "test",
+"Dialogue": "test",
+"NodeName": "BasicDialogue",
+"Ref": "",
+"next": 1
+}, {
+"Choices": [ {
+"Conditional": "",
+"Dialogue": "[What can I do for you today?]",
+"PassCondition": true,
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "[Have you been to many towns?]",
+"PassCondition": true,
+"ToolTip": ""
+}, {
+"Conditional": "",
+"Dialogue": "[Symbiosis?]",
+"PassCondition": true,
+"ToolTip": ""
+} ],
+"Conditonal": false,
+"NodeName": "ChoiceDialogue",
+"Ref": ""
+} ],
+"start_index": 0
+}
+
+[node name="DialogueHolder" type="Control"]
+margin_right = 224.0
+margin_bottom = 126.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Node" parent="."]
+script = ExtResource( 1 )
+DialogueResource = SubResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 78.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="choice_holder" type="VBoxContainer" parent="."]
+margin_top = 74.0
+margin_right = 225.0
+margin_bottom = 126.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="0" parent="choice_holder" instance=ExtResource( 6 )]
+margin_right = 225.0
+
+[node name="1" parent="choice_holder" instance=ExtResource( 6 )]
+margin_top = 14.0
+margin_right = 225.0
+margin_bottom = 24.0
+
+[node name="2" parent="choice_holder" instance=ExtResource( 6 )]
+margin_top = 28.0
+margin_right = 225.0
+margin_bottom = 38.0
+
+[node name="3" parent="choice_holder" instance=ExtResource( 6 )]
+margin_top = 42.0
+margin_right = 225.0
+margin_bottom = 52.0
+[connection signal="gui_input" from="." to="." method="_on_DialogueHolder_gui_input"]
+[connection signal="Choice_Next" from="Dialogue" to="." method="_on_Dialogue_Choice_Next"]
+[connection signal="Dialogue_Next" from="Dialogue" to="." method="_on_Dialogue_Dialogue_Next"]

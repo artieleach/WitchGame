@@ -24,7 +24,7 @@ func _ready():
 func _process(_delta):
 	if last_checked != moving:
 		distance = moving - last_checked
-		counter.rect_position.x = clamp(counter.rect_position.x + distance, -distance - counter_size + rect_size.x, 0)
+		counter.rect_position.x = clamp(counter.rect_position.x + distance, - counter_size + rect_size.x, 0)
 		last_checked = moving
 		owner.scroll_offset = counter.rect_position
 

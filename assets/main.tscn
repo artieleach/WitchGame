@@ -1,10 +1,10 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=52 format=2]
 
-[ext_resource path="res://images/table.png" type="Texture" id=1]
+[ext_resource path="res://images/fireplace.png" type="Texture" id=1]
 [ext_resource path="res://images/counter_bg.png" type="Texture" id=2]
 [ext_resource path="res://images/front_counter.png" type="Texture" id=3]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/AudioHolder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/barrelthing.png" type="Texture" id=5]
 [ext_resource path="res://images/kettle.png" type="Texture" id=6]
 [ext_resource path="res://assets/Dialog_System.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/back_counter.png" type="Texture" id=8]
@@ -12,7 +12,6 @@
 [ext_resource path="res://images/coffee_display.png" type="Texture" id=10]
 [ext_resource path="res://images/register.png" type="Texture" id=11]
 [ext_resource path="res://assets/OptionsMenu.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/chair.tscn" type="PackedScene" id=13]
 [ext_resource path="res://images/ingredients/Berries.png" type="Texture" id=14]
 [ext_resource path="res://images/ingredients/Branch.png" type="Texture" id=15]
 [ext_resource path="res://images/shelf.png" type="Texture" id=16]
@@ -35,7 +34,7 @@
 [ext_resource path="res://assets/scrolling_window.tscn" type="PackedScene" id=34]
 [ext_resource path="res://images/panrack.png" type="Texture" id=35]
 [ext_resource path="res://images/ingredients/Dandy.png" type="Texture" id=36]
-[ext_resource path="res://images/ingredients/Shell.png" type="Texture" id=37]
+[ext_resource path="res://images/ingredients/Silver Shell.png" type="Texture" id=37]
 [ext_resource path="res://images/ingredients/Herbs.png" type="Texture" id=38]
 [ext_resource path="res://images/ingredients/Roots.png" type="Texture" id=39]
 [ext_resource path="res://images/ingredients/Beetle.png" type="Texture" id=40]
@@ -91,40 +90,40 @@ font_data = SubResource( 3 )
 resource_name = "customer_entered"
 length = 1.4
 tracks/0/type = "method"
-tracks/0/path = NodePath("AudioHolder")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.3 ),
+"times": PoolRealArray( 0.1, 1.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ "door_open", 0 ],
-"method": "play_audio"
+"args": [ "door_open", null ],
+"method": "audio_passer"
 }, {
-"args": [ "door_close", 0 ],
-"method": "play_audio"
+"args": [ "door_close", null ],
+"method": "audio_passer"
 } ]
 }
 
 [sub_resource type="Animation" id=6]
 resource_name = "potion_splash"
 tracks/0/type = "method"
-tracks/0/path = NodePath("AudioHolder")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ "splash", -10 ],
-"method": "play_audio"
+"args": [ "splash", null ],
+"method": "audio_passer"
 }, {
-"args": [ "poof", 0 ],
-"method": "play_audio"
+"args": [ "poof", null ],
+"method": "audio_passer"
 } ]
 }
 
@@ -137,11 +136,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 Customer = ExtResource( 17 )
-Ingredient = ExtResource( 49 )
 
 [node name="bg_color" type="ColorRect" parent="."]
-margin_right = 224.0
-margin_bottom = 126.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -156,15 +154,14 @@ margin_bottom = 41.0
 rect_clip_content = true
 texture = ExtResource( 19 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="panrack" type="TextureRect" parent="backwall"]
-margin_left = 97.0
-margin_top = 8.0
-margin_right = 119.0
-margin_bottom = 18.0
+margin_left = 146.0
+margin_top = 4.0
+margin_right = 168.0
+margin_bottom = 14.0
 texture = ExtResource( 35 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -180,10 +177,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="shelf" type="TextureRect" parent="backwall"]
-margin_left = 36.0
+[node name="jar_cabinet" type="TextureRect" parent="backwall"]
+margin_left = 115.0
+margin_top = 3.0
+margin_right = 137.0
+margin_bottom = 20.0
+texture = ExtResource( 28 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fireplace" type="TextureRect" parent="backwall"]
+margin_left = 93.0
+margin_top = -2.0
+margin_right = 113.0
+margin_bottom = 38.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blackboard" type="TextureButton" parent="backwall"]
+visible = false
+margin_left = 154.0
+margin_top = 7.0
+margin_right = 186.0
+margin_bottom = 25.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bookcase" type="TextureRect" parent="backwall"]
+margin_left = 72.0
 margin_top = 2.0
-margin_right = 74.0
+margin_right = 92.0
+margin_bottom = 38.0
+texture = ExtResource( 31 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shelf" type="TextureRect" parent="backwall"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 72.0
 margin_bottom = 17.0
 texture = ExtResource( 16 )
 flip_h = true
@@ -191,21 +232,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="jar_cabinet" type="TextureRect" parent="backwall"]
-margin_left = 126.0
-margin_top = 4.0
-margin_right = 148.0
-margin_bottom = 21.0
-texture = ExtResource( 28 )
-flip_h = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="small_calinet" type="TextureRect" parent="backwall"]
-margin_left = 33.0
+margin_left = 32.0
 margin_top = 15.0
-margin_right = 76.0
+margin_right = 75.0
 margin_bottom = 28.0
 texture = ExtResource( 30 )
 flip_h = true
@@ -219,40 +249,6 @@ margin_top = 4.0
 margin_right = 33.0
 margin_bottom = 38.0
 texture = ExtResource( 29 )
-flip_h = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="backcounter" type="TextureRect" parent="backwall"]
-margin_left = 94.0
-margin_top = 28.0
-margin_right = 183.0
-margin_bottom = 38.0
-texture = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="blackboard" type="TextureButton" parent="backwall"]
-margin_left = 154.0
-margin_top = 7.0
-margin_right = 186.0
-margin_bottom = 25.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 23 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="bookcase" type="TextureRect" parent="backwall"]
-margin_left = 75.0
-margin_top = 2.0
-margin_right = 95.0
-margin_bottom = 38.0
-texture = ExtResource( 31 )
 flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -282,9 +278,9 @@ __meta__ = {
 [node name="frontcounter" type="TextureRect" parent="backwall" groups=[
 "perspective",
 ]]
-margin_left = 112.0
+margin_left = 110.0
 margin_top = 29.0
-margin_right = 189.0
+margin_right = 187.0
 margin_bottom = 38.0
 texture = ExtResource( 3 )
 flip_h = true
@@ -297,84 +293,10 @@ __meta__ = {
 "perspective",
 ]]
 margin_left = 137.0
-margin_top = 25.0
+margin_top = 24.0
 margin_right = 150.0
-margin_bottom = 38.0
+margin_bottom = 37.0
 texture = ExtResource( 10 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="chair" parent="backwall" groups=[
-"perspective",
-"seats",
-] instance=ExtResource( 13 )]
-visible = false
-margin_left = 126.0
-margin_top = 26.0
-margin_right = 137.0
-margin_bottom = 39.0
-stretch_mode = 4
-flip_h = false
-
-[node name="chair2" parent="backwall" groups=[
-"perspective",
-"seats",
-] instance=ExtResource( 13 )]
-visible = false
-margin_left = 163.0
-margin_top = 26.0
-margin_right = 174.0
-margin_bottom = 39.0
-stretch_mode = 4
-flip_h = false
-
-[node name="chair4" parent="backwall" groups=[
-"perspective",
-"seats",
-] instance=ExtResource( 13 )]
-visible = false
-margin_left = 181.0
-margin_top = 26.0
-margin_right = 192.0
-margin_bottom = 39.0
-stretch_mode = 4
-
-[node name="chair3" parent="backwall" groups=[
-"perspective",
-"seats",
-] instance=ExtResource( 13 )]
-visible = false
-margin_left = 147.0
-margin_top = 26.0
-margin_right = 158.0
-margin_bottom = 39.0
-stretch_mode = 4
-
-[node name="table" type="TextureRect" parent="backwall" groups=[
-"perspective",
-]]
-visible = false
-margin_left = 137.0
-margin_top = 29.0
-margin_right = 147.0
-margin_bottom = 39.0
-texture = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="table2" type="TextureRect" parent="backwall" groups=[
-"perspective",
-]]
-visible = false
-margin_left = 172.0
-margin_top = 29.0
-margin_right = 182.0
-margin_bottom = 39.0
-texture = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -408,11 +330,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="backcounter" type="TextureRect" parent="backwall"]
+margin_left = -79.0
+margin_top = 28.0
+margin_right = 10.0
+margin_bottom = 38.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="kettle" type="TextureRect" parent="backwall"]
-margin_left = 103.0
-margin_top = 20.0
-margin_right = 111.0
-margin_bottom = 28.0
+margin_left = 123.0
+margin_top = 21.0
+margin_right = 131.0
+margin_bottom = 29.0
 texture = ExtResource( 6 )
 flip_h = true
 __meta__ = {
@@ -483,7 +415,7 @@ margin_right = 122.0
 margin_bottom = 37.0
 texture_normal = ExtResource( 43 )
 
-[node name="Shell" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+[node name="Silver Shell" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
 margin_left = 124.0
 margin_top = 22.0
 margin_right = 154.0
@@ -555,53 +487,14 @@ margin_right = 222.0
 
 [node name="blackboard" parent="." instance=ExtResource( 24 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -223.0
 margin_bottom = -125.0
 
-[node name="sound_holder" type="Control" parent="."]
-margin_left = 14.0
-margin_top = 2.0
-margin_right = 14.0
-margin_bottom = 2.0
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="sound" type="TextureButton" parent="sound_holder"]
-toggle_mode = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="music" type="TextureButton" parent="sound_holder"]
-margin_left = 46.0
-margin_top = 1.0
-margin_right = 54.0
-margin_bottom = 9.0
-toggle_mode = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Dialog" parent="." instance=ExtResource( 7 )]
-margin_left = 1.0
 margin_top = 85.0
-margin_right = 223.0
-margin_bottom = 125.0
-
-[node name="advance_dialog" type="TextureButton" parent="Dialog"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+margin_bottom = 85.058
 
 [node name="FPS" type="Label" parent="."]
 margin_left = 10.0
@@ -652,13 +545,12 @@ wait_time = 766.0
 anims/customer_entered = SubResource( 5 )
 anims/potion_splash = SubResource( 6 )
 
-[node name="AudioHolder" parent="." instance=ExtResource( 5 )]
+[node name="barrelthing" type="Sprite" parent="."]
+position = Vector2( 249, 31 )
+texture = ExtResource( 5 )
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="burger" to="." method="_on_burger_pressed"]
-[connection signal="toggled" from="sound_holder/sound" to="." method="_on_sound_toggled"]
-[connection signal="toggled" from="sound_holder/music" to="." method="_on_music_toggled"]
-[connection signal="pressed" from="Dialog/advance_dialog" to="." method="_on_advance_dialog_pressed"]
 [connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="next_customer_timer" to="." method="_on_next_customer_timer_timeout"]

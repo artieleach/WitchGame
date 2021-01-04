@@ -6,23 +6,40 @@
 [ext_resource path="res://images/GUI/x_button.png" type="Texture" id=4]
 
 [node name="blackboard" type="Control"]
-margin_right = 224.0
-margin_bottom = 126.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 Label = ExtResource( 3 )
 
-[node name="blackboard_texture" type="Sprite" parent="." groups=[
-"donothide",
-]]
-position = Vector2( 9, 6 )
-z_index = 4
+[node name="bg" type="TextureButton" parent="."]
+margin_right = 224.0
+margin_bottom = 126.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg_fixer" type="Sprite" parent="."]
+position = Vector2( 9, 4 )
+z_index = 5
 texture = ExtResource( 1 )
 centered = false
 
-[node name="x_button" type="TextureButton" parent="blackboard_texture" groups=[
+[node name="blackboard_texture" type="TextureRect" parent="bg_fixer" groups=[
+"donothide",
+]]
+margin_right = 206.0
+margin_bottom = 115.0
+mouse_filter = 0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x_button" type="TextureButton" parent="bg_fixer/blackboard_texture" groups=[
 "donothide",
 ]]
 margin_left = 195.0
@@ -34,4 +51,5 @@ texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="blackboard_texture/x_button" to="." method="_on_x_button_pressed"]
+[connection signal="pressed" from="bg" to="." method="_on_bg_pressed"]
+[connection signal="pressed" from="bg_fixer/blackboard_texture/x_button" to="." method="_on_x_button_pressed"]

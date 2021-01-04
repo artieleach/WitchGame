@@ -35,6 +35,8 @@ default_bus_layout="res://assets/default_bus_layout.tres"
 [autoload]
 
 PROGRESS="*res://progress.gd"
+GlobalVars="*res://assets/GlobalVars.gd"
+AudioHolder="*res://assets/AudioHolder.tscn"
 
 [debug]
 
@@ -51,6 +53,10 @@ window/size/test_height=1080
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "dialogue_tree" )
 
 [importer_defaults]
 

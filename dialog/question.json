@@ -1,12 +1,9 @@
 {
   "first": {
-  	"avatar": "Mialeah/mialeah_default.png",
-    "position": "left",
-    "animation_in": "move_in",
-    "animation_out": "off",
-    "type": "text",
-    "content": "Hello.| This dialogue has a [b]question[/b]. Use the [b]'up'[/b] and [b]'down'[/b] arrow keys to select a choice and then press the Continue button.",
-    "next": "question_block"
+    "type": "question",
+    "text": "",
+    "options": ["Test 1", "Option 2", "Option 3"],
+    "next": ["chose_option_1", "chose_option_2", "chose_option_3"]
   },
   "repeat": {
     "type": "text",
@@ -16,7 +13,7 @@
   },
   "question_block": {
     "type": "question",
-    "text": "What is your favorite option?| \nThis is not a silly question|| ...I guess.",
+    "text": "",
     "options": ["Test 1", "Option 2", "Option 3"],
     "next": ["chose_option_1", "chose_option_2", "chose_option_3"]
   },

@@ -2,19 +2,18 @@ extends Control
 
 var cur_trans: Dictionary = {"Direction": "in", "Destination": "game"}
 
-
 func transition(trans_type):
 	show()
 	cur_trans = trans_type
 	if trans_type["Direction"] == "out":
-		$Tween.interpolate_property($CanvasModulate, "color", Color(1.0, 1.0, 1.0), Color(0.0, 0.0, 0.0),  0.75)
+		$Tween.interpolate_property($fader, "modulate:a", 0.0, 1.0, 0.75)
 	else:
-		$Tween.interpolate_property($CanvasModulate, "color", Color(0.0, 0.0, 0.0), Color(1.0, 1.0, 1.0), 0.6)
+		$Tween.interpolate_property($fader, "modulate:a", 1.0, 0.0, 0.6)
 	$Tween.start()
 
 
 func _on_Tween_tween_completed(object, _key):
-	if object == $CanvasModulate:
+	if object == $fader:
 		hide()
 		transition_finished()
 
@@ -27,4 +26,6 @@ func transition_finished():
 			get_tree().change_scene("res://assets/credits.tscn")
 		elif cur_trans["Destination"] == "Menu":
 			get_tree().change_scene("res://assets/Menu.tscn")
-
+		elif cur_trans["Destination"] == "Options":
+			#get_tree().change_scene("res://assets/Menu.tscn")
+			pass

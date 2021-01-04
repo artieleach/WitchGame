@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thatched-villagers-by-kevin-macleod-from-filmmusic-io.ogg-86615ba3eb6168fed741ea4ed81cd061.oggstr"
+
+[deps]
+
+source_file="res://audio/songs/thatched-villagers-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/thatched-villagers-by-kevin-macleod-from-filmmusic-io.ogg-86615ba3eb6168fed741ea4ed81cd061.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

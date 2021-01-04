@@ -1,0 +1,65 @@
+Liza
+I'm tired of feeling SMALL, so SMALL, you know? I'm not NOTHING, but I'm also not quite ENOUGH.
+[do you mean small literally?]
+Well YES but, I don't mind being little, I want everyone to be my size, I don't want to get any bigger.
+[when do you feel large?]
+    Couple of moons ago, I told a real banger of a joke, and they all laughed and laughed, everyone thought I was real hot stuff.
+    [Where are your friends now?]
+        I don't see em much. They keep looking me over, I guess. Like I said, I'm too small.
+    [Did you think your joke was funny?]
+        Everyone laughed, didn't they?
+        [So what really mattered, the joke or the laughter?]
+            The laughter, I guess.
+            [But you weren't laughing]
+                Yeah, well, it didn't matter then, why should it matter now?
+                
+    [Why did that make you feel large?]
+        I didn't feel large, I was large. 
+[lemme whip something up for you]
+
+possible potions:
+    potion of laughter
+    potion of increase size
+    potion of telekinesis
+
+
+
+Sam
+A conman planning on robbing the town. hell come in every day until you have to decide in the end to help him or not
+Ah, the town witch! Every town has a witch and every witch has a town. Love the symbiosis in that.
+[What can I do for you today?]
+    I just rolled into your fine little neck of the woods. It's charming here, charming! But I gotta couple of questions. Think you can clear some confusion in this head of mine?
+    [How may I be of service?]
+        Thats's a friend. Well I wanted to know why your town felt the way it did. Like There's something not quite right about it. Any ideas?
+        [What makes you say that?]
+            
+        [Have you not noticed something similiar in other towns?]
+            
+        [Why must that fall on the town?]
+            Ain't that a trick? You view this town as a collective, as a single being, and one that you're not part of. 
+            [Do you need something from me?]
+    [I don't sell information, I sell potions.]
+        Of course, of course! My apologies. Then I've got a real pill for you, but I'm sure you're up to it. I 
+[Have you been to many towns?]
+    I've been here and there. Been around enough to make my way, where ever I go.
+[Symbiosis?]
+    Yeah, yeah! Let's say you're a mayor and your town's got problems, real problems. What do you do?
+    [Talk to my advisors]  # all of these need to be exhausted before the next optio appears
+        Very astute! Have you always been a witch? Alright you talk to them, and there's no hope. What now?
+    [Cure the problems at their source]  # all of these need to be exhausted before the next optio appears
+        Strongheaded, I could tell as soon as I walked in that I would like you. But these problems aren't the kind you can sweep under the rug, no matter how magic the broom is.
+    [Unify my residents against the threat]  # all of these need to be exhausted before the next optio appears
+        A born leader, through and through. But what are you gonna do when the problem is bigger than your rinkydink town?
+    [I see there's no course to victory. What now?]  # only appears once the previous options were chosen.
+        You know when to cut your losses, another thing we have in common. Well you need a scape goat.
+        [I see, and the townwitch is the perfect scapegoat, of course.]
+            You said it, not me.
+            [That seems more predatorial than symbiotic]
+                Your tongue is as golden as your appearance. But think of your life before you had a town. What did you do to get by?
+                [That's none of your business.]
+                    Ah, cmon, we're friends now! Thick as thieves. But fine, I'll relent. Anyway symbiosis doesn't always last, sometime's it's just a year, a month, a...
+                [I've played enough of your games, do you need my help or not?]
+                    I do need your help, I got a real thorn in my side.
+                [I did the same that any of us would do.]
+                    Wouldn't expect any less from one of your type. So precise. Like I said, one town, one witch. Always, always.
+

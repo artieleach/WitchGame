@@ -1,46 +1,61 @@
 extends Control
 
 export (PackedScene) var Customer
-export (PackedScene) var Ingredient
 
 const potion_vars = ['A', 'B', 'C', 'D']
-const DEBUG = true
+const DEBUG = false
+
+onready var audioholder = get_node("/root/AudioHolder")
+onready var globals = get_node("/root/GlobalVars")
 
 onready var dialog = get_node("Dialog")
 onready var counter = get_node("Scrolling_Window/counter")
 onready var cauldron = get_node("Scrolling_Window/Cauldron")
 onready var spellbook = get_node("Spellbook")
 onready var animator = get_node("AnimationPlayer")
-onready var audioholder = get_node("AudioHolder")
+onready var backwall = get_node("backwall")
+
+signal reset_ingredients
 
 var customer_line = []
 var speaker
 var someone_bought_something
 var customers
 var scheduled_customers = []
-var sound: bool = true
-var music: bool = true
 var day: int = 1
 var potion_ingredients
 var scroll_offset: Vector2 = Vector2(0, 0)
 var can_drop_potions: bool = false
-var current_potion_state = [1, 1, 1, 1]
 var paused: bool = false
 var time_left: int = 0
-
+var ingredients
 
 func _ready():
-	load_game()
+	globals.load_game()
 	$SceneTransition.transition({"Direction": "in", "Destination": "Game"})
 	if DEBUG:
 		$FPS.show()
 	randomize()
 	potion_ingredients = get_json('res://assets/ingredient_data.json')
+	customers = get_json('res://dialog/Characters.json')
+	set_indicators()
 	start_day()
 	emit_signal("ready")
-	$Timer.wait_time = time_left
+	ingredients = get_tree().get_nodes_in_group("ingredient")
 	audioholder.update_volume()
 	audioholder.play_audio("bubbles", 1)
+	for i in range(1):
+		generate_recipe()
+
+
+func generate_recipe():
+	var ing_copy = ingredients
+	ing_copy.shuffle()
+	var output = [1, 1, 1, 1]
+	var potion_recipe = ing_copy.slice(0, randi() % 3 + 2)
+	for i in range(len(potion_recipe)):
+		output = calculate_metric(potion_recipe[i].name, output)
+	print(output, potion_recipe)
 
 
 func get_json(file_string):
@@ -52,48 +67,10 @@ func get_json(file_string):
 	return result
 
 
-func save():
-	var save_dict = {
-		"time_left": $Timer.time_left,
-		"scheduled_customers": scheduled_customers,
-		"current_potion_state": current_potion_state,
-		"day": day,
-		"music": music,
-		"sound": sound,
-		"scroll_offset": scroll_offset
-	}
-	return save_dict
-
-
-func save_to_disk():
-	var save_game = File.new()
-	save_game.open("user://savegame.save", File.WRITE)
-	save_game.store_line(to_json(save()))
-	save_game.close()
-	var out_file = File.new()
-	out_file.open('res://dialog/Characters.json', out_file.WRITE)
-	var out = JSON.print(customers, '  ')
-	out_file.store_line(out)
-
-
-func load_game():
-	var save_game = File.new()
-	if not save_game.file_exists("user://savegame.save"):
-		return
-	save_game.open("user://savegame.save", File.READ)
-	while save_game.get_position() < save_game.get_len():
-		var node_data = parse_json(save_game.get_line())
-		for i in node_data.keys():
-			set(i, node_data[i])
-	save_game.close()
-	customers = get_json('res://dialog/Characters.json')
-	set_indicators()
-
-
 func _on_ingredient_pressed(ingredient):
-	spellbook.get_node("Label").text = ingredient.name
-	spellbook.get_node("RichTextLabel").text = potion_ingredients[ingredient.name]["description"]
-	spellbook.get_node("Label").set("custom_colors/font_color", potion_ingredients[ingredient.name]["color"])
+	spellbook.get_node("Label").text = ingredient
+	spellbook.get_node("RichTextLabel").text = potion_ingredients[ingredient]["description"]
+	spellbook.get_node("Label").set("custom_colors/font_color", potion_ingredients[ingredient]["color"])
 	spellbook.show()
 
 
@@ -101,30 +78,34 @@ func _on_potion_splash(ingredient):
 	animator.play("potion_splash")
 	cauldron.get_node("poof_particles").restart()
 	cauldron.get_node("splash_particles").restart()
-	cauldron.get_node("poof_particles").self_modulate = potion_ingredients[ingredient.name]["color"]
-	cauldron.get_node("poof_particles").emitting = true
-	cauldron.get_node("splash_particles").emitting = true
+	cauldron.get_node("poof_particles").self_modulate = potion_ingredients[ingredient]["color"]
 
 
 func _on_add_to_potion(ingredient):
-	for i in range(len(current_potion_state)):
-		current_potion_state[i] = clamp(current_potion_state[i] + potion_ingredients[ingredient.name]["features"][i], 0, 2)
-		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = current_potion_state[i]
+	globals.current_potion_state = calculate_metric(ingredient, globals.current_potion_state)
+	set_indicators()
 
 
 func _on_check_effects(ingredient):
-	for i in range(len(current_potion_state)):
-		ingredient.helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient.name]["features"][i] + 1
+	for i in range(len(globals.current_potion_state)):
+		counter.get_node(ingredient).helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient]["features"][i] + 1
 
 
 func set_indicators():
-	for i in range(len(current_potion_state)):
-		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = current_potion_state[i]
+	for i in range(len(globals.current_potion_state)):
+		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = globals.current_potion_state[i]
+
+
+func calculate_metric(ingredient, cur_state):
+	var new_state = [0, 0, 0, 0]
+	for i in range(len(cur_state)):
+		new_state[i] = clamp(cur_state[i] + potion_ingredients[ingredient]["features"][i], 0, 2)
+	return new_state
 
 
 func create_customer(customer):
 	var new_customer = Customer.instance()
-	add_child(new_customer)
+	backwall.add_child(new_customer)
 	new_customer.set_owner(self)
 	customer_line += [new_customer]
 	new_customer.name = customer
@@ -196,7 +177,7 @@ func end_day():
 
 
 func start_day():
-	$Timer.wait_time = time_left
+	$Timer.wait_time = 766
 	$Timer.start()
 	scheduled_customers = customers.keys()
 	scheduled_customers.shuffle()
@@ -208,7 +189,7 @@ func start_day():
 
 
 func _on_end_of_day_gui_input(event):
-	save_to_disk()
+	globals.save_to_disk()
 	if event is InputEventMouseButton:
 		$end_of_day.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
@@ -219,8 +200,12 @@ func _on_end_of_day_gui_input(event):
 		$end_of_day.hide()
 
 
+func audio_passer(name: String, volume= 0):
+	audioholder.play_audio(name, volume)
+
+
 func _on_Control_tree_exiting():
-	save_to_disk()
+	globals.save_to_disk()
 	var out_file = File.new()
 	out_file.open('res://dialog/Characters.json', out_file.WRITE)
 	var out = JSON.print(customers, '  ')
@@ -237,20 +222,15 @@ func _on_Timer_timeout():
 
 
 func _on_button_toggled(button_pressed):
+	globals.music = $OptionsMenu.Music.pressed
+	globals.sound = $OptionsMenu.Sound.pressed
 	if button_pressed == "Menu":
-		save_to_disk()
+		globals.save_to_disk()
 		$SceneTransition.transition({"Direction": "out", "Destination": "Menu"})
-	if button_pressed == "Music":
-		music = $OptionsMenu.Music.pressed
-	if button_pressed == "Sound":
-		sound = $OptionsMenu.Sound.pressed
-	audioholder.update_volume()
-	 # whats up future artie. past you is bad at programming so these values are flipped.
-
+	audioholder.update_volume() # whats up future artie. past you is bad at programming so these values are flipped.
 
 
 func _on_burger_pressed():
-	audioholder.play_audio("bookFlip2")
 	$blackboard.hide()
 	$Spellbook.hide()
 	$OptionsMenu.slide()

@@ -1,0 +1,51 @@
+﻿Dot
+Dot is a witch, working in a small shop to earn her place in town.
+She wants freedom to be who she is
+Her goal is to live as a free woman
+but because of prejudice, she is forced to work selling potions and taking the fall for others mistakes
+Eventually, she realizes she can't opt out of politics, and needs to be active in
+achieving her goal. 
+
+Dot works tirelessly in her potion shop, making cure-alls and magic solutions for a hostile customer base. She just wants to live a normal life, but because of her power, she's treated as a second class citizen. One day, a grifter rolls into town, and gets her caught up in one of his schemes. This results in her only friend, Petra, dying. In a fit of rage, she turns against the town and exposes all the lies and deceit the townspeople have perpetrated.
+
+Petra
+Petra is a vampire doctor who works in the same town as Dot.
+She wants to be able to let her guard down
+Her goal is to be free of her vampiric curse
+But because she needs to drink blood from living humans and there is no known cure
+she is trapped siphoning blood from her patients
+She realizes that in hiding who she was, she was doing more harm than good. She  decides to tell Malot who she is
+
+Petra is a doctor in town who harbors a horrible secret. She's been turned into a vampire and desperately wants a cure. To this end, she befriends the town witch, Dot. Dot tries to help, but in vain. One day, a man rolls in to town promising a cure-all for their vampire problem, silver jewelry which prevents the wearer from being attacked. The entire town falls for it, Petra confronts the con, and he outs her as the vampire.
+
+Malot
+Malot is a con-man who just came in to town and is looking for a good grift.
+He wants power
+His goal is to bleed the town dry.
+He has nothing to actually help the town, except fake silver rings.
+
+Malot is a grifter. He buys a warding potion from Dot and soaks his rings in it. When the rings don't work, he pins it on Dot for selling him a fake potion, in order to protect her friend, Petra, she admits it was fake.
+
+
+
+Two former lovers both hire a witch to get rid of each other.
+
+A bitter old man stumbles into the shop, wanting a solution to his problem. He thinks he failed his husband, who he believes is cheating on him. To remedy this, he wants to change who he is to better appeal to his husband. The next day, a man comes in, asking for a potion of lycanthropy. The player can suss out that he is already a werewolf, and the potion would leave him trapped as a wolf forever. He intends to feed it to his husband, so they can run free together. If the player didn’t realize the first man’s conundrum, he dies from consuming silver and the lycanthropy potion. if instead the player does realize and gives him a lycanthropy potion first off, he drinks his potion immediately, and intends to surprise his husband, The husband sneaks the second potion into his dinner, and the first man is stuck as a wolf forever. if the player feeds the first man a lycanthropy potion, they can choose to give the second man a placebo. After the con artist sells the town silver jewelry, one or both of them are accused of being vampires. The real vampire tells the con artist that it’s not them, it’s her. The con artist uses this leverage to pin everything on the vampire and the witch.
+
+Barsil
+Barsil thinks his husband has been cheating on him, and wants to fix himself to better appeal to him.
+He wants to be loved by Noth
+His goal is to be whatever his husband wants him to be.
+He would need to change his species to do that.
+He learns that his fears were in vain, his husband always loved him.
+
+Barsil is an old frail man, He walks into the shop and asks the witch for something to make him more appealing to his husband. There are two possibilities: he takes something containing silver, or he takes a potion of lycanthropy. If he takes something containing silver, his husband inadvertently kills him by discreetly feeding him a potion of lycanthropy. If he takes the potion of lycanthropy, there are again two options: if his husband again discreetly feeds him a potion of lycanthropy, he is forever turned into a wolf. If his husband feeds him a placebo, they get to be werewolves together. If he survives, he is accused of being a vampire for his fear of wearing the silver rings which are handed out.
+
+Noth
+Noth is an old frail man who has discovered that being a werewolf lets him roam free again, and he wants to share in this delight with his husband.
+He wants to feel young again and relive the love of his youth.
+He wants to turn his husband into a werewolf like he is.
+Noth may learn how deeply his husband loves him, but only by killing him.
+
+Noth is an old man. He comes into the potion shop asking for a potion of lycanthropy. There are two options: if the player realizes that the potion is for his husband, he can instead give him a placebo. Otherwise, he takes the second potion and discreetly feeds it to Barsil. If it is a placebo, he and Barsil get to roam free together. If it is the real potion, he transforms his husband into a wolf forever. In either case, he is accused of being a vampire for his fear of wearing silver rings.
+

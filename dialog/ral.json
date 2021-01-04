@@ -1,0 +1,67 @@
+{
+  "first": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "move_in",
+    "animation_out": "off",
+    "type": "text",
+    "content": "Hey, hey [b]witch![/b] I wanna potion!",
+    "next": "first_q"
+  },
+  "first_q" :{
+    "type":"question",
+    "text": "",
+    "options": ["You're too young for a potion.", "How may I help you?"],
+    "next": ["too_young", "second"]
+  },
+  "too_young": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "on",
+    "type": "text",
+    "content": " [b]NUH UH[/b]! My daddy says you gotta make anyone a potion! And I [b]wanna potion![/b]",
+    "next": "second"
+  },
+  "second": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "on",
+    "animation_out": "off",
+    "type": "text",
+    "content": "I wanna potion to make my cat less dumb, she doesn't know any tricks or how to catch mice or nothing.",
+    "next": "second_q"
+  },
+  "second_q": {
+    "type":"question",
+    "text": "",
+    "options": [
+      "Have you attempted training her?",
+      "Does she understand you?",
+      "Do you wish to understand her?"],
+    "next": ["train", "listen", "understand"]
+  },
+  "train": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "on",
+    "type": "text",
+    "content": "Course! I yell at 'er all the time, but she doesn't listen.",
+    "next": "end"
+  },
+  "listen": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "on",
+    "type": "text",
+    "content": "I dunno, sometimes I think she listens, but doesn't do what I wanna anyway!",
+    "next": "end"
+  },
+  "understand": {
+    "avatar": "Ral",
+    "position": "left",
+    "animation_in": "on",
+    "type": "text",
+    "content": "Nuh uh, I understand her plenty.",
+    "next": "end"
+  }
+}

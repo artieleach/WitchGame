@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/private-reflection-by-kevin-macleod-from-filmmusic-io.ogg-374df041e69eca6edcae81f7e59411f8.oggstr"
+
+[deps]
+
+source_file="res://audio/sounds/private-reflection-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/private-reflection-by-kevin-macleod-from-filmmusic-io.ogg-374df041e69eca6edcae81f7e59411f8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

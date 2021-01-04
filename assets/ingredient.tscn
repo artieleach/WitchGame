@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ingredient.gd" type="Script" id=2]
 [ext_resource path="res://images/ingredients/Health.png" type="Texture" id=3]
 [ext_resource path="res://assets/indicator_small.tscn" type="PackedScene" id=4]
@@ -55,16 +54,6 @@ wait_time = 0.05
 visible = false
 texture = ExtResource( 3 )
 centered = false
-
-[node name="Label" type="Label" parent="drawing"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = -10.0
-custom_fonts/font = ExtResource( 1 )
-text = "asdfasdfasdf"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="helpers" type="HBoxContainer" parent="drawing"]
 visible = false

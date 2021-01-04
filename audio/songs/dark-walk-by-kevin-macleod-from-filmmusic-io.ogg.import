@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dark-walk-by-kevin-macleod-from-filmmusic-io.ogg-595fd34d14e8a7ffc8e6bcf646044753.oggstr"
+
+[deps]
+
+source_file="res://audio/songs/dark-walk-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/dark-walk-by-kevin-macleod-from-filmmusic-io.ogg-595fd34d14e8a7ffc8e6bcf646044753.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

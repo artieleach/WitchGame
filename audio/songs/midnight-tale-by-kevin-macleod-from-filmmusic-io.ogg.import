@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/midnight-tale-by-kevin-macleod-from-filmmusic-io.ogg-aacd0829d14b34abf8c3b772dccb2f53.oggstr"
+
+[deps]
+
+source_file="res://audio/songs/midnight-tale-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/midnight-tale-by-kevin-macleod-from-filmmusic-io.ogg-aacd0829d14b34abf8c3b772dccb2f53.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

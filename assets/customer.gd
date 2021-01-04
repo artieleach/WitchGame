@@ -11,6 +11,8 @@ var history = []
 signal buying
 signal begin_dialog
 
+onready var audioholder = get_node("/root/AudioHolder")
+
 var progress
 var my_name
 var want
@@ -22,19 +24,17 @@ var spot_in_line
 var upset
 var mistakes
 var footsteps = []
-var audioplayer
+
 
 
 func _ready():
-	audioplayer = get_tree().get_nodes_in_group("sound")[0]
-	print(audioplayer.name)
 	exit = get_tree().get_nodes_in_group("exit")[0]
 	state = get_child(0)
 	call_deferred("_enter_state")
 
 
 func footstep():
-	audioplayer.play_audio("footstep0%d" % [randi() % 10], -20)
+	audioholder.play_audio("footstep0%d" % [randi() % 10], -20)
 
 
 func change_to(new_state):

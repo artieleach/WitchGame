@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/folk-round-by-kevin-macleod-from-filmmusic-io.ogg-dfdf8f0f276b336c296a4c14599bd5ca.oggstr"
+
+[deps]
+
+source_file="res://audio/sounds/folk-round-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/folk-round-by-kevin-macleod-from-filmmusic-io.ogg-dfdf8f0f276b336c296a4c14599bd5ca.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

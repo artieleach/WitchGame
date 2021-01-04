@@ -4,14 +4,17 @@ onready var Menu = get_node("Book/VBoxContainer/Menu")
 onready var Music = get_node("Book/VBoxContainer/Music")
 onready var Sound = get_node("Book/VBoxContainer/Sound")
 
+onready var audioholder = get_node("/root/AudioHolder")
+onready var globals = get_node("/root/GlobalVars")
+
 signal button_toggled
 var button_pressed
 
 func _ready():
 	yield(owner, "ready")
 	connect("button_toggled", owner, "_on_button_toggled")
-	Music.pressed = owner.music
-	Sound.pressed = owner.sound
+	Music.pressed = globals.music
+	Sound.pressed = globals.sound
 	for item in [Music, Sound]:
 		if item.pressed:
 			item.modulate = Color("8b93af")
@@ -43,8 +46,10 @@ func _on_Sound_pressed():
 func slide():
 	if $Book.position.x == -212:
 		show()
+		audioholder.play_audio("bookFlip1")
 		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -150, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	else:
+		audioholder.play_audio("bookFlip2")
 		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -212, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")
