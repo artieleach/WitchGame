@@ -30,6 +30,7 @@ var paused: bool = false
 var time_left: int = 0
 var ingredients
 
+
 func _ready():
 	globals.load_game()
 	$SceneTransition.transition({"Direction": "in", "Destination": "Game"})

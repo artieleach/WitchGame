@@ -5,7 +5,7 @@
     "animation_in": "move_in",
     "animation_out": "off",
     "type": "text",
-    "content": "Hey, hey [b]witch![/b] I wanna potion!",
+    "content": "Hey, hey [b]witch![/b] I wanna [url=this]potion[/url]!",
     "next": "first_q"
   },
   "first_q" :{

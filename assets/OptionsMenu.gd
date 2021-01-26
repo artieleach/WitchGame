@@ -46,17 +46,16 @@ func _on_Sound_pressed():
 func slide():
 	if $Book.position.x == -212:
 		show()
-		audioholder.play_audio("bookFlip1")
-		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -150, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		audioholder.play_audio("bookSlide")
+		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -150, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	else:
-		audioholder.play_audio("bookFlip2")
-		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -212, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		audioholder.play_audio("bookSlide")
+		$Tween.interpolate_property($Book, "position:x", $Book.position.x, -212, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	if $Book.position.x == -212:
 		get_tree().paused = false
 		hide()
-
 
 
 func _on_OptionsMenu_gui_input(event):

@@ -119,7 +119,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ "splash", null ],
+"args": [ "explosion3", null ],
 "method": "audio_passer"
 }, {
 "args": [ "poof", null ],
@@ -157,6 +157,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="barrelthing" type="TextureRect" parent="backwall"]
+margin_left = -17.0
+margin_top = -6.0
+margin_right = 16.0
+margin_bottom = 34.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="panrack" type="TextureRect" parent="backwall"]
 margin_left = 146.0
 margin_top = 4.0
@@ -178,21 +188,20 @@ __meta__ = {
 }
 
 [node name="jar_cabinet" type="TextureRect" parent="backwall"]
-margin_left = 115.0
-margin_top = 3.0
-margin_right = 137.0
-margin_bottom = 20.0
+margin_left = 116.0
+margin_top = 4.0
+margin_right = 138.0
+margin_bottom = 21.0
 texture = ExtResource( 28 )
-flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="fireplace" type="TextureRect" parent="backwall"]
-margin_left = 93.0
-margin_top = -2.0
-margin_right = 113.0
-margin_bottom = 38.0
+margin_left = 97.0
+margin_top = -60.0
+margin_right = 117.0
+margin_bottom = -20.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -210,22 +219,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bookcase" type="TextureRect" parent="backwall"]
-margin_left = 72.0
-margin_top = 2.0
-margin_right = 92.0
-margin_bottom = 38.0
-texture = ExtResource( 31 )
-flip_h = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="shelf" type="TextureRect" parent="backwall"]
-margin_left = 34.0
-margin_top = 2.0
-margin_right = 72.0
-margin_bottom = 17.0
+margin_left = 49.0
+margin_top = 1.0
+margin_right = 87.0
+margin_bottom = 16.0
 texture = ExtResource( 16 )
 flip_h = true
 __meta__ = {
@@ -233,9 +231,9 @@ __meta__ = {
 }
 
 [node name="small_calinet" type="TextureRect" parent="backwall"]
-margin_left = 32.0
+margin_left = 47.0
 margin_top = 15.0
-margin_right = 75.0
+margin_right = 90.0
 margin_bottom = 28.0
 texture = ExtResource( 30 )
 flip_h = true
@@ -244,10 +242,10 @@ __meta__ = {
 }
 
 [node name="cabinet" type="TextureRect" parent="backwall"]
-margin_left = 5.0
-margin_top = 4.0
-margin_right = 33.0
-margin_bottom = 38.0
+margin_left = 17.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 39.0
 texture = ExtResource( 29 )
 flip_h = true
 __meta__ = {
@@ -256,9 +254,9 @@ __meta__ = {
 
 [node name="umbroomla" type="TextureRect" parent="backwall"]
 margin_left = 187.0
-margin_top = 11.0
+margin_top = 12.0
 margin_right = 199.0
-margin_bottom = 38.0
+margin_bottom = 39.0
 texture = ExtResource( 32 )
 flip_h = true
 __meta__ = {
@@ -267,9 +265,9 @@ __meta__ = {
 
 [node name="plant" type="TextureRect" parent="backwall"]
 margin_left = 204.0
-margin_top = 19.0
+margin_top = 20.0
 margin_right = 219.0
-margin_bottom = 38.0
+margin_bottom = 39.0
 texture = ExtResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -279,9 +277,9 @@ __meta__ = {
 "perspective",
 ]]
 margin_left = 110.0
-margin_top = 29.0
+margin_top = 30.0
 margin_right = 187.0
-margin_bottom = 38.0
+margin_bottom = 39.0
 texture = ExtResource( 3 )
 flip_h = true
 __meta__ = {
@@ -289,13 +287,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="bookcase" type="TextureRect" parent="backwall"]
+margin_left = 93.0
+margin_top = 3.0
+margin_right = 113.0
+margin_bottom = 39.0
+texture = ExtResource( 31 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="coffeeholder" type="TextureRect" parent="backwall" groups=[
 "perspective",
 ]]
-margin_left = 137.0
-margin_top = 24.0
-margin_right = 150.0
-margin_bottom = 37.0
+margin_left = 163.0
+margin_top = 25.0
+margin_right = 176.0
+margin_bottom = 38.0
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_group_": true,
@@ -331,22 +340,22 @@ __meta__ = {
 }
 
 [node name="backcounter" type="TextureRect" parent="backwall"]
-margin_left = -79.0
-margin_top = 28.0
-margin_right = 10.0
-margin_bottom = 38.0
+margin_left = -68.0
+margin_top = 29.0
+margin_right = 21.0
+margin_bottom = 39.0
 texture = ExtResource( 8 )
+flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="kettle" type="TextureRect" parent="backwall"]
 margin_left = 123.0
-margin_top = 21.0
+margin_top = 22.0
 margin_right = 131.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 texture = ExtResource( 6 )
-flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -388,10 +397,10 @@ margin_bottom = 35.0
 texture_normal = ExtResource( 14 )
 
 [node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
-margin_left = 25.0
-margin_top = 12.0
-margin_right = 53.0
-margin_bottom = 35.0
+margin_left = 28.0
+margin_top = 13.0
+margin_right = 56.0
+margin_bottom = 36.0
 texture_normal = ExtResource( 44 )
 
 [node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
@@ -493,6 +502,7 @@ margin_right = -223.0
 margin_bottom = -125.0
 
 [node name="Dialog" parent="." instance=ExtResource( 7 )]
+margin_left = 1.0
 margin_top = 85.0
 margin_bottom = 85.058
 
@@ -511,7 +521,6 @@ __meta__ = {
 visible = false
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 12 )]
-pause_mode = 2
 
 [node name="end_of_day" type="ColorRect" parent="."]
 visible = false
@@ -544,10 +553,6 @@ wait_time = 766.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/customer_entered = SubResource( 5 )
 anims/potion_splash = SubResource( 6 )
-
-[node name="barrelthing" type="Sprite" parent="."]
-position = Vector2( 249, 31 )
-texture = ExtResource( 5 )
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
 [connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="burger" to="." method="_on_burger_pressed"]

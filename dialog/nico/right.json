@@ -1,9 +1,0 @@
-{
-	"first": {
-	  	"avatar": "Nico/Nico.png",
-		"position": "left",
-		"animation_in": "move_in",
-		"type": "text",
-		"content": "Arigato Gozaimasu!",
-	}
-}

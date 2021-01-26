@@ -43,7 +43,7 @@ func dir_contents(path, type):
 		type[names[item]] = values[item]
 
 
-func play_audio(sound: String, vol=0):
+func play_audio(sound: String, vol=0, pitch_scale=1):
 	var target
 	for player in players:
 		if not player.playing:
@@ -52,6 +52,7 @@ func play_audio(sound: String, vol=0):
 	if sound in sfx:
 		target.stream = sfx[sound]
 		target.volume_db = vol
+		target.pitch_scale = pitch_scale
 		target.play()
 		return target
 	else:

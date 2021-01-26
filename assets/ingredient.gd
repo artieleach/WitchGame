@@ -2,6 +2,7 @@ extends TextureButton
 
 onready var ingredient_sprite = get_node("drawing/ingredient_sprite")
 onready var helpers = get_node("drawing/helpers")
+onready var audioholder = get_node("/root/AudioHolder")
 
 var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
@@ -14,6 +15,7 @@ signal added_to_potion
 signal potion_splash
 signal check_effects
 
+
 func _ready():
 	yield(owner, "ready")
 	texture_normal = null
@@ -24,7 +26,6 @@ func _ready():
 	connect("check_effects", owner, "_on_check_effects", [name])
 	owner.connect("reset_ingredients", self, "_on_reset_ingredients")
 	ingredient_sprite.texture = load("res://images/ingredients/%s.png" % name)
-	ingredient_sprite.normal_map = load("res://images/ingredients/%s_NM.png" % name)
 	rect_size = ingredient_sprite.texture.get_size()
 	helpers.rect_size = rect_size
 	ingredient_sprite.show()
@@ -69,8 +70,9 @@ func pick_up():
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	held = true
 	$drawing.z_index = 5
-	$Tween.interpolate_property(self, "offset", offset, ingredient_sprite.texture.get_size() / 2, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$Tween.interpolate_property(self, "offset", offset, ingredient_sprite.texture.get_size() / 2, 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Tween.start()
+	audioholder.play_audio("pickFlower")
 
 
 func add_to_potion():

@@ -1,21 +1,21 @@
 {
     "Berries": {
-    "description": "Rejuvenates ones inner such and such and so on",
+    "description": "Glowing berries, requires decay to grow.",
     "color": "20d6c7",
     "features": [-1, -1, -1,  1]
   },
   "Conch": {
-    "description": "Rejuvenates ones inner such and such and so on",
+    "description": "A conch shell with strange properties, purifies any liquid held within.",
     "color": "328464",
     "features": [-1, -1,  1, -1]
   },
   "Feather": {
-    "description": "Rejuvenates ones inner such and such and so on",
+    "description": "Feather of a jubjub bird.",
     "color": "333941",
     "features": [-1, -1,  1,  1]
   },
   "Herbs": {
-    "description": "Rejuvenates ones inner such and such and so on",
+    "description": "A collection of herbs which ",
     "color": "24523b",
     "features": [-1,  1, -1, -1]
   },
@@ -31,37 +31,37 @@
   },
   "Clover": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "b3b9d1",
     "features": [-1,  1,  1,  1]
   },
   "Flower": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "849be4",
     "features": [ 1, -1, -1, -1]
   },
   "Roots": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "dba463",
     "features": [ 1, -1, -1,  1]
   },
   "Dandy": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "bb7547",
     "features": [ 1, -1,  1, -1]
   },
   "Honeycomb": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "f9a31b",
     "features": [ 1, -1,  1,  1]
   },
   "Branch": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "588dbe",
     "features": [ 1,  1, -1, -1]
   },
   "Beetle": {
     "description": "Rejuvenates ones inner such and such and so on",
-    "color": "59c135",
+    "color": "23674e",
     "features": [ 1,  1, -1,  1]
   },
 }

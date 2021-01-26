@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://images/book2.png" type="Texture" id=1]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://images/GUI/sounds.png" type="Texture" id=4]
 [ext_resource path="res://images/GUI/music.png" type="Texture" id=5]
 [ext_resource path="res://assets/OptionsMenu.gd" type="Script" id=6]
+[ext_resource path="res://fonts/m5x7-bold.tres" type="DynamicFont" id=7]
 
 [node name="OptionsMenu" type="Control"]
+pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,12 +51,16 @@ margin_bottom = 8.0
 toggle_mode = true
 texture_normal = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="Book/VBoxContainer/Music"]
+[node name="Label" type="RichTextLabel" parent="Book/VBoxContainer/Music"]
 margin_left = 10.0
-margin_right = 38.0
+margin_right = 52.0
 margin_bottom = 9.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/bold_font = ExtResource( 7 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "Music"
 text = "Music"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }

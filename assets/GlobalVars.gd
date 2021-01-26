@@ -7,6 +7,7 @@ var sound
 var music
 var time_left
 var forbidden_items = []
+var cards = ["this, that"]
 
 func ready():
 	load_game()

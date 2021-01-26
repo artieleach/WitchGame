@@ -10,51 +10,42 @@ Repository: https://bitbucket.org/jsena42/godot-open-dialog/
 extends Control
 
 ##### SETUP #####
+onready var globals = get_node("/root/GlobalVars")
+onready var audioholder: Node = get_node("/root/AudioHolder")
 ## Paths ##
 var dialogs_folder = 'res://dialog' # Folder where the JSON files will be stored
 var choice_scene = load('res://assets/Choice.tscn') # Base scene for que choices
 ## Required nodes ##
 onready var frame : Node = $Frame # The container node for the dialogs.
-onready var label : Node = $Frame/RichTextLabel # The label where the text will be displayed.
+onready var label : Node = $Frame/advance/RichTextLabel # The label where the text will be displayed.
 onready var choices : Node = $Frame/Choices # The container node for the choices.
 onready var timer : Node = $Timer # Timer node.
 onready var continue_indicator : Node = $ContinueIndicator # Blinking square displayed when the text is all printed.
 onready var animations : Node = $AnimationPlayer
 onready var sprite_left : Node = $SpriteLeft # Used for showing the avatar on the dialog
-onready var sprite_right : Node = $SpriteRight
-onready var name_left : Node = $Frame/NameLeft
-onready var name_right : Node = $Frame/NameRight
-onready var advance : Node = $advance
+onready var advance : Node = $Frame/advance
 ## Typewriter effect ##
-var wait_time : float = 0.02 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
+var wait_time : float = 0.03 # Time interval (in seconds) for the typewriter effect. Set to 0 to disable it. 
 var pause_time : float = 2.0 # Duration of each pause when the typewriter effect is active.
 var pause_char : String = '|' # The character used in the JSON file to define where pauses should be. If you change this you'll need to edit all your dialog files.
 var newline_char : String = '@' # The character used in the JSON file to break lines. If you change this you'll need to edit all your dialog files.
 ## Other customization options ##
 onready var progress = PROGRESS # The AutoLoad script where the interaction log, quest variables, inventory and other useful data should be acessible.
 var dialogs_dict = 'dialogs' # The dictionary on 'progress' used to keep track of interactions.
-var choice_plus_y : int = 2 # How much space (in pixels) should be added between the choices (affected by 'choice_height').
+
 var active_choice : Color = Color(1.0, 1.0, 1.0, 1.0)
 var inactive_choice : Color = Color(1.0, 1.0, 1.0, 0.4)
-var choice_height : int = 20 # Choice label's height
-var choice_width : int = 250 # Choice label's width
-var choice_margin_vertical : int = 10 # Vertical space (in pixels) between the bottom border of the dialog frame and the last question (affectd by the 'label_margin')
-var choice_margin_horizontal : int = 10 # Horizontal space (in pixels) between the border (set in 'choice_node_alignment') of the dialog frame and the questions (affectd by the 'label_margin')
-var choice_text_alignment : String = 'right' # Alignment of the choice's text. Can be 'left' or 'right'
-var choice_node_alignment : String = 'right' # Alignment of the 'Choice' node. Can be 'left' or 'right'
+var flip_flop = true
+
+
+
+
 var previous_command : String = 'ui_up' # Input commmand for the navigating through question choices 
 var next_command : String = 'ui_down' # Input commmand for the navigating through question choices
-var frame_height : int = 40 # Dialog frame height (in pixels)
-var frame_width : int = 224 # Dialog frame width (in pixels)
-var frame_position : String = 'bottom' # Use to 'top' or 'bottom' to change the dialog frame vertical alignment 
-var frame_margin_vertical : int = 10 # Vertical space (in pixels) between the dialog box and the window border
-var label_margin : int = 20 # Space (in pixels) between the dialog frame border and the text
-var enable_continue_indicator : bool = true # Enable or disable the 'continue_indicator' animation when the text is completely displayed. If typewritter effect is disabled it will always be visible on every dialog block.
-var sprite_offset : Vector2 = Vector2(0, 0) # Used for polishing avatars' position. Can use negative values.
-var name_offset : Vector2 = Vector2(-10, -15) # Offsets the name labels relative to the frame borders.
-var show_names : bool = true # Turn on and off the character name labels
-# END OF SETUP #
 
+var enable_continue_indicator : bool = true # Enable or disable the 'continue_indicator' animation when the text is completely displayed. If typewritter effect is disabled it will always be visible on every dialog block.
+
+# END OF SETUP #
 
 # Default values. Don't change them unless you really know what you're doing.
 var id
@@ -94,7 +85,7 @@ var mirrored_sprite = 'right'
 var shake_base = 20
 var move_distance = 100
 var ease_in_speed = 0.25
-var ease_out_speed = 0.50
+var ease_out_speed = 0.25
 
 var characters_folder = 'res://images/portraits'
 var characters_image_format = 'png'
@@ -126,7 +117,7 @@ func _ready():
 	timer.connect('timeout', self, '_on_Timer_timeout')
 	sprite_timer.connect('timeout', self, '_on_Sprite_Timer_timeout')
 	set_frame()
-	self.initiate("ral")
+	initiate("petra")
 
 
 func _physics_process(delta):
@@ -140,17 +131,7 @@ func set_frame(): # Mostly aligment operations.
 	continue_indicator.hide()
 	
 	sprite_left.modulate = white_transparent
-	sprite_right.modulate = white_transparent
 	
-	
-	name_left.hide()
-#	name_left.position = 'left'
-	name_left.rect_position.y = name_offset.y
-	
-	name_right.hide()
-#	name_right.position = 'right'
-	name_right.rect_position.y = name_offset.y
-
 
 func initiate(file_id, block = 'first'): # Load the whole dialog into a variable
 	id = file_id
@@ -209,7 +190,6 @@ func update_dialog(step): # step == whole dialog block
 			clean_bbcode(step['content'])
 			number_characters = phrase_raw.length()
 			check_animation(step)
-			check_names(step)
 			
 			if step.has('next'):
 				next_step = step['next']
@@ -268,7 +248,6 @@ func update_dialog(step): # step == whole dialog block
 			check_newlines(phrase_raw)
 			clean_bbcode(step['text'])
 			check_animation(step)
-			check_names(step)
 			number_characters = phrase_raw.length()
 			next_step = step['next'][0]
 			choices.show()
@@ -295,7 +274,6 @@ func update_dialog(step): # step == whole dialog block
 				clean_bbcode(step['text'])
 				number_characters = phrase_raw.length()
 				check_animation(step)
-				check_names(step)
 			else:
 				label.visible_characters = number_characters
 				next()
@@ -364,7 +342,7 @@ func clean_bbcode(string):
 		counter += 1
 
 
-func next(_x=0):
+func next(x=0):
 	if not dialog or on_animation: # Check if is in the middle of a dialog 
 		return
 	clean() # Be sure all the variables used before are restored to their default values.
@@ -380,10 +358,7 @@ func next(_x=0):
 			yield(tween, "tween_completed")
 		else:
 			sprite_left.modulate = white_transparent
-			sprite_right.modulate = white_transparent
 		dialog = null
-		name_left.hide()
-		name_right.hide()
 		frame.hide() 
 		avatar_left = ''
 		avatar_right = ''
@@ -399,30 +374,6 @@ func next(_x=0):
 			yield(tween, "tween_completed")
 		
 		update_dialog(dialog[next_step])
-
-
-func check_names(block):
-	if not show_names:
-		return
-	if block.has('name'):
-		if block['position'] == 'left':
-			name_left.text = block['name']
-			yield(get_tree(), 'idle_frame')
-			name_left.rect_size.x = 0
-			name_left.rect_position.x += name_offset.x
-			name_left.set_process(true)
-			name_left.show()
-			name_right.hide()
-		else:
-			name_right.text = block['name']
-			yield(get_tree(), 'idle_frame')
-			name_right.rect_size.x = 0
-			name_right.rect_position.x = frame_width - name_right.rect_size.x - name_offset.x
-			name_right.set_process(true)
-			name_right.show()
-			name_left.hide()
-	else:
-		pass
 
 
 func check_animation(block):
@@ -441,16 +392,10 @@ func animate_sprite(direction, image, animation):
 	var current_pos
 	var move_vector
 	
-	if direction == 'left':
-		sprite = sprite_left
-		current_pos = sprite.position
-		
-		move_vector = Vector2(current_pos.x - move_distance, current_pos.y)
-	else:
-		sprite = sprite_right
-		current_pos = sprite.position
-		
-		move_vector = Vector2(current_pos.x + move_distance, current_pos.y)
+	sprite = sprite_left
+	current_pos = sprite.position
+	
+	move_vector = Vector2(current_pos.x - move_distance, current_pos.y)
 	
 	previous_pos = current_pos
 	
@@ -612,8 +557,8 @@ func question(text, options, next):
 		choice.my_pos = n
 		choice.connect("meta_hover_started", self, "update_choice", [choice])
 		choice.connect("meta_clicked", self, "next")
+		choice.self_modulate = inactive_choice
 		choices.add_child(choice)
-		choices.get_child(n).self_modulate = inactive_choice
 		n += 1
 	is_question = true
 	number_choices = choices.get_child_count() - 1
@@ -654,21 +599,28 @@ func _input(event): # This function can be easily replaced. Just make sure you c
 		change_choice('next')
 
 
+func play_beep():
+	if flip_flop and not label.bbcode_text[label.visible_characters] in ['!', '.', ',', ' ', '?']:
+		audioholder.play_audio('text', -4)
+		print(label.bbcode_text[label.visible_characters])
+	flip_flop = not flip_flop
+
+
 func _on_Timer_timeout():
 	if label.visible_characters < number_characters: # Check if the timer needs to be started
 		if paused:
 			update_pause()
 			return # If in pause, ignore the rest of the function.
-
 		if pause_array.size() > 0: # Check if the phrase have any pauses left.
 			if label.visible_characters == pause_array[pause_index]: # pause_char == index of the last character before pause.
 				timer.wait_time = pause_time * wait_time * 10
 				paused = true
 			else:
 				label.visible_characters += 1
+				play_beep()
 		else: # Phrase doesn't have any pauses.
 			label.visible_characters += 1
-		
+			play_beep()
 		timer.start()
 	else:
 		if is_question:
@@ -701,3 +653,8 @@ func _on_Sprite_Timer_timeout():
 
 func _on_advance_pressed():
 	next()
+
+
+func _on_RichTextLabel_meta_clicked(meta):
+	print(meta)
+

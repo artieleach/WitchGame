@@ -22,8 +22,9 @@ __meta__ = {
 }
 
 [node name="Hat" type="TextureRect" parent="."]
-margin_right = 162.0
-margin_bottom = 126.0
+anchor_right = 0.723
+anchor_bottom = 1.0
+margin_right = 0.0479889
 texture = ExtResource( 4 )
 stretch_mode = 4
 __meta__ = {

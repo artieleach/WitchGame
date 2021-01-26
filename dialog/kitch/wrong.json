@@ -1,9 +1,0 @@
-{
-	"first": {
-	  	"avatar": "Kitch/Kitch.png",
-		"position": "left",
-		"animation_in": "move_in",
-		"type": "text",
-		"content": "You should be bloody ashamed, quite honestly.",
-	}
-}

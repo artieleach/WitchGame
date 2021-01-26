@@ -1,0 +1,330 @@
+{
+  "first": {
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "move_in",
+    "type": "text",
+    "content": "My darling! It is good to see you.| I have much to tell. ",
+    "next": "first_overflow"
+  },
+  "first_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "It seems our latest trial was again fruitless.| I felt the urge when dealing with a patient just yesterday.",
+    "next": "first_q"
+  },
+  "first_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["Did you notice any difference?", "What happened?"],
+    "next": ["any_difference", "what_happened"]
+  },
+  "any_difference": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "None at all, I'm afraid. This time it happened at night, which was convenient for me.",
+    "next": "give_up"
+  },
+  "what_happened": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Same as ever. I see blood, I am sent into a rage!",
+    "next": "give_up"
+  },
+  "what_happened_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I barely contained myself this time, it was only luck that I found a stray dog and was able to feed on it.",
+    "next": "give_up"
+  },
+  "give_up": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I think it is well past time for us to give up our quest. There is but one cure for vampirism,| the blade.",
+    "next": "second_q"
+  },
+  "second_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You're being dramatic.", "There is more we can try."],
+    "next": ["dramatic", "try_more"]
+  },
+  "dramatic": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Not at all, my dear. How long have we tried to remedy this curse? The next time I go mad, how do you know it will subside?",
+    "next": "dramatic_overflow"
+  },
+  "dramatic_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "No. I have lived a good life, and a good afterlife too.| This charade cannot continue.",
+    "next": "third_q"
+  },
+  "try_more": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "There is much more you can try, my dear. With your potions you can do more good than I could with medical knowledge.",
+    "next": "forth_q"
+  },
+  "third_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You're my friend.", "You've saved so many people."],
+    "next": ["my_friend", "saved_many"]
+  },
+  "forth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["There's more to life than power", "I can't mend a broken leg with a potion"],
+    "next": ["wielding_power", "broken_leg"]
+  },
+  "my_friend": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You know how I care for you my dearest, but that does not change the reality of the situation.",
+    "next": "my_friend_overflow"
+  },
+  "my_friend_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I am dangerous, and I grow more dangerous with time.",
+    "next": "fifth_q"
+  },
+  "saved_many": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Do you know this? I lose many good people as well, and they become my meals.",
+    "next": "saved_many_overflow"
+  },
+  "saved_many_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "How do you know I act in good faith? Even I do not know what my true intentions are.",
+    "next": "sixth_q"
+  },
+  "wielding_power": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "The gods blessed me only with beauty, but you they blessed with beauty and intelligence.",
+    "next": "wielding_power_overflow"
+  },
+  "wielding_power_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Perhaps I am too simple minded to see why your efforts must be wasted here, why you serve the beck and call of those who disagree with you.",
+    "next": "seventh_q"
+  },
+  "broken_leg": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "No darling, you cannot. But there is much more you can do with your potions",
+    "next": "eye_spark"
+  },
+  "fifth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["I would be alone.", "The town would be without a doctor."],
+    "next": ["be_alone", "town_doctor"]
+  },
+  "sixth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["Your results are proof enough.", "Your behavior speaks louder than words."],
+    "next": ["results_proof", "behavior_speaks"]
+  },
+  "seventh_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["What would you have me do?", "I help those in need."],
+    "next": ["what_do", "help_need"]
+  },
+  "be_alone": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I know this, and it hurts me. But you have chosen this lot in life, for what reason I cannot speculate.",
+    "next": "wielding_power"
+  },
+  "town_doctor": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "The town would also be without a killer!",
+    "next": "eigth_q"
+  },
+  "results_proof": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Your results are more proof than mine!",
+    "next": "eye_spark"
+  },
+  "behavior_speaks": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "And so do yours. You cherish my life even though you could spend your efforts elsewhere.",
+    "next": "behavior_speaks_overflow"
+  },
+  "behavior_speaks_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You listen to the baron even though he could not raise a hand to you. Why do this? Why conscribe yourself to a life of servitude?",
+    "next": "tenth_q"
+  },
+  "what_do": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You ask this, but you know my answer, my darling. Throw down your chains, free yourself from this rote drugery.",
+    "next": "what_do_overflow"
+  },
+  "what_do_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I want nothing more than to never see you again, my love. If you stay with me, we will all fall to the minutae of local happenings.",
+    "next": "eleventh_q"
+  },
+  "eleventh_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["I'm not having this argument again.", "You changed the subject."],
+    "next": ["final", "subject_change"]
+  },
+  "subject_change": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I did no such thing. The subject is what we are doing and your answer is nothing.",
+    "next": "final"
+  },
+  "help_need": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You help the baron in his vainglorious conquests, the store owners in their competition, and the seamstresses who want to sleep less.",
+    "next": "ninth_q"
+  },
+  "eigth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["No, it wouldn't.", "There's more we can try."],
+    "next": ["no_wouldnt", "try_more"]
+  },
+  "eye_spark": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I have seen the spark in your eye when you come up with a clever remedy, why do you debase yourself to such trifles?",
+    "next": "eye_spark_overflow"
+  },
+  "eye_spark_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Why do you toil under the baron? Why have a broomstick if not to fly?",
+    "next": "tenth_q"
+  },
+  "ninth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["What alternative do I have?", "I can help you too, with time."],
+    "next": ["what_do", "time_help"]
+  },
+  "no_wouldnt": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You limit yourself to this binary, why? I have seen how much good can be done by you.",
+    "next": "no_wouldnt_overflow"
+  },
+  "no_wouldnt_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You spend your time debating yourself, and always deciding to keep the status quo.",
+    "next": "tenth_q"
+  },
+  "tenth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["What would you have me do?", "I can help you too, with time."],
+    "next": ["what_do", "help_need"]
+  },
+  "time_help": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You do not know that, |you cannot know that.",
+    "next": "final"
+  },
+  "final": {
+    "avatar": "Petra",
+    "position": "left",
+    "animation_out": "move_out",
+    "type": "text",
+    "content": "I do not wish to argue with you, you always win. I will come back tomorrow and we will continue, just as we are now, Didi.",
+  }
+}
