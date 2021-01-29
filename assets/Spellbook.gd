@@ -1,5 +1,6 @@
-extends Sprite
+extends TextureButton
+
 export (String) var ingredient_name
 
-func _on_x_button_pressed():
+func _on_TextureButton_pressed():
 	hide()

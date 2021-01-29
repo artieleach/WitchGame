@@ -57,6 +57,7 @@ func play_audio(sound: String, vol=0, pitch_scale=1):
 		return target
 	else:
 		print('sound didnt work lmao')
+		print(sound, vol, pitch_scale)
 
 
 func pause_audio(player):

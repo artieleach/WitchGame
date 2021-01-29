@@ -48,7 +48,7 @@ func reset():
 	$AnimationPlayer.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	$drawing.z_index = 0
-	$Tween.interpolate_property($drawing, "position", Vector2(0, -100), Vector2(0, 0), 1 + randf(), Tween.TRANS_BOUNCE, Tween.EASE_OUT, rect_position.x / 150)
+	$Tween.interpolate_property($drawing, "position", Vector2(0, -100), Vector2(0, 0), 1.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT, rect_position.x / 150)
 	$Tween.start()
 	held = false
 	will_open_help = false
@@ -72,7 +72,7 @@ func pick_up():
 	$drawing.z_index = 5
 	$Tween.interpolate_property(self, "offset", offset, ingredient_sprite.texture.get_size() / 2, 0.02, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$Tween.start()
-	audioholder.play_audio("pickFlower")
+	audioholder.play_audio("pick%s" % name, -5)
 
 
 func add_to_potion():
@@ -83,9 +83,10 @@ func add_to_potion():
 	$Tween.interpolate_property($drawing, "position:y", $drawing.position.y, 50, 0.5, Tween.TRANS_SINE, Tween.EASE_IN)
 	$Tween.start()
 	yield(get_tree().create_timer(0.4), "timeout")
+	audioholder.play_audio('magic_00%d' % (randi() % 9 + 1), -10)
 	emit_signal("potion_splash")
 	emit_signal("added_to_potion")
-	hide()
+	reset()
 
 
 func mouse_hover():

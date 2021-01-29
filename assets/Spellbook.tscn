@@ -5,25 +5,32 @@
 [ext_resource path="res://images/GUI/x_button.png" type="Texture" id=3]
 [ext_resource path="res://assets/Spellbook.gd" type="Script" id=4]
 
-[node name="book_texture" type="Sprite"]
-position = Vector2( 6, 9 )
-z_index = 5
-texture = ExtResource( 2 )
-centered = false
+[node name="TextureButton" type="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 4 )
-
-[node name="x_button" type="TextureButton" parent="."]
-margin_left = 207.0
-margin_top = -5.0
-margin_right = 214.0
-margin_bottom = 3.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="book_texture" type="Sprite" parent="."]
+position = Vector2( 6, 9 )
+z_index = 5
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Control" type="Control" parent="book_texture"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x_button" type="Sprite" parent="book_texture"]
+position = Vector2( 209, 0 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="book_texture"]
 margin_left = 7.0
 margin_top = 15.0
 margin_right = 97.0
@@ -35,7 +42,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="book_texture"]
 margin_left = 114.0
 margin_top = 15.0
 margin_right = 204.0
@@ -47,4 +54,4 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="x_button" to="." method="_on_x_button_pressed"]
+[connection signal="pressed" from="." to="." method="_on_TextureButton_pressed"]

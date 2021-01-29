@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pickRoots.wav-cae02f165fecfd7c5d03def8fd0781d7.sample"
+
+[deps]
+
+source_file="res://audio/sounds/pickRoots.wav"
+dest_files=[ "res://.import/pickRoots.wav-cae02f165fecfd7c5d03def8fd0781d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

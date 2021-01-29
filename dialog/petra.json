@@ -4,7 +4,7 @@
     "position": "left",
     "animation_in": "move_in",
     "type": "text",
-    "content": "My darling! It is good to see you.| I have much to tell. ",
+    "content": "My darling! It is [url='dicksquad']good[/url] to see you.| I have much to tell. ",
     "next": "first_overflow"
   },
   "first_overflow": {

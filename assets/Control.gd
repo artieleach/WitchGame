@@ -39,12 +39,12 @@ func _ready():
 	randomize()
 	potion_ingredients = get_json('res://assets/ingredient_data.json')
 	customers = get_json('res://dialog/Characters.json')
-	set_indicators()
+	set_indicators(true)
 	start_day()
 	emit_signal("ready")
 	ingredients = get_tree().get_nodes_in_group("ingredient")
 	audioholder.update_volume()
-	audioholder.play_audio("bubbles", 1)
+	audioholder.play_audio("bubbles", -10)
 	for i in range(1):
 		generate_recipe()
 
@@ -69,14 +69,13 @@ func get_json(file_string):
 
 
 func _on_ingredient_pressed(ingredient):
-	spellbook.get_node("Label").text = ingredient
-	spellbook.get_node("RichTextLabel").text = potion_ingredients[ingredient]["description"]
-	spellbook.get_node("Label").set("custom_colors/font_color", potion_ingredients[ingredient]["color"])
+	spellbook.get_node("book_texture/Label").text = ingredient
+	spellbook.get_node("book_texture/RichTextLabel").text = potion_ingredients[ingredient]["description"]
+	spellbook.get_node("book_texture/Label").set("custom_colors/font_color", potion_ingredients[ingredient]["color"])
 	spellbook.show()
 
 
 func _on_potion_splash(ingredient):
-	animator.play("potion_splash")
 	cauldron.get_node("poof_particles").restart()
 	cauldron.get_node("splash_particles").restart()
 	cauldron.get_node("poof_particles").self_modulate = potion_ingredients[ingredient]["color"]
@@ -84,6 +83,7 @@ func _on_potion_splash(ingredient):
 
 func _on_add_to_potion(ingredient):
 	globals.current_potion_state = calculate_metric(ingredient, globals.current_potion_state)
+	yield(get_tree().create_timer(0.9), "timeout")
 	set_indicators()
 
 
@@ -92,9 +92,19 @@ func _on_check_effects(ingredient):
 		counter.get_node(ingredient).helpers.get_node("%s/a" % potion_vars[i]).frame = potion_ingredients[ingredient]["features"][i] + 1
 
 
-func set_indicators():
+func set_indicators(muted=false):
 	for i in range(len(globals.current_potion_state)):
-		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = globals.current_potion_state[i]
+		var current = cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame
+		var new = globals.current_potion_state[i]
+		if not muted:
+			if current > new:
+				audioholder.play_audio('down', -4)
+			if current < new:
+				audioholder.play_audio('up', -4)
+			if current == new:
+				audioholder.play_audio('stay', -2)
+		cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame = new
+		yield(get_tree().create_timer(0.2), "timeout")
 
 
 func calculate_metric(ingredient, cur_state):
@@ -166,7 +176,7 @@ func check_next_customer():
 
 
 func end_day():
-	$end_of_day/end_day_summary.text = "Another day, another dollar.\nDay %d" % day
+	$end_of_day/end_day_summary.text = "Witching Hour is over.\nDay %d" % day
 	for customer in get_tree().get_nodes_in_group("customers"):
 		customer.queue_free()
 	$end_of_day.show()

@@ -602,8 +602,9 @@ func _input(event): # This function can be easily replaced. Just make sure you c
 func play_beep():
 	if flip_flop and not label.bbcode_text[label.visible_characters] in ['!', '.', ',', ' ', '?']:
 		audioholder.play_audio('text', -4)
-		print(label.bbcode_text[label.visible_characters])
 	flip_flop = not flip_flop
+	if label.bbcode_text[label.visible_characters] in ['!', '.', ',', ' ', '?']:
+		flip_flop = true
 
 
 func _on_Timer_timeout():
