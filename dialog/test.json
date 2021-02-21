@@ -1,0 +1,30 @@
+{
+  "first": {
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "move_in",
+    "type": "text",
+    "content": "[b][url=Berries]Berries[/url][/b]",
+    "next": "second"
+  },
+  "second": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "[b][url=Conch]Conch[/url][/b]",
+    "next": "third"
+  },
+  "third": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "[b][url=Herbs]Herbs[/url][/b]",
+    "next": "final"
+  },
+  "final": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "[b][url=Mushroom]Mushroom[/url][/b]",
+  }
+}

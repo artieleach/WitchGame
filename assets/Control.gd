@@ -3,17 +3,19 @@ extends Control
 export (PackedScene) var Customer
 
 const potion_vars = ['A', 'B', 'C', 'D']
-const DEBUG = false
 
 onready var audioholder = get_node("/root/AudioHolder")
 onready var globals = get_node("/root/GlobalVars")
 
-onready var dialog = get_node("Dialog")
-onready var counter = get_node("Scrolling_Window/counter")
-onready var cauldron = get_node("Scrolling_Window/Cauldron")
-onready var spellbook = get_node("Spellbook")
-onready var animator = get_node("AnimationPlayer")
-onready var backwall = get_node("backwall")
+onready var dialog := get_node("Dialog")
+onready var counter := get_node("Scrolling_Window/counter")
+onready var cauldron := get_node("Scrolling_Window/Cauldron")
+onready var spellbook := get_node("Spellbook")
+onready var animator := get_node("AnimationPlayer")
+onready var backwall := get_node("backwall")
+onready var tween := get_node("Tween")
+onready var fps := get_node("FPS")
+onready var timer := get_node("Timer")
 
 signal reset_ingredients
 
@@ -29,13 +31,12 @@ var can_drop_potions: bool = false
 var paused: bool = false
 var time_left: int = 0
 var ingredients
+var visible_ingredients = []
 
 
 func _ready():
 	globals.load_game()
 	$SceneTransition.transition({"Direction": "in", "Destination": "Game"})
-	if DEBUG:
-		$FPS.show()
 	randomize()
 	potion_ingredients = get_json('res://assets/ingredient_data.json')
 	customers = get_json('res://dialog/Characters.json')
@@ -45,8 +46,11 @@ func _ready():
 	ingredients = get_tree().get_nodes_in_group("ingredient")
 	audioholder.update_volume()
 	audioholder.play_audio("bubbles", -10)
+	animator.play("bottle_give")
 	for i in range(1):
 		generate_recipe()
+	if globals.debug:
+		fps.show()
 
 
 func generate_recipe():
@@ -93,6 +97,7 @@ func _on_check_effects(ingredient):
 
 
 func set_indicators(muted=false):
+	cauldron.set_color()
 	for i in range(len(globals.current_potion_state)):
 		var current = cauldron.get_node("HBoxContainer/%s/indicator" % potion_vars[i]).frame
 		var new = globals.current_potion_state[i]
@@ -142,7 +147,8 @@ func _on_dialog(cur_speaker, spesific_response=null):
 
 
 func _on_advance_dialog_pressed():
-	dialog.next()
+	if dialog.label.visible_characters == dialog.number_characters:
+		dialog.next()
 
 
 func _on_Dialog_block_ended():
@@ -155,20 +161,13 @@ func _on_Dialog_block_ended():
 		someone_bought_something = false
 
 
-func _on_blackboard_pressed():
-	for node in get_children():
-		if node.is_in_group("customers"):
-			node.hide()
-	$blackboard.show()
-
-
 func _process(_delta):
-	if DEBUG:
-		$FPS.text = str(int(Performance.get_monitor(0)))
+	if globals.debug:
+		fps.text = str(int(Performance.get_monitor(0)))
 
 
 func check_next_customer():
-	if len(customer_line) == 0 and $Timer.time_left > 66:
+	if len(customer_line) == 0 and timer.time_left > 66:
 		customers.pop()
 		create_customer(customers[0])
 	$next_customer_timer.wait_time = randi() % 25 + 5
@@ -180,22 +179,19 @@ func end_day():
 	for customer in get_tree().get_nodes_in_group("customers"):
 		customer.queue_free()
 	$end_of_day.show()
-	$Tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
-	$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
-	$Tween.start()
-	$Timer.time_left = 766
+	tween.interpolate_property($end_of_day, "color:a", 0, 1, 0.5)
+	tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 0, 1, 0.5, 0, 2, 1)
+	tween.start()
+	timer.time_left = 766
 	day += 1
 
 
 func start_day():
-	$Timer.wait_time = 766
-	$Timer.start()
-	scheduled_customers = customers.keys()
-	scheduled_customers.shuffle()
-	scheduled_customers = scheduled_customers.slice(0, 13)
-	scheduled_customers = ['kitch', 'kitch', 'kitch']
+	timer.wait_time = 766
+	timer.start()
+	scheduled_customers = ['kitch']
 	$end_of_day.mouse_filter = Control.MOUSE_FILTER_STOP
-	if DEBUG:
+	if globals.debug and false:
 		create_customer(scheduled_customers[0])
 
 
@@ -203,15 +199,27 @@ func _on_end_of_day_gui_input(event):
 	globals.save_to_disk()
 	if event is InputEventMouseButton:
 		$end_of_day.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		$Tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
-		$Tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
-		$Tween.start()
-		yield($Tween, "tween_completed")
+		tween.interpolate_property($end_of_day, "color:a", 1, 0, 0.5)
+		tween.interpolate_property($end_of_day/end_day_summary, "self_modulate:a", 1, 0, 0.5, 0, 2)
+		tween.start()
+		yield(tween, "tween_completed")
 		start_day()
 		$end_of_day.hide()
 
 
-func audio_passer(name: String, volume= 0):
+func bring_ingredient(ingredient):
+	audioholder.play_audio('pick%s' % ingredient , -8)
+	for item in $Scrolling_Window/counter/.get_children():
+		if item.name == ingredient:
+			var total_x = 4
+			for ing in visible_ingredients:
+				total_x += ing.my_width + 5
+			item.rect_position.x = total_x
+			item.reset()
+			visible_ingredients.append(item)
+
+
+func audio_passer(name: String, volume = 0):
 	audioholder.play_audio(name, volume)
 
 
@@ -228,8 +236,8 @@ func _on_Timer_timeout():
 	if not $Dialog/Frame.visible:
 		end_day()
 	else:
-		$Timer.wait_time = 30
-		$Timer.start()
+		timer.wait_time = 30
+		timer.start()
 
 
 func _on_button_toggled(button_pressed):
@@ -242,7 +250,6 @@ func _on_button_toggled(button_pressed):
 
 
 func _on_burger_pressed():
-	$blackboard.hide()
 	$Spellbook.hide()
 	$OptionsMenu.slide()
 	get_tree().paused = true

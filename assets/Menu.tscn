@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://images/mainmenubg.png" type="Texture" id=1]
 [ext_resource path="res://assets/Menu.gd" type="Script" id=3]
 [ext_resource path="res://images/witchhat.png" type="Texture" id=4]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=5]
@@ -13,10 +14,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.141176, 0.133333, 0.203922, 1 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,7 +25,8 @@ __meta__ = {
 [node name="Hat" type="TextureRect" parent="."]
 anchor_right = 0.723
 anchor_bottom = 1.0
-margin_right = 0.0479889
+margin_left = 19.0
+margin_right = 0.0480042
 texture = ExtResource( 4 )
 stretch_mode = 4
 __meta__ = {

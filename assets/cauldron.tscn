@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://images/particles/circle_particle.png" type="Texture" id=1]
+[ext_resource path="res://assets/cauldron.gd" type="Script" id=2]
 [ext_resource path="res://images/symbols/D.png" type="Texture" id=3]
 [ext_resource path="res://images/cauldron_particle_mask.png" type="Texture" id=4]
 [ext_resource path="res://images/symbols/B.png" type="Texture" id=5]
 [ext_resource path="res://images/symbols/A.png" type="Texture" id=6]
 [ext_resource path="res://images/symbols/C.png" type="Texture" id=7]
 [ext_resource path="res://assets/indicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/bottle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://images/particles/heart_particle.png" type="Texture" id=10]
 [ext_resource path="res://images/particles/bubble_0.png" type="Texture" id=11]
 [ext_resource path="res://images/cauldron_liquid_mask.png" type="Texture" id=12]
@@ -36,6 +38,7 @@ _data = [ Vector2( 0.186258, 0.00326359 ), 0.0, 2.86732, 0, 0, Vector2( 0.894868
 margin_right = 62.0
 margin_bottom = 42.0
 rect_clip_content = true
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -45,7 +48,7 @@ __meta__ = {
 light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0705882, 0.12549, 0.12549, 1 )
+color = Color( 0.141176, 0.133333, 0.203922, 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -63,7 +66,6 @@ emission_rect_extents = Vector2( 10, 1 )
 direction = Vector2( 0, -10 )
 spread = 10.0
 initial_velocity = 42.0
-color = Color( 0.137255, 0.403922, 0.305882, 1 )
 
 [node name="cauldron_liquid_mask" type="Sprite" parent="."]
 light_mask = 2
@@ -97,7 +99,6 @@ direction = Vector2( 0, -20 )
 spread = 60.0
 initial_velocity = 42.0
 initial_velocity_random = 0.5
-color = Color( 0.137255, 0.403922, 0.305882, 1 )
 
 [node name="bubble_particles" type="CPUParticles2D" parent="."]
 material = SubResource( 2 )
@@ -114,7 +115,6 @@ gravity = Vector2( 0, -20 )
 initial_velocity = 10.0
 tangential_accel = 6.0
 tangential_accel_random = 1.0
-color = Color( 0.137255, 0.403922, 0.305882, 1 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
@@ -211,3 +211,8 @@ light_mask = 2
 position = Vector2( 31, 21 )
 z_index = 2
 texture = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="bottle" parent="." instance=ExtResource( 9 )]
+position = Vector2( 68, -6 )

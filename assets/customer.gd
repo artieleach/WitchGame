@@ -2,7 +2,8 @@ extends Node2D
 
 class_name StateMachine
 
-const DEBUG = false
+onready var globals = get_node("/root/GlobalVars")
+onready var audioholder = get_node("/root/AudioHolder")
 
 var state: Object
 
@@ -10,8 +11,6 @@ var history = []
 
 signal buying
 signal begin_dialog
-
-onready var audioholder = get_node("/root/AudioHolder")
 
 var progress
 var my_name
@@ -24,7 +23,6 @@ var spot_in_line
 var upset
 var mistakes
 var footsteps = []
-
 
 
 func _ready():
@@ -50,7 +48,7 @@ func back():
 
 
 func _enter_state():
-	if DEBUG:
+	if globals.debug:
 		print("Entering state: ", state.name)
 		printt(history)
 	# Give the new state a reference to it's state machine i.e. this one

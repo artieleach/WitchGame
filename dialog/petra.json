@@ -4,14 +4,14 @@
     "position": "left",
     "animation_in": "move_in",
     "type": "text",
-    "content": "My darling! It is [url='dicksquad']good[/url] to see you.| I have much to tell. ",
+    "content": "My darling! It is good to see you.| I have much to tell. ",
     "next": "first_overflow"
   },
   "first_overflow": {
     "avatar": "Petra",
     "position": "left",
     "type": "text",
-    "content": "It seems our latest trial was again fruitless.| I felt the urge when dealing with a patient just yesterday.",
+    "content": "It seems our latest trial was again [b][url=Berries]fruitless[/url][/b].| I felt the urge when dealing with a patient just yesterday.",
     "next": "first_q"
   },
   "first_q" :{
@@ -66,7 +66,7 @@
     "avatar": "Petra",
     "position": "left",
     "type": "text",
-    "content": "Not at all, my dear. How long have we tried to remedy this curse? The next time I go mad, how do you know it will subside?",
+    "content": "Not at all, my dear. How long have we tried to remedy this curse? The next time I go mad, how do you know it will subside with [b][url=Dandy]sunlight[/url][/b]?",
     "next": "dramatic_overflow"
   },
   "dramatic_overflow": {
@@ -80,7 +80,7 @@
     "avatar": "Petra",
     "position": "left",
     "type": "text",
-    "content": "There is much more you can try, my dear. With your potions you can do more good than I could with medical knowledge.",
+    "content": "There is much more you can try, my dear. Your potions [b][url=Dandy]shine[/url][/b] more brightly than any medical knowledge.",
     "next": "forth_q"
   },
   "third_q" :{

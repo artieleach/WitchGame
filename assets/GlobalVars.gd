@@ -8,8 +8,12 @@ var music
 var time_left
 var forbidden_items = []
 var cards = ["this, that"]
+var debug
+var cauldron_color
+
 
 func ready():
+	debug = true
 	load_game()
 
 
@@ -20,7 +24,9 @@ func save():
 		"day": day,
 		"sound": sound,
 		"music": music,
-		"forbidden_items": forbidden_items
+		"forbidden_items": forbidden_items,
+		"debug": debug,
+		"cauldron_color": cauldron_color
 	}
 	return save_dict
 

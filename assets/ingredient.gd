@@ -3,6 +3,7 @@ extends TextureButton
 onready var ingredient_sprite = get_node("drawing/ingredient_sprite")
 onready var helpers = get_node("drawing/helpers")
 onready var audioholder = get_node("/root/AudioHolder")
+onready var globals = get_node("/root/GlobalVars")
 
 var held: bool = false
 var offset: Vector2 = Vector2(0, 0)
@@ -10,6 +11,7 @@ var will_open_help: bool = false
 var ingredient_effects
 var pickale: bool = true
 var hovering_over_cauldron: bool = false
+var my_width = 0
 signal double_clicked
 signal added_to_potion
 signal potion_splash
@@ -26,10 +28,13 @@ func _ready():
 	connect("check_effects", owner, "_on_check_effects", [name])
 	owner.connect("reset_ingredients", self, "_on_reset_ingredients")
 	ingredient_sprite.texture = load("res://images/ingredients/%s.png" % name)
+	my_width = $drawing/ingredient_sprite.texture.get_width()
 	rect_size = ingredient_sprite.texture.get_size()
 	helpers.rect_size = rect_size
 	ingredient_sprite.show()
 	emit_signal("check_effects")
+	if globals.debug == true:
+		show()
 
 
 func _process(_delta):
@@ -39,17 +44,18 @@ func _process(_delta):
 
 
 func _on_ingredient_mouse_exited():
+	ingredient_sprite.use_parent_material = true
 	will_open_help = true
 	helpers.hide()
 
 
 func reset():
-	show()
 	$AnimationPlayer.stop()
 	ingredient_sprite.self_modulate = Color(1, 1, 1)
 	$drawing.z_index = 0
-	$Tween.interpolate_property($drawing, "position", Vector2(0, -100), Vector2(0, 0), 1.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT, rect_position.x / 150)
+	$Tween.interpolate_property($drawing, "position", Vector2(0, -100), Vector2(0, 0), 1.5, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	$Tween.start()
+	show()
 	held = false
 	will_open_help = false
 	helpers.hide()
@@ -90,6 +96,7 @@ func add_to_potion():
 
 
 func mouse_hover():
+	ingredient_sprite.use_parent_material = false
 	helpers.show()
 
 

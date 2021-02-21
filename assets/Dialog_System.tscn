@@ -116,17 +116,14 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 42.0
-margin_right = 42.0
+margin_bottom = -0.0579987
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Frame/advance"]
-anchor_left = 0.187
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -41.701
-margin_right = -41.813
 rect_pivot_offset = Vector2( 71.187, 16 )
 mouse_filter = 1
 custom_fonts/bold_font = ExtResource( 6 )

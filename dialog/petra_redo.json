@@ -1,0 +1,226 @@
+{
+  "first": {
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "move_in",
+    "type": "text",
+    "content": "My darling! It is good to see you.| I have much to tell.",
+    "next": "first_q"
+  },
+  "first_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["Good news?", "You look upset."],
+    "next": ["fruitless", "fruitless"]
+  },
+  "fruitless": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "It seems out latest trial was once again [b][url=Berries]fruitless[/url][/b].",
+    "next": "fruitless_overflow"
+  },
+  "fruitless_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I felt the urge when dealing with a patient just yesterday. A shame.",
+    "next": "second_q"
+  },
+  "second_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["What happened?", "Did you notice any difference?"],
+    "next": ["what_happened", "notice_difference"]
+  },
+  "what_happened": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Same as ever, I see blood, I am sent into a rage! I barely contained myself this time. It was only luck I found a stray dog.",
+    "next": "give_up"
+  },
+  "notice_difference": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "None at all, I'm afraid. This time it happened at night, which was lucky for me.",
+    "next": "give_up"
+  },
+  "give_up": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I think it is well past time for us to give up on our quest. There is no cure for vampirism, except the blade.",
+    "next": "third_q"
+  },
+  "third_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You're being dramatic.", "I only need more time."],
+    "next": ["next_time", "next_time"]
+  },
+  "next_time": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "The next time I go mad, how do you know it will subside with [b][url=Dandy]sunlight[/url][/b]? No.",
+    "next": "next_time_overflow"
+  },
+  "next_time_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I lived a good life, and a wonderful afterlife too. But this charade cannot continue.",
+    "next": "forth_q"
+  },
+  "forth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You're my friend.", "The town needs a doctor."],
+    "next": ["my_friend", "town_doctor"]
+  },
+  "my_friend": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "And you are mine. I have trusted no other with my secret, is that not proof enough? I ask you alone to help me.",
+    "next": "fifth_q"
+  },
+  "town_doctor": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Ah, oui? The town does not need a killer!",
+    "next": "fifth_q"
+  },
+  "fifth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You're asking me to abandon my principles", "There's more we can try."],
+    "next": ["ask_much", "try_more"]
+  },
+  "ask_much": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You're very sharp, so very sharp. Yet you refuse to use the gifts bestowed upon you. My scalpel decides where to cut and saves many lives. You do not.",
+    "next": "sixth_q"
+  },
+  "try_more": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "There is much more you can try. You can do much more with your magic than I ever could with my medical knowlegde. Why do you deny yourself your potential?",
+    "next": "seventh_q"
+  },
+  "sixth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["You decide, not the scalpel.", "You ask me to be a tyrant?"],
+    "next": ["scalpel_code", "be_tyrant"]
+  },
+  "seventh_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["I can't cure a broken leg with a potion", "You ask me to be a tyrant?"],
+    "next": ["leg_potion", "be_tyrant"]
+  },
+  "scalpel_code": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "Non, my code decides the action of the scalpel, I am merely an [b][url=Conch]instrument[/url][/b] in it's quest.",
+    "next": "scalpel_code_overflow"
+  },
+  "scalpel_code_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "My scalpel saves many lives, I end lives. When the scalpel can act no furhter, I take over and do as I see fit.",
+    "next": "eigth_q"
+  },
+  "leg_potion": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You and I do the same thing. I heal the leg so the farmer can work again.",
+    "next": "leg_potion_overflow"
+  },
+  "leg_potion_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You help seamstresses who want to sleep less, and dock workers who want to lift more. This [b][url=Feather]weight[/url][/b] you bear, for what?",
+    "next": "ninth_q"
+  },
+  "be_tyrant": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "I have known many tyrants, ruthless, headstrong, lovers and fighters to the last.",
+    "next": "be_tyrant_overflow"
+  },
+  "be_tyrant_overflow": {
+    "avatar": "Petra",
+    "position": "left",
+    "type": "text",
+    "content": "You are no tyrant, which is why I ask you to act. Who better to help [b][url=Beetle]those in need[/url][/b] than one who knows thier plight?",
+    "next": "ninth_q"
+  },
+  "eigth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["My code demands giving people what they ask for.", "I'm not going to kill anyone."],
+    "next": ["final", "final"]
+  },
+  "ninth_q" :{
+    "type":"question",
+    "text": "",
+    "avatar": "Petra",
+    "position": "left",
+    "animation_in": "off",
+    "animation_out": "on",
+    "options": ["My duty is not to make judgments of what is asked of me.", "I'm not going to kill anyone."],
+    "next": ["final", "final"]
+  },
+  "final": {
+    "avatar": "Petra",
+    "position": "left",
+    "animation_out": "move_out",
+    "type": "text",
+    "content": "I do not wish to argue with you, you always win. I will come back tomorrow and we will continue, just as we are now, Didi.",
+  }
+}

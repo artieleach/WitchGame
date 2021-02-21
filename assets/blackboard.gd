@@ -10,14 +10,7 @@ const item_height = 15
 
 
 func _ready():
-	#yield (owner, "ready")
-	var file = File.new()
-	file.open('res://dialog/drinks.json', file.READ)
-	var json = file.get_as_text()
-	drinks = JSON.parse(json).result
-	file.close()
-	for drink in drinks:
-		generate_item(drink)
+	pass
 
 
 func generate_item(menu_item):

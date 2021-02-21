@@ -1,7 +1,7 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://images/fireplace.png" type="Texture" id=1]
-[ext_resource path="res://images/counter_bg.png" type="Texture" id=2]
+[ext_resource path="res://images/redo.png" type="Texture" id=2]
 [ext_resource path="res://images/front_counter.png" type="Texture" id=3]
 [ext_resource path="res://assets/SceneTransition.tscn" type="PackedScene" id=4]
 [ext_resource path="res://images/barrelthing.png" type="Texture" id=5]
@@ -12,6 +12,7 @@
 [ext_resource path="res://images/coffee_display.png" type="Texture" id=10]
 [ext_resource path="res://images/register.png" type="Texture" id=11]
 [ext_resource path="res://assets/OptionsMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://images/alch.png" type="Texture" id=13]
 [ext_resource path="res://images/ingredients/Berries.png" type="Texture" id=14]
 [ext_resource path="res://images/ingredients/Branch.png" type="Texture" id=15]
 [ext_resource path="res://images/shelf.png" type="Texture" id=16]
@@ -21,10 +22,11 @@
 [ext_resource path="res://assets/Spellbook.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/cauldron.tscn" type="PackedScene" id=21]
 [ext_resource path="res://images/ingredients/Honeycomb.png" type="Texture" id=22]
-[ext_resource path="res://images/blackboard_small.png" type="Texture" id=23]
-[ext_resource path="res://assets/blackboard.tscn" type="PackedScene" id=24]
+[ext_resource path="res://images/lilbottle.png" type="Texture" id=23]
+[ext_resource path="res://images/fireplacebg.png" type="Texture" id=24]
 [ext_resource path="res://images/GUI/menu.png" type="Texture" id=25]
 [ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=26]
+[ext_resource path="res://images/GUI/menu_hover.png" type="Texture" id=27]
 [ext_resource path="res://images/jar_cabinet.png" type="Texture" id=28]
 [ext_resource path="res://images/cabinet.png" type="Texture" id=29]
 [ext_resource path="res://images/small_calinet.png" type="Texture" id=30]
@@ -47,6 +49,68 @@
 [ext_resource path="res://assets/ingredient.tscn" type="PackedScene" id=49]
 
 [sub_resource type="Shader" id=1]
+code = "/* 
+Original shader from Fubucci – https://www.febucci.com/2019/05/fire-shader/ 
+Converted to Godot Shader Language by Godot Shaders - godotshaders.com/shader/2D-fire/
+*/
+
+shader_type canvas_item;
+
+uniform sampler2D noise_tex;
+uniform sampler2D gradient_tex;
+
+uniform vec4 brighter_color : hint_color = vec4(1.0, 0.8, 0.0, 1.0);
+uniform vec4 middle_color : hint_color  = vec4(1.0, 0.56, 0.0, 1.0);
+uniform vec4 darker_color : hint_color  = vec4(0.64, 0.2, 0.05, 1.0);
+
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+
+void fragment()
+{
+	
+	float noise_value = texture(noise_tex, UV + vec2(0.0, TIME*0.5)).x;
+	// The .yx swizzle is when using the built in horizontal gradient texture. If you have a vertical gradient texture remove .yx
+	float gradient_value = texture(gradient_tex, UV.yx).x;
+	
+	gradient_value -= smoothstep(spread, spread + 0.5, length(UV + vec2(-0.5, -0.5)) / spread);
+	
+	float step1 = step(noise_value, gradient_value);
+	float step2 = step(noise_value, gradient_value - 0.2);
+	float step3 = step(noise_value, gradient_value - 0.4);
+	
+	vec3 bd_color = mix(brighter_color.rgb, darker_color.rgb, step1 - step2);
+	
+	vec4 color = vec4(bd_color, step1);
+	color.rgb = mix(color.rgb, middle_color.rgb, step2 - step3);
+	
+	COLOR = color;
+}"
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.00420168, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0546218, 0.0546218, 0.0546218, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 50
+
+[sub_resource type="OpenSimplexNoise" id=4]
+seed = 69420
+
+[sub_resource type="NoiseTexture" id=5]
+flags = 2
+noise = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
+shader_param/brighter_color = Color( 1, 0.835294, 0.254902, 1 )
+shader_param/middle_color = Color( 0.980392, 0.415686, 0.0392157, 1 )
+shader_param/darker_color = Color( 0.45098, 0.0901961, 0.176471, 1 )
+shader_param/spread = 0.6
+shader_param/noise_tex = SubResource( 5 )
+shader_param/gradient_tex = SubResource( 3 )
+
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -77,17 +141,40 @@ void fragment()
 	COLOR = texturePointSmooth(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 
-[sub_resource type="DynamicFontData" id=3]
+[sub_resource type="DynamicFontData" id=9]
 font_path = "res://fonts/m5x7.ttf"
 
-[sub_resource type="DynamicFont" id=4]
-font_data = SubResource( 3 )
+[sub_resource type="DynamicFont" id=10]
+font_data = SubResource( 9 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "customer_entered"
+[sub_resource type="Animation" id=11]
+length = 0.6
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("backwall/lilbottle:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 170, 0, 0, 0, 0, 195, 0, 0, 0, 0 ),
+"times": PoolRealArray( 0, 0.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("backwall/lilbottle:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 26, -0.25, 0, 0, -1, 20, -0.25, 0, 0.25, 0, 26, 0, -1, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.6 )
+}
+
+[sub_resource type="Animation" id=12]
 length = 1.4
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -107,8 +194,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "potion_splash"
+[sub_resource type="Animation" id=13]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -151,89 +237,90 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 223.0
 margin_bottom = 41.0
+rect_pivot_offset = Vector2( 104, -6 )
 rect_clip_content = true
 texture = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="barrelthing" type="TextureRect" parent="backwall"]
-margin_left = -17.0
-margin_top = -6.0
-margin_right = 16.0
-margin_bottom = 34.0
-texture = ExtResource( 5 )
+[node name="backcounter" type="TextureRect" parent="backwall"]
+margin_left = -88.0
+margin_top = 26.0
+margin_right = -43.0
+margin_bottom = 36.0
+texture = ExtResource( 8 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="umbroomla" type="TextureRect" parent="backwall"]
+margin_left = 188.0
+margin_top = 11.0
+margin_right = 201.0
+margin_bottom = 38.0
+texture = ExtResource( 32 )
+flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="panrack" type="TextureRect" parent="backwall"]
-margin_left = 146.0
-margin_top = 4.0
-margin_right = 168.0
-margin_bottom = 14.0
+margin_left = 152.0
+margin_top = 11.0
+margin_right = 174.0
+margin_bottom = 21.0
 texture = ExtResource( 35 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="bulletin_board" type="TextureRect" parent="backwall"]
-margin_left = 196.0
-margin_top = 4.0
-margin_right = 211.0
-margin_bottom = 24.0
+margin_left = 197.0
+margin_top = 2.0
+margin_right = 212.0
+margin_bottom = 22.0
 texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="jar_cabinet" type="TextureRect" parent="backwall"]
-margin_left = 116.0
-margin_top = 4.0
-margin_right = 138.0
-margin_bottom = 21.0
+margin_left = 123.0
+margin_top = 2.0
+margin_right = 145.0
+margin_bottom = 19.0
 texture = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="fireplace" type="TextureRect" parent="backwall"]
-margin_left = 97.0
-margin_top = -60.0
-margin_right = 117.0
-margin_bottom = -20.0
-texture = ExtResource( 1 )
+[node name="plant" type="TextureRect" parent="backwall"]
+margin_left = 208.0
+margin_top = 19.0
+margin_right = 223.0
+margin_bottom = 38.0
+texture = ExtResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="blackboard" type="TextureButton" parent="backwall"]
-visible = false
-margin_left = 154.0
-margin_top = 7.0
-margin_right = 186.0
-margin_bottom = 25.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="shelf" type="TextureRect" parent="backwall"]
-margin_left = 49.0
-margin_top = 1.0
-margin_right = 87.0
-margin_bottom = 16.0
-texture = ExtResource( 16 )
+[node name="bookcase" type="TextureRect" parent="backwall"]
+margin_left = 98.0
+margin_top = 2.0
+margin_right = 118.0
+margin_bottom = 38.0
+texture = ExtResource( 31 )
 flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="small_calinet" type="TextureRect" parent="backwall"]
-margin_left = 47.0
+margin_left = 58.0
 margin_top = 15.0
-margin_right = 90.0
+margin_right = 101.0
 margin_bottom = 28.0
 texture = ExtResource( 30 )
 flip_h = true
@@ -241,139 +328,158 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="frontcounter" type="TextureRect" parent="backwall"]
+margin_left = 114.0
+margin_top = 29.0
+margin_right = 191.0
+margin_bottom = 38.0
+texture = ExtResource( 3 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shelf" type="TextureRect" parent="backwall"]
+margin_left = 61.0
+margin_top = 1.0
+margin_right = 99.0
+margin_bottom = 16.0
+texture = ExtResource( 16 )
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="cabinet" type="TextureRect" parent="backwall"]
-margin_left = 17.0
-margin_top = 5.0
-margin_right = 45.0
-margin_bottom = 39.0
+margin_left = 32.0
+margin_top = 4.0
+margin_right = 60.0
+margin_bottom = 38.0
 texture = ExtResource( 29 )
 flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="umbroomla" type="TextureRect" parent="backwall"]
-margin_left = 187.0
-margin_top = 12.0
-margin_right = 199.0
-margin_bottom = 39.0
-texture = ExtResource( 32 )
-flip_h = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="plant" type="TextureRect" parent="backwall"]
-margin_left = 204.0
-margin_top = 20.0
-margin_right = 219.0
-margin_bottom = 39.0
-texture = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="frontcounter" type="TextureRect" parent="backwall" groups=[
-"perspective",
-]]
-margin_left = 110.0
-margin_top = 30.0
-margin_right = 187.0
-margin_bottom = 39.0
-texture = ExtResource( 3 )
-flip_h = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="bookcase" type="TextureRect" parent="backwall"]
-margin_left = 93.0
-margin_top = 3.0
-margin_right = 113.0
-margin_bottom = 39.0
-texture = ExtResource( 31 )
-flip_h = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="coffeeholder" type="TextureRect" parent="backwall" groups=[
-"perspective",
-]]
-margin_left = 163.0
-margin_top = 25.0
-margin_right = 176.0
+[node name="fireplace" type="TextureRect" parent="backwall"]
+margin_left = 3.0
+margin_top = -2.0
+margin_right = 33.0
 margin_bottom = 38.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureRect" parent="backwall/fireplace"]
+show_behind_parent = true
+margin_left = 12.0
+margin_top = 30.0
+margin_right = 24.0
+margin_bottom = 40.0
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fire" type="ColorRect" parent="backwall/fireplace"]
+show_behind_parent = true
+material = SubResource( 6 )
+margin_left = 14.0
+margin_top = 26.0
+margin_right = 21.0
+margin_bottom = 38.0
+color = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coffeeholder" type="TextureRect" parent="backwall"]
+margin_left = 167.0
+margin_top = 24.0
+margin_right = 180.0
+margin_bottom = 37.0
 texture = ExtResource( 10 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="exit" type="TextureRect" parent="backwall" groups=[
 "exit",
 ]]
-margin_left = 256.0
-margin_top = 26.0
-margin_right = 288.0
-margin_bottom = 58.0
+margin_left = 240.0
+margin_top = 25.0
+margin_right = 272.0
+margin_bottom = 57.0
 texture = ExtResource( 48 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="register" type="TextureRect" parent="backwall" groups=[
-"perspective",
-]]
+[node name="register" type="TextureRect" parent="backwall"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 170.0
+margin_left = 174.0
 margin_top = 24.0
-margin_right = 175.0
+margin_right = 179.0
 margin_bottom = 30.0
 texture = ExtResource( 11 )
-flip_h = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="backcounter" type="TextureRect" parent="backwall"]
-margin_left = -68.0
-margin_top = 29.0
-margin_right = 21.0
-margin_bottom = 39.0
-texture = ExtResource( 8 )
 flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="kettle" type="TextureRect" parent="backwall"]
-margin_left = 123.0
-margin_top = 22.0
-margin_right = 131.0
-margin_bottom = 30.0
+margin_left = 122.0
+margin_top = 21.0
+margin_right = 130.0
+margin_bottom = 29.0
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="kettle2" type="TextureRect" parent="backwall"]
+margin_left = 133.0
+margin_top = 21.0
+margin_right = 165.0
+margin_bottom = 29.0
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lilbottle" type="Sprite" parent="backwall"]
+position = Vector2( 174, 26 )
+texture = ExtResource( 23 )
+centered = false
+
+[node name="barrelthing" type="TextureRect" parent="backwall"]
+visible = false
+margin_left = -24.0
+margin_top = -2.0
+margin_right = 9.0
+margin_bottom = 38.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="burger" type="TextureButton" parent="."]
-modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 9.0
 margin_bottom = 9.0
+rect_pivot_offset = Vector2( 104, -6 )
 texture_normal = ExtResource( 25 )
+texture_hover = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Scrolling_Window" parent="." instance=ExtResource( 34 )]
 light_mask = 2
-material = SubResource( 2 )
+material = SubResource( 8 )
 margin_left = 1.0
 margin_top = 42.0
 margin_right = 223.0
@@ -381,7 +487,7 @@ margin_bottom = 84.0
 
 [node name="counter" type="TextureRect" parent="Scrolling_Window"]
 light_mask = 2
-margin_right = 331.0
+margin_right = 160.0
 margin_bottom = 43.0
 texture = ExtResource( 2 )
 __meta__ = {
@@ -390,13 +496,15 @@ __meta__ = {
 }
 
 [node name="Berries" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 2.0
 margin_top = 15.0
-margin_right = 23.0
-margin_bottom = 35.0
+margin_right = 25.0
+margin_bottom = 37.0
 texture_normal = ExtResource( 14 )
 
 [node name="Conch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 28.0
 margin_top = 13.0
 margin_right = 56.0
@@ -404,6 +512,7 @@ margin_bottom = 36.0
 texture_normal = ExtResource( 44 )
 
 [node name="Feather" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 56.0
 margin_top = 10.0
 margin_right = 83.0
@@ -411,6 +520,7 @@ margin_bottom = 37.0
 texture_normal = ExtResource( 42 )
 
 [node name="Herbs" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 88.0
 margin_top = 13.0
 margin_right = 103.0
@@ -418,6 +528,7 @@ margin_bottom = 37.0
 texture_normal = ExtResource( 38 )
 
 [node name="Mushroom" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 105.0
 margin_top = 14.0
 margin_right = 122.0
@@ -425,6 +536,7 @@ margin_bottom = 37.0
 texture_normal = ExtResource( 43 )
 
 [node name="Silver Shell" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 124.0
 margin_top = 22.0
 margin_right = 154.0
@@ -432,6 +544,7 @@ margin_bottom = 36.0
 texture_normal = ExtResource( 37 )
 
 [node name="Clover" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 158.0
 margin_top = 16.0
 margin_right = 173.0
@@ -439,6 +552,7 @@ margin_bottom = 36.0
 texture_normal = ExtResource( 41 )
 
 [node name="Flower" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 176.0
 margin_top = 13.0
 margin_right = 197.0
@@ -446,6 +560,7 @@ margin_bottom = 37.0
 texture_normal = ExtResource( 45 )
 
 [node name="Roots" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 200.0
 margin_top = 14.0
 margin_right = 221.0
@@ -453,6 +568,7 @@ margin_bottom = 36.0
 texture_normal = ExtResource( 39 )
 
 [node name="Dandy" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 224.0
 margin_top = 13.0
 margin_right = 245.0
@@ -460,6 +576,7 @@ margin_bottom = 39.0
 texture_normal = ExtResource( 36 )
 
 [node name="Honeycomb" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 252.0
 margin_top = 15.0
 margin_right = 274.0
@@ -467,6 +584,7 @@ margin_bottom = 36.0
 texture_normal = ExtResource( 22 )
 
 [node name="Branch" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 278.0
 margin_top = 15.0
 margin_right = 300.0
@@ -474,6 +592,7 @@ margin_bottom = 37.0
 texture_normal = ExtResource( 15 )
 
 [node name="Beetle" parent="Scrolling_Window/counter" instance=ExtResource( 49 )]
+visible = false
 margin_left = 303.0
 margin_top = 14.0
 margin_right = 327.0
@@ -494,13 +613,6 @@ __meta__ = {
 margin_left = 160.0
 margin_right = 222.0
 
-[node name="blackboard" parent="." instance=ExtResource( 24 )]
-visible = false
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -223.0
-margin_bottom = -125.0
-
 [node name="Dialog" parent="." instance=ExtResource( 7 )]
 margin_left = 1.0
 margin_top = 85.0
@@ -511,6 +623,7 @@ margin_left = 10.0
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 10.0
+rect_pivot_offset = Vector2( 95, -6 )
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 __meta__ = {
@@ -538,7 +651,7 @@ anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 10 )
 text = "another day, another dollar"
 
 [node name="SceneTransition" parent="." instance=ExtResource( 4 )]
@@ -551,10 +664,10 @@ wait_time = 766.0
 [node name="next_customer_timer" type="Timer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/customer_entered = SubResource( 5 )
-anims/potion_splash = SubResource( 6 )
+anims/bottle_give = SubResource( 11 )
+anims/customer_entered = SubResource( 12 )
+anims/potion_splash = SubResource( 13 )
 [connection signal="tree_exiting" from="." to="." method="_on_Control_tree_exiting"]
-[connection signal="pressed" from="backwall/blackboard" to="." method="_on_blackboard_pressed"]
 [connection signal="pressed" from="burger" to="." method="_on_burger_pressed"]
 [connection signal="gui_input" from="end_of_day" to="." method="_on_end_of_day_gui_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

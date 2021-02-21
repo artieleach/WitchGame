@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://images/book2.png" type="Texture" id=1]
-[ext_resource path="res://fonts/m5x7.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/GUI/x_hover.png" type="Texture" id=2]
 [ext_resource path="res://images/GUI/x.png" type="Texture" id=3]
 [ext_resource path="res://images/GUI/sounds.png" type="Texture" id=4]
 [ext_resource path="res://images/GUI/music.png" type="Texture" id=5]
 [ext_resource path="res://assets/OptionsMenu.gd" type="Script" id=6]
-[ext_resource path="res://fonts/m5x7-bold.tres" type="DynamicFont" id=7]
+[ext_resource path="res://images/GUI/sound_hover.png" type="Texture" id=7]
+[ext_resource path="res://images/GUI/music_hover.png" type="Texture" id=8]
+[ext_resource path="res://assets/option_menu_item.tscn" type="PackedScene" id=9]
 
 [node name="OptionsMenu" type="Control"]
 pause_mode = 2
@@ -44,74 +46,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Music" type="TextureButton" parent="Book/VBoxContainer"]
-modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
+[node name="Music" parent="Book/VBoxContainer" instance=ExtResource( 9 )]
 margin_right = 47.0
-margin_bottom = 8.0
-toggle_mode = true
 texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 8 )
 
-[node name="Label" type="RichTextLabel" parent="Book/VBoxContainer/Music"]
-margin_left = 10.0
-margin_right = 52.0
-margin_bottom = 9.0
-custom_fonts/bold_font = ExtResource( 7 )
-custom_fonts/normal_font = ExtResource( 2 )
-bbcode_enabled = true
-bbcode_text = "Music"
-text = "Music"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sound" type="TextureButton" parent="Book/VBoxContainer"]
-modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
-margin_top = 12.0
+[node name="Sound" parent="Book/VBoxContainer" instance=ExtResource( 9 )]
+margin_top = 14.0
 margin_right = 47.0
-margin_bottom = 20.0
-toggle_mode = true
+margin_bottom = 24.0
 texture_normal = ExtResource( 4 )
-
-[node name="Label" type="Label" parent="Book/VBoxContainer/Sound"]
-margin_left = 10.0
-margin_right = 40.0
-margin_bottom = 9.0
-custom_fonts/font = ExtResource( 2 )
-text = "Sound"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_hover = ExtResource( 7 )
 
 [node name="HSeparator" type="HSeparator" parent="Book/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 47.0
-margin_bottom = 30.0
+margin_bottom = 34.0
 custom_constants/separation = 6
 
-[node name="Menu" type="TextureButton" parent="Book/VBoxContainer"]
-modulate = Color( 0.0784314, 0.0627451, 0.0745098, 1 )
-margin_top = 34.0
+[node name="Menu" parent="Book/VBoxContainer" instance=ExtResource( 9 )]
+margin_top = 38.0
 margin_right = 47.0
-margin_bottom = 42.0
+margin_bottom = 48.0
 texture_normal = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Book/VBoxContainer/Menu"]
-margin_left = 10.0
-margin_right = 36.0
-margin_bottom = 9.0
-custom_fonts/font = ExtResource( 2 )
-text = "Menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_hover = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="gui_input" from="." to="." method="_on_OptionsMenu_gui_input"]
-[connection signal="pressed" from="Book/VBoxContainer/Music" to="." method="_on_Music_pressed"]
-[connection signal="pressed" from="Book/VBoxContainer/Sound" to="." method="_on_Sound_pressed"]
-[connection signal="pressed" from="Book/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]

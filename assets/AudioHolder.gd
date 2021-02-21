@@ -72,3 +72,4 @@ func play_song(song: String, vol=0):
 		musicplayer.play()
 	else:
 		print('song didnt work lmao')
+		print(song, vol)

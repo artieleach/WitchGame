@@ -29,7 +29,7 @@ func _process(_delta):
 		owner.scroll_offset = counter.rect_position
 
 
-func _gui_input(event):
+func lmao(event):  #_gui_input
 	if event is InputEventMouseButton:
 		if event.button_index == 5:
 			last_checked -= scroll_factor

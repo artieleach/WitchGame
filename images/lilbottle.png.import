@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3p.png-a23e1e14026cea95141342c2465db81c.stex"
+path="res://.import/lilbottle.png-4fa05a69ab73a3734975fa4c7d9b9beb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/3p.png"
-dest_files=[ "res://.import/3p.png-a23e1e14026cea95141342c2465db81c.stex" ]
+source_file="res://images/lilbottle.png"
+dest_files=[ "res://.import/lilbottle.png-4fa05a69ab73a3734975fa4c7d9b9beb.stex" ]
 
 [params]
 

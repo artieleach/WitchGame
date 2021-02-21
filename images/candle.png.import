@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Pepper.png-6b9fed9940561a25a55f6a3c1bd8b1c4.stex"
+path="res://.import/candle.png-7d7b71e587b2f79815542781d1eca554.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ingredients/Pepper.png"
-dest_files=[ "res://.import/Pepper.png-6b9fed9940561a25a55f6a3c1bd8b1c4.stex" ]
+source_file="res://images/candle.png"
+dest_files=[ "res://.import/candle.png-7d7b71e587b2f79815542781d1eca554.stex" ]
 
 [params]
 

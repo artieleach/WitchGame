@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mana.png-f7ebe49fa946962878731599f77a17d1.stex"
+path="res://.import/alch.png-6f25e28d975c6f86774640f73720888a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ingredients/Mana.png"
-dest_files=[ "res://.import/Mana.png-f7ebe49fa946962878731599f77a17d1.stex" ]
+source_file="res://images/alch.png"
+dest_files=[ "res://.import/alch.png-6f25e28d975c6f86774640f73720888a.stex" ]
 
 [params]
 

@@ -15,11 +15,6 @@ func _ready():
 	connect("button_toggled", owner, "_on_button_toggled")
 	Music.pressed = globals.music
 	Sound.pressed = globals.sound
-	for item in [Music, Sound]:
-		if item.pressed:
-			item.modulate = Color("8b93af")
-		else:
-			item.modulate = Color("141013")
 
 
 func _on_Menu_pressed():

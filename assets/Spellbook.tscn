@@ -26,9 +26,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="x_button" type="Sprite" parent="book_texture"]
-position = Vector2( 209, 0 )
-texture = ExtResource( 3 )
+[node name="x_button" type="TextureButton" parent="book_texture"]
+margin_left = 195.0
+margin_top = -2.0
+margin_right = 202.0
+margin_bottom = 6.0
+mouse_filter = 1
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="book_texture"]
 margin_left = 7.0

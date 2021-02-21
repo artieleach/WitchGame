@@ -38,7 +38,7 @@ var inactive_choice : Color = Color(1.0, 1.0, 1.0, 0.4)
 var flip_flop = true
 
 
-
+signal dialog_ingredient_pressed
 
 var previous_command : String = 'ui_up' # Input commmand for the navigating through question choices 
 var next_command : String = 'ui_down' # Input commmand for the navigating through question choices
@@ -113,25 +113,25 @@ var avatar_right : String = ''
 var shaking : bool = false
 
 func _ready():
+	connect("dialog_ingredient_pressed", owner, "bring_ingredient")
 	set_physics_process(true)
 	timer.connect('timeout', self, '_on_Timer_timeout')
 	sprite_timer.connect('timeout', self, '_on_Sprite_Timer_timeout')
 	set_frame()
-	initiate("petra")
+	if globals.debug or true:
+		initiate("petra_redo")
 
 
 func _physics_process(delta):
 	if shaking:
 		sprite.offset = Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount)
-	pass
 
 
 func set_frame(): # Mostly aligment operations.
 	frame.hide() # Hide the dialog frame
 	continue_indicator.hide()
-	
 	sprite_left.modulate = white_transparent
-	
+
 
 func initiate(file_id, block = 'first'): # Load the whole dialog into a variable
 	id = file_id
@@ -359,7 +359,7 @@ func next(x=0):
 		else:
 			sprite_left.modulate = white_transparent
 		dialog = null
-		frame.hide() 
+		frame.hide()
 		avatar_left = ''
 		avatar_right = ''
 	else:
@@ -377,16 +377,10 @@ func next(x=0):
 
 
 func check_animation(block):
-	reset_sprites()
-	if block.has('avatar'):
-		if block.has('animation_in'):
-			animate_sprite(block['position'], block['avatar'], block['animation_in'])
-	else:
-		return
+	if block.has('avatar') and block.has('animation_in'):
+		animate_sprite(block['position'], block['avatar'], block['animation_in'])
+	return
 
-
-func reset_sprites():
-	pass
 
 func animate_sprite(direction, image, animation):
 	var current_pos
@@ -550,7 +544,7 @@ func load_image(sprite, image):
 
 func question(text, options, next):
 	check_pauses(label.get_text())
-	var n = 0 # Just a looping var.
+	var n = 0 
 	for a in options:
 		var choice = choice_scene.instance()
 		choice.bbcode_text = '[url=%s]%s[/url]' % [a, a]
@@ -639,7 +633,6 @@ func update_pause():
 	else: # Doesn't have any pauses left.
 		pause_array = []
 		pause_index = 0
-		
 	paused = false
 	timer.wait_time = wait_time
 	timer.start()
@@ -657,5 +650,5 @@ func _on_advance_pressed():
 
 
 func _on_RichTextLabel_meta_clicked(meta):
-	print(meta)
+	emit_signal("dialog_ingredient_pressed", meta)
 
