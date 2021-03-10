@@ -244,6 +244,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="bulletin_board" type="TextureRect" parent="backwall"]
+margin_left = 197.0
+margin_top = 2.0
+margin_right = 212.0
+margin_bottom = 22.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="backcounter" type="TextureRect" parent="backwall"]
 margin_left = -88.0
 margin_top = 26.0
@@ -256,9 +266,9 @@ __meta__ = {
 }
 
 [node name="umbroomla" type="TextureRect" parent="backwall"]
-margin_left = 188.0
+margin_left = 194.0
 margin_top = 11.0
-margin_right = 201.0
+margin_right = 207.0
 margin_bottom = 38.0
 texture = ExtResource( 32 )
 flip_h = true
@@ -268,29 +278,18 @@ __meta__ = {
 
 [node name="panrack" type="TextureRect" parent="backwall"]
 margin_left = 152.0
-margin_top = 11.0
+margin_top = 3.0
 margin_right = 174.0
-margin_bottom = 21.0
+margin_bottom = 13.0
 texture = ExtResource( 35 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="bulletin_board" type="TextureRect" parent="backwall"]
-margin_left = 197.0
-margin_top = 2.0
-margin_right = 212.0
-margin_bottom = 22.0
-texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="jar_cabinet" type="TextureRect" parent="backwall"]
 margin_left = 123.0
-margin_top = 2.0
 margin_right = 145.0
-margin_bottom = 19.0
+margin_bottom = 17.0
 texture = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -308,11 +307,10 @@ __meta__ = {
 
 [node name="bookcase" type="TextureRect" parent="backwall"]
 margin_left = 98.0
-margin_top = 2.0
-margin_right = 118.0
-margin_bottom = 38.0
+margin_top = 3.0
+margin_right = 121.0
+margin_bottom = 39.0
 texture = ExtResource( 31 )
-flip_h = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -329,10 +327,10 @@ __meta__ = {
 }
 
 [node name="frontcounter" type="TextureRect" parent="backwall"]
-margin_left = 114.0
-margin_top = 29.0
-margin_right = 191.0
-margin_bottom = 38.0
+margin_left = 122.0
+margin_top = 26.0
+margin_right = 200.0
+margin_bottom = 39.0
 texture = ExtResource( 3 )
 flip_h = true
 __meta__ = {
@@ -351,10 +349,10 @@ __meta__ = {
 }
 
 [node name="cabinet" type="TextureRect" parent="backwall"]
-margin_left = 32.0
-margin_top = 4.0
-margin_right = 60.0
-margin_bottom = 38.0
+margin_left = 35.0
+margin_top = 3.0
+margin_right = 63.0
+margin_bottom = 39.0
 texture = ExtResource( 29 )
 flip_h = true
 __meta__ = {
@@ -395,6 +393,7 @@ __meta__ = {
 }
 
 [node name="coffeeholder" type="TextureRect" parent="backwall"]
+visible = false
 margin_left = 167.0
 margin_top = 24.0
 margin_right = 180.0
@@ -430,27 +429,27 @@ __meta__ = {
 }
 
 [node name="kettle" type="TextureRect" parent="backwall"]
-margin_left = 122.0
-margin_top = 21.0
-margin_right = 130.0
-margin_bottom = 29.0
+margin_left = 124.0
+margin_top = 18.0
+margin_right = 132.0
+margin_bottom = 26.0
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="kettle2" type="TextureRect" parent="backwall"]
-margin_left = 133.0
-margin_top = 21.0
-margin_right = 165.0
-margin_bottom = 29.0
+margin_left = 135.0
+margin_top = 18.0
+margin_right = 167.0
+margin_bottom = 26.0
 texture = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="lilbottle" type="Sprite" parent="backwall"]
-position = Vector2( 174, 26 )
+position = Vector2( 174, 23 )
 texture = ExtResource( 23 )
 centered = false
 
