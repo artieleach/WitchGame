@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="witch game"
 config/description="witch game"
-run/main_scene="res://assets/Menu.tscn"
+run/main_scene="res://assets/main.tscn"
 boot_splash/image="res://images/splashscreen.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
